@@ -1,1 +1,76 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100..900&display=swap");
+:root {
+  --primary: #000 !important;
+  --secondry: #db4444;
+  --light-bg: #3b5d50;
+  --light: #f5f5f5;
+  --gray-600: #6c757d;
+  --blue: #2a2185;
+  --light-blue: #4154f1;
+  --dark-blue: #012970;
+  --white: #fff;
+  --gray: #f5f8f53d;
+  --black1: #222;
+  --black2: #999;
+  --font-main: "Inter", sans-serif;
+  scroll-behavior: smooth;
+}
+
+html {
+  font-size: 14px;
+  direction: rtl;
+}
+body {
+  overflow-x: hidden;
+  position: relative;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  line-height: 28px;
+  color: #555555;
+  font-size: 14px;
+  background-color: var(--light) !important;
+  background: #f6f9ff;
+  direction: rtl;
+  text-align: right;
+}
+
+a {
+  color: var(--light-blue);
+  text-decoration: none !important;
+  -webkit-transition: 0.3s all ease;
+  -o-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+  cursor: pointer;
+}
+
+
+/*------------------------
+  # Main
+  ------------------------*/
+  #main {
+    margin-top: 60px;
+
+    padding: 20px 30px;
+    transition: all 0.3s;
+  }
+  
+  @media (max-width: 1199px) {
+    #main {
+      padding: 20px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    #main,
+    #footer {
+      margin-right: 260px;
+    }
+  }
+  /*----------------------------
+    # Page Title
+    ----------------------------*/
+  .pagetitle {
+    margin-bottom: 10px;
+  }
+  
