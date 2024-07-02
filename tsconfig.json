@@ -15,6 +15,11 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
+         "baseUrl": "./",
+        "paths": {
+          "@domain/*": ["src/app/domain/*"],
+          "@service/*": ["src/app/service/*"]
+        },  
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,

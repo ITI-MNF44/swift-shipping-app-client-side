@@ -1,10 +1,13 @@
+/*---------------------------
+# Header
+----------------------------*/
 .logo {
   line-height: 1;
 }
 
 @media (min-width: 1200px) {
   .logo {
-    width: 280px;
+    width: 230px;
   }
 }
 
@@ -26,15 +29,15 @@
   height: 60px;
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
   background-color: #fff;
-  padding-right: 20px;
-  margin-bottom: 200px;
+  padding-left: 20px;
 }
 
 /* Toggle Sidebar Button */
+
 /* Search Bar */
 .header .toggle-sidebar-btn {
   font-size: 32px;
-  padding-right: 10px;
+  padding-left: 10px;
   cursor: pointer;
   color: var(--dark-blue);
 }
@@ -91,7 +94,7 @@
 .header .search-form button {
   border: 0;
   padding: 0;
-  margin-right: -30px;
+  margin-left: -30px;
   background: none;
 }
 
@@ -99,13 +102,13 @@
   color: var(--dark-blue);
 }
 
-/*------------------------------
-    # Sidebar
-------------------------------*/
+/*--------------------------
+  # Sidebar
+  ---------------------------*/
 .sidebar {
   position: fixed;
   top: 60px;
-  right: 0;
+  left: 0;
   bottom: 0;
   width: 260px;
   z-index: 999;
@@ -120,7 +123,7 @@
 
 @media (max-width: 1199px) {
   .sidebar {
-    right: -260px;
+    left: -260px;
   }
 }
 
@@ -137,26 +140,53 @@
 @media (min-width: 1200px) {
   #main,
   #footer {
-    margin-right: 260px;
+    margin-left: 260px;
   }
 }
 
 @media (max-width: 1199px) {
   .toggle-sidebar .sidebar {
-    right: 0;
+    left: 0;
   }
 }
 
 @media (min-width: 1200px) {
   .toggle-sidebar #main,
   .toggle-sidebar #footer {
-    margin-right: 0;
+    margin-left: 0;
   }
 
   .toggle-sidebar .sidebar {
-    right: -260px;
+    left: -260px;
   }
 }
+
+.sidebar-hidden .sidebar {
+  display: none;
+}
+
+.sidebar-hidden #main,
+.sidebar-hidden #footer {
+  margin-left: 0;
+  width: 100%;
+}
+
+.toggle-sidebar .sidebar {
+  left: -260px;
+}
+
+.toggle-sidebar #main,
+.toggle-sidebar #footer {
+  margin-left: 0;
+}
+
+@media (min-width: 1200px) {
+  .toggle-sidebar #main,
+  .toggle-sidebar #footer {
+    margin-left: 260px;
+  }
+}
+
 
 .sidebar-nav {
   padding: 0;
@@ -196,7 +226,7 @@
 
 .sidebar-nav .nav-link i {
   font-size: 16px;
-  margin-left: 10px;
+  margin-right: 10px;
   color: var(--light-blue);
 }
 
@@ -206,7 +236,6 @@
 }
 
 .sidebar-nav .nav-link.collapsed i {
-  margin-right: 10px;
   color: #899bbd;
 }
 

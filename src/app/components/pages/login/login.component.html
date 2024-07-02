@@ -1,12 +1,55 @@
-<main id="main" class="main">
-  <div class="pagetitle">
-    <nav>
-      <ol class="breadcrumb text-center">
-        <li class="breadcrumb-item"><a href="index.html"> <i class="bi-house-fill text-dark"></i> </a> /</li>
-        <li class="breadcrumb-item">المستخدمين</li>
-        <li class="breadcrumb-item active">الملف الشخصي</li>
-      </ol>
-    </nav>
+<section class="section login-section">
+  <div class="p-fluid p-grid p-justify-center">
+    <div class="p-col-12 p-md-4">
+      <div class="card">
+      <div class="text-center ">
+        <img class="login-logo shadow-sm rounded-circle" src="../../../../assets/images/logo.png" alt="">
+      </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="p-field">
+            <label for="email">Username or Email</label>
+            <input 
+            id="email" 
+            type="text" 
+            class="form-control" 
+            pInputText 
+            formControlName="email" />
+            <!-- <small *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || loginForm.get('email').touched)" class="p-error">
+            Email is required
+          </small> -->
+          </div>
+          <div class="p-field">
+            <label for="password">Password</label>
+            <p-password 
+            id="password"
+            
+              formControlName="password"
+            [(ngModel)]="value" 
+            [toggleMask]="true" 
+            [feedback]="false"/>
+            <!-- <input
+              id="password"
+              type="password"
+              class="form-control"
+              pPassword
+              formControlName="password"
+              [feedback]="false"
+            /> -->
+            <!-- <small *ngIf="loginForm.get('password').invalid && (loginForm.get('password').dirty || loginForm.get('password').touched)" class="p-error">
+            Password is required (minimum 6 characters)
+          </small> -->
+          </div>
+          <button
+            type="submit"
+            pButton
+            pRipple
+            label="Login"
+            [disabled]="!loginForm.valid"
+          >
+            Login
+          </button>
+        </form>
+      </div>
+    </div>
   </div>
-  <section class="section dashboard"><p>فاطمة محمد سرور</p></section>
-</main>
+</section>
