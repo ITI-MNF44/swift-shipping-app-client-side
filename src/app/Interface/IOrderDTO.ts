@@ -1,6 +1,6 @@
-import { OrderType } from "./OrderType";
-import { PaymentType } from "./PaymentType";
-import { ShippingType } from "./ShippingType";
+import { OrderType } from '../Enum/OrderType';
+import { PaymentType } from '../Enum/PaymentType';
+import { ShippingType } from '../Enum/ShippingType';
 
 export interface IOrderDTO {
   customerName: string;
