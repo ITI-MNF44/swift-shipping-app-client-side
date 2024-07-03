@@ -9,6 +9,7 @@
   --light-bg: #3b5d50;
   --light: #f5f5f5;
   --gray-600: #6c757d;
+  --baby-blue: #b3c3dabb;
   --blue: #4154f1;
   --light-blue:#063990;
   --dark-blue: #0a1d62;
@@ -53,7 +54,7 @@ button{
 
 h1, h2, h3, h4, h5, h6{
   font-weight: 500;
-  color: var(--dark-blue);
+  color: var(--dark-blue) !important;
 }
 
 
@@ -121,9 +122,9 @@ body {
 
 .card-title {
   padding: 20px 0 15px 0;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
-  color: #012970;
+  color: var(--light-blue);
   font-family: "Poppins", sans-serif;
 }
 
@@ -141,27 +142,23 @@ body {
   background-color: rgba(255, 255, 255, 0.6);
 }
 
-.dashboard .info-card {
-  padding-bottom: 10px;
-}
-
-.dashboard .info-card h6 {
-  font-size: 28px;
+ .info-card h6 {
+  font-size: 25px;
   color: var(--dark-blue);
-  font-weight: 700;
+  font-weight: 500;
   margin: 0;
   padding: 0;
 }
 
-.dashboard .card-icon {
-  font-size: 32px;
+ .card-icon {
+  font-size: 22px;
   line-height: 0;
-  width: 64px;
-  height: 64px;
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
   flex-grow: 0;
-  color: #4154f1;
-  background: #f6f6fe;
+  color: var(--light-blue);
+  background: var(--baby-blue);
 }
 
 /* -----------------------

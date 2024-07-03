@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DeliveryManService {
-  private apiUrl = 'https://your-api-base-url/api'; // Replace with your actual API base URL
+  apiUrl: string = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
