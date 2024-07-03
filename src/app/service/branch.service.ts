@@ -4,18 +4,19 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { IBranchGetDTO } from '../Interface/IBranchGetDTO';
 import { IBranchDTO } from '../Interface/IBranchDto';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BranchService {
-  private baseUrl = 'http://localhost:5000/api/branch'; // Adjust the base URL as necessary
+  private baseUrl : string = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
   getAllBranches(): Observable<IBranchGetDTO[]> {
     return this.http
-      .get<IBranchGetDTO[]>(`${this.baseUrl}`)
+      .get<IBranchGetDTO[]>(`${this.baseUrl}/Branch`)
       .pipe(
         catchError(this.handleError<IBranchGetDTO[]>('getAllBranches', []))
       );
