@@ -1,0 +1,47 @@
+<section class="section login-section">
+  <div class="p-fluid p-grid p-justify-center">
+    <div class="p-col-12 p-md-4">
+      <div class="card">
+        <div class="text-center">
+          <img
+            class="login-logo shadow-sm rounded-circle"
+            src="../../../../assets/images/logo.png"
+            alt=""
+          />
+          <h4 class="mb-5">Admin Login</h4>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="p-field">
+            <label for="email">Username or Email</label>
+            <input
+              id="email"
+              type="text"
+              class="form-control"
+              pInputText
+              formControlName="email"
+            />
+          </div>
+          <div class="p-field">
+            <label for="password">Password</label>
+            <p-password
+              id="password"
+              formControlName="password"
+              [toggleMask]="true"
+              [feedback]="false"
+            >
+            </p-password>
+          </div>
+          <button
+            type="submit"
+            pButton
+            pRipple
+            label="Login"
+            [disabled]="!loginForm.valid"
+          >
+            Login
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

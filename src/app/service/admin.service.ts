@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ILoginWithUserNameDTO } from '../Interface/ILoginWithUserNameDTO';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminService {
-  private apiUrl = 'https://your-api-base-url'; // Replace with your actual API base URL
+  apiUrl: string = environment.apiUrl; // Replace with your actual API base URL
 
   constructor(private http: HttpClient) {}
 

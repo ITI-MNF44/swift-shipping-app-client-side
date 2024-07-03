@@ -1,0 +1,147 @@
+<main id="main" class="main">
+    <section class="section delivery-man-section">
+      <div class="pagetitle">
+        <nav>
+          <ol class="breadcrumb text-center">
+            <li class="breadcrumb-item">
+              <a href="index.html"><i class="bi-house-fill text-dark"></i></a>
+            </li>
+            <li class="breadcrumb-item">Add Delivery Man</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Add Delivery Man</h5>
+          <form [formGroup]="exampleForm" (ngSubmit)="onSubmit()">
+            <div class="row mb-3">
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <label for="name" class="form-label">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  formControlName="name"
+                  placeholder="Name"
+                />
+                <div *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)" class="text-danger">
+                  <div *ngIf="f['name'].errors?.['required']">Name is required.</div>
+                  <div *ngIf="f['name'].errors?.['minlength']">Name must be at least 2 characters long.</div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  formControlName="email"
+                  placeholder="Email"
+                />
+                <div *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)" class="text-danger">
+                  <div *ngIf="f['email'].errors?.['required']">Email is required.</div>
+                  <div *ngIf="f['email'].errors?.['email']">Invalid email format.</div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                <label for="password" class="form-label">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  formControlName="password"
+                  placeholder="Password"
+                />
+                <div *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)" class="text-danger">
+                  <div *ngIf="f['password'].errors?.['required']">Password is required.</div>
+                  <div *ngIf="f['password'].errors?.['minlength']">Password must be at least 6 characters long.</div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="phone"
+                  formControlName="phone"
+                  placeholder="Phone Number"
+                />
+                <div *ngIf="f['phone'].invalid && (f['phone'].dirty || f['phone'].touched)" class="text-danger">
+                  <div *ngIf="f['phone'].errors?.['required']">Phone number is required.</div>
+                  <div *ngIf="f['phone'].errors?.['pattern']">Phone number must be numeric.</div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                <label for="branch" class="form-label">Branch</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="branch"
+                  formControlName="branch"
+                  placeholder="Branch"
+                />
+                <div *ngIf="f['branch'].invalid && (f['branch'].dirty || f['branch'].touched)" class="text-danger">
+                  <div *ngIf="f['branch'].errors?.['required']">Branch is required.</div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                <label for="governments" class="form-label">Governments</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="governments"
+                  formControlName="governments"
+                  placeholder="Governments"
+                />
+                <div *ngIf="f['governments'].invalid && (f['governments'].dirty || f['governments'].touched)" class="text-danger">
+                  <div *ngIf="f['governments'].errors?.['required']">Governments are required.</div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                <label for="address" class="form-label">Address</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="address"
+                  formControlName="address"
+                  placeholder="Address"
+                />
+                <div *ngIf="f['address'].invalid && (f['address'].dirty || f['address'].touched)" class="text-danger">
+                  <div *ngIf="f['address'].errors?.['required']">Address is required.</div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                <label for="discountPercentage" class="form-label">Discount percentage</label>
+                <select class="form-select" id="discountPercentage" formControlName="discountPercentage">
+                  <option value="" disabled selected>Choose...</option>
+                  <option value="1">option1</option>
+                  <option value="2">option2</option>
+                </select>
+                <div *ngIf="f['discountPercentage'].invalid && (f['discountPercentage'].dirty || f['discountPercentage'].touched)" class="text-danger">
+                  <div *ngIf="f['discountPercentage'].errors?.['required']">Discount percentage is required.</div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                <label for="companyShare" class="form-label">Company Share</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="companyShare"
+                  formControlName="companyShare"
+                  placeholder="Company Share"
+                />
+                <div *ngIf="f['companyShare'].invalid && (f['companyShare'].dirty || f['companyShare'].touched)" class="text-danger">
+                  <div *ngIf="f['companyShare'].errors?.['required']">Company share is required.</div>
+                  <div *ngIf="f['companyShare'].errors?.['pattern']">Company share must be numeric.</div>
+                </div>
+              </div>
+            </div>
+            <div class="">
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+  
