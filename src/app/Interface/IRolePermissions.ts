@@ -1,8 +1,8 @@
 import { Department } from '../Enum/Department';
 
-export interface IPermissionDTO {
+export interface IRolePermissions {
+  roleName: string;
   departmentId: Department;
-  departmentName: string;
   view: boolean;
   edit: boolean;
   delete: boolean;
