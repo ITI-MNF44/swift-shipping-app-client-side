@@ -8,12 +8,12 @@ import { ILoginDTO } from '../Interface/ILoginDTO';
   providedIn: 'root',
 })
 export class SellersService {
-  private apiUrl = 'https://your-api-base-url/api/seller'; // Replace with your actual API base URL
+  private apiUrl = 'https://your-api-base-url/api'; // Replace with your actual API base URL
 
   constructor(private http: HttpClient) {}
 
   login(loginDTO: ILoginDTO): Observable<any> {
-    const url = `${this.apiUrl}/Login`;
+    const url = `${this.apiUrl}/seller/Login`;
 
     return this.http
       .post<any>(url, loginDTO)
@@ -22,12 +22,12 @@ export class SellersService {
 
   addSeller(sellerDTO: any): Observable<any> {
     return this.http
-      .post<any>(`${this.apiUrl}/Add`, sellerDTO)
+      .post<any>(`${this.apiUrl}/seller/Add`, sellerDTO)
       .pipe(catchError(this.handleError<any>('addSeller')));
   }
 
   getSellerById(id: number): Observable<any> {
-    const url = `${this.apiUrl}/${id}`;
+    const url = `${this.apiUrl}/seller/${id}`;
 
     return this.http
       .get<any>(url)
@@ -35,13 +35,15 @@ export class SellersService {
   }
 
   getAllSellers(): Observable<any[]> {
+    const url = `${this.apiUrl}/seller/All`;
+
     return this.http
-      .get<any[]>(this.apiUrl)
+      .get<any[]>(url)
       .pipe(catchError(this.handleError<any[]>('getAllSellers', [])));
   }
 
   getSellerOrders(id: number): Observable<any[]> {
-    const url = `${this.apiUrl}/${id}/orders`;
+    const url = `${this.apiUrl}/seller/${id}/orders`;
 
     return this.http
       .get<any[]>(url)
@@ -49,7 +51,7 @@ export class SellersService {
   }
 
   editSeller(id: number, sellerDTO: any): Observable<any> {
-    const url = `${this.apiUrl}/Edit/${id}`;
+    const url = `${this.apiUrl}/seller/Edit/${id}`;
 
     return this.http
       .put<any>(url, sellerDTO)
@@ -57,7 +59,7 @@ export class SellersService {
   }
 
   deleteSeller(id: number): Observable<any> {
-    const url = `${this.apiUrl}/Delete/${id}`;
+    const url = `${this.apiUrl}/seller/Delete/${id}`;
 
     return this.http
       .delete<any>(url)
@@ -65,7 +67,7 @@ export class SellersService {
   }
 
   getOrdersStatusCount(status: string, sellerId: number): Observable<any> {
-    const url = `${this.apiUrl}/Count?status=${status}&sellerId=${sellerId}`;
+    const url = `${this.apiUrl}/seller/Count?status=${status}&sellerId=${sellerId}`;
 
     return this.http
       .get<any>(url)
@@ -73,7 +75,7 @@ export class SellersService {
   }
 
   getAllOrdersStatusCount(sellerId: number): Observable<any> {
-    const url = `${this.apiUrl}/AllStatusCount/${sellerId}`;
+    const url = `${this.apiUrl}/seller/AllStatusCount/${sellerId}`;
 
     return this.http
       .get<any>(url)
