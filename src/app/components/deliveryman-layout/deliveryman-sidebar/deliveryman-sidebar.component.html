@@ -52,7 +52,7 @@
         <li>
           @for (key of keys(orderStatuses); track $index) {
 
-          @if(!(key == excludedStatuses[0] || key == excludedStatuses[1]))
+          @if(!(key == excludedStatuses[0] || key == excludedStatuses[1] || key == excludedStatuses[2]))
           {
           <a (click)="getOrdersByStatus($index)">
             <i class="bi bi-circle"></i><span>{{ orderStatuses[key] }}</span>
