@@ -6,12 +6,13 @@ import { IOrderDTO } from '../Interface/IOrderDTO';
 import { IOrderGetDTO } from '../Interface/IOrderGetDTO';
 import { IOrderCostDTO } from '../Interface/IOrderCostDTO';
 import { OrderStatus } from '../Enum/OrderStatus';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderService {
-  private baseUrl = 'http://localhost:5000/api'; // Adjust the base URL as necessary
+  private baseUrl = environment.apiUrl; // Adjust the base URL as necessary
 
   constructor(private http: HttpClient) {}
 
@@ -68,8 +69,9 @@ export class OrderService {
 
   changeOrderStatus(status: OrderStatus, id: number): Observable<string> {
     const url = `${this.baseUrl}/order/ChangeOrderStatus?id=${id}`;
+
     return this.http
-      .put<string>(url, { status })
+      .put<string>(url, status)
       .pipe(catchError(this.handleError<string>('changeOrderStatus')));
   }
 

@@ -18,6 +18,7 @@ export class DeliverymanSidebarComponent implements OnInit {
 
   orderStatuses: { [key: string]: string } = {};
   excludedStatuses: string[] = [
+    'New',
     'AcceptedByDeliveryCompany',
     'RejectedByDeliveryCompany',
   ];
