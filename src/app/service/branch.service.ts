@@ -16,7 +16,7 @@ export class BranchService {
 
   getAllBranches(): Observable<IBranchGetDTO[]> {
     return this.http
-      .get<IBranchGetDTO[]>(`${this.baseUrl}/Branch`)
+      .get<IBranchGetDTO[]>(`${this.baseUrl}/Branch/All`)
       .pipe(
         catchError(this.handleError<IBranchGetDTO[]>('getAllBranches', []))
       );
