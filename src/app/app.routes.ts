@@ -58,12 +58,9 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'delivaryman',
+    path: 'deliveryman',
     component: DeliverymanLayoutComponent,
-    children: [
-      { path: '', component: DelivaryManOrdersComponent },
-      { path: 'login', component: DeliverymanLoginComponent },
-    ],
+    children: [{ path: '', component: DelivaryManOrdersComponent }],
   },
 
   // {

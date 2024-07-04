@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import {RouterLink, RouterLinkActive } from '@angular/router';
 import { OrderStatus } from 'src/app/Enum/OrderStatus';
 import { OrderStatusService } from '@service/orderStatus.service';
+import { DeliveryManService } from '@service/delivery-man.service';
+import { IOrderGetDTO } from 'src/app/Interface/IOrderGetDTO';
 
 @Component({
   selector: 'app-deliveryman-sidebar',
@@ -19,7 +21,15 @@ export class DeliverymanSidebarComponent implements OnInit {
     'AcceptedByDeliveryCompany',
     'RejectedByDeliveryCompany',
   ];
-  constructor(private orderStatusService: OrderStatusService) {}
+
+  delivaryManId: number = 1;
+  status?: OrderStatus = undefined;
+  orders: IOrderGetDTO[] = [];
+
+  constructor(
+    private orderStatusService: OrderStatusService,
+    private deliveryManService: DeliveryManService,
+  ) {}
 
   ngOnInit(): void {
     this.orderStatusService.getOrderStatuses().subscribe({
@@ -31,19 +41,38 @@ export class DeliverymanSidebarComponent implements OnInit {
       },
       complete: () => {},
     });
-  }
 
+    this.getdelivaryManOrders();
+  }
 
   keys(obj: { [key: string]: string }): Array<string> {
     return Object.keys(obj);
   }
 
-  getOrdersByStatus(event: any) {
-    const orderStatus: OrderStatus = event;
-    console.log(orderStatus);
+  getOrdersByStatus(index: number) {
+    this.status = index + 1;
+    this.getdelivaryManOrders();
   }
 
-  getAllOrders() {}
+  getAllOrders() {
+    this.status = undefined;
+    this.getdelivaryManOrders();
+  }
+
+  getdelivaryManOrders() {
+    this.deliveryManService
+      .getDeliveryManOrders(this.delivaryManId, this.status)
+      .subscribe({
+        next: (response) => {
+          this.orders = response;
+          this.deliveryManService.setOrders(response);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+        complete: () => {},
+      });
+  }
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
