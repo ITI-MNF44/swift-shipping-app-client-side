@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DeliveryManService } from '@service/delivery-man.service';
+import { OrderService } from '@service/order.service';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
@@ -53,14 +54,15 @@ export class DelivaryManOrdersComponent implements OnInit {
   loading: boolean = true;
   searchValue: string | undefined;
 
-  constructor(private deliveryManService: DeliveryManService) {}
+  constructor(
+    private deliveryManService: DeliveryManService,
+    private orderService: OrderService
+  ) {}
   ngOnInit(): void {
     this.deliveryManService.DeliveryManOrders.subscribe({
       next: (response) => {
         this.orders = response;
-        console.log(response);
 
-        console.log(this.orders);
         this.orderStatusKeys = Object.keys(this.orderStatuses)
           .filter((key) => !isNaN(Number(key)))
           .map((key) => Number(key));
@@ -76,6 +78,21 @@ export class DelivaryManOrdersComponent implements OnInit {
     return this.OrderStatusStrings[status];
   }
 
+  ChangeOrderStatus(event: any, orderId: any) {
+    const orderStatus:OrderStatus = Number((event.target as HTMLSelectElement).value);
+
+    this.orderService.changeOrderStatus(orderStatus, orderId).subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+      complete: () => {},
+    });
+  }
+
+  // Table
   clear(table: Table) {
     table.clear();
     this.searchValue = '';

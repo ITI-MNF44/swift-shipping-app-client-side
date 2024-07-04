@@ -51,7 +51,7 @@
 
         <ng-template pTemplate="body" let-orders>
           <tr>
-            <td>
+            <td id="orderId{{orders.id}}">
               {{ orders.id }}
             </td>
             <td>
@@ -71,7 +71,7 @@
             {{orders.orderPrice}}
             </td>
             <td class="text-center">
-              <select [(ngModel)]="orders.orderStatus">
+              <select [(ngModel)]="orders.orderStatus" (change)="ChangeOrderStatus($event, orders.id)">
                 @for (statusKey of orderStatusKeys; track $index) {
                 @if (!(statusKey == 2 || statusKey == 3)) {
                 <option [value]="statusKey">
