@@ -14,6 +14,8 @@ import { DeliverymanLoginComponent } from './components/deliveryman-layout/deliv
 import { EmployeeLayoutComponent } from './components/employee-layout/employee-layout.component';
 import { SellerLayoutComponent } from './components/seller-layout/seller-layout.component';
 import { SellerDashboardComponent } from './components/seller-layout/seller-dashboard/seller-dashboard.component';
+import { DeliverymanLayoutComponent } from './components/deliveryman-layout/deliveryman-layout.component';
+import { DelivaryManOrdersComponent } from './components/deliveryman-layout/delivary-man-orders/delivary-man-orders.component';
 
 // export const routes: Routes = [
 //     { path: '', component:  LoginComponent},
@@ -29,81 +31,86 @@ import { SellerDashboardComponent } from './components/seller-layout/seller-dash
 
 
 export const routes: Routes = [
-    {
-        path: 'admin',
-        component: AdminLayoutComponent,
-        children: [
-            { path: '', component: AdminDashboardComponent },
-            { path: 'home', component: AdminDashboardComponent },
-            { path: 'employees', component: EmployeesComponent },
-            { path: 'deliveryman/edit/:id', component: DeliverymanFormComponent },
-        ],
-    },
-    {
-        path: 'employee',
-        component: EmployeeLayoutComponent,
-        children: [
-            { path: '', component: AdminDashboardComponent },
-            { path: 'home', component: EmployeeDashboardComponent },
-        ],
-    },
-    {
-        path: 'seller',
-        component: SellerLayoutComponent,
-        children: [
-            { path: '', component: SellerDashboardComponent },
-            { path: 'home', component: SellerDashboardComponent },
-        ],
-    },
-    // {
-    //     path: 'dashboard',
-    //     component: DashboardComponent,
-    //     children: [
-    //         {
-    //             path: 'home',
-    //             component: AdminHomeComponent,
-    //         },
-    //         {
-    //             path: 'allproducts',
-    //             component: ProductsTableComponent,
-    //         },
-    //         {
-    //             path: 'product/:id/edit',
-    //             component: AddProductComponent,
-    //         },
-    //         {
-    //             path: 'category',
-    //             component: CategoryTableComponent,
-    //         },
-    //         {
-    //             path: 'brands',
-    //             component: BrandTableComponent,
-    //         },
-    //     ],
-    // },
+  {
+    path: 'admin',
+    component: AdminLayoutComponent,
+    children: [
+      { path: '', component: AdminDashboardComponent },
+      { path: 'home', component: AdminDashboardComponent },
+      { path: 'employees', component: EmployeesComponent },
+      { path: 'deliveryman/edit/:id', component: DeliverymanFormComponent },
+    ],
+  },
+  {
+    path: 'employee',
+    component: EmployeeLayoutComponent,
+    children: [
+      { path: '', component: AdminDashboardComponent },
+      { path: 'home', component: EmployeeDashboardComponent },
+    ],
+  },
+  {
+    path: 'seller',
+    component: SellerLayoutComponent,
+    children: [
+      { path: '', component: SellerDashboardComponent },
+      { path: 'home', component: SellerDashboardComponent },
+    ],
+  },
+  {
+    path: 'delivaryman',
+    component: DeliverymanLayoutComponent,
+    children: [
+      { path: '', component: DelivaryManOrdersComponent },
+      { path: 'login', component: DeliverymanLoginComponent },
+    ],
+  },
 
+  // {
+  //     path: 'dashboard',
+  //     component: DashboardComponent,
+  //     children: [
+  //         {
+  //             path: 'home',
+  //             component: AdminHomeComponent,
+  //         },
+  //         {
+  //             path: 'allproducts',
+  //             component: ProductsTableComponent,
+  //         },
+  //         {
+  //             path: 'product/:id/edit',
+  //             component: AddProductComponent,
+  //         },
+  //         {
+  //             path: 'category',
+  //             component: CategoryTableComponent,
+  //         },
+  //         {
+  //             path: 'brands',
+  //             component: BrandTableComponent,
+  //         },
+  //     ],
+  // },
 
-
-
-    {
-        path: 'admin/login',
-        component: AdminLoginComponent,
-    },
-    {
-        path: 'employee/login',
-        component: EmployeeLoginComponent,
-    },
-    {
-        path: 'seller/login',
-        component: SellerLoginComponent,
-    },
-    {
-        path: 'deliveryman/login',
-        component: DeliverymanLoginComponent,
-    },
-    {
-        path: '**',
-        component: NotFoundComponent,
-    },
-
+  {
+    path: 'admin/login',
+    component: AdminLoginComponent,
+  },
+  {
+    path: 'employee/login',
+    component: EmployeeLoginComponent,
+  },
+  {
+    path: 'seller/login',
+    component: SellerLoginComponent,
+  },
+  {
+    path: 'deliveryman/login',
+    component: DeliverymanLoginComponent,
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+  },
 ];

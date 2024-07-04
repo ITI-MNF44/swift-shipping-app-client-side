@@ -15,7 +15,7 @@ export class DeliveryManService {
   // POST: /api/DeliveryMan/Register
   registerDeliveryMan(deliveryManDTO: any): Observable<any> {
     return this.http
-      .post<any>(`${this.apiUrl}/DeliveryMan/Register`, deliveryManDTO)
+      .post<any>(`${this.apiUrl}/DeliveryMan/Add`, deliveryManDTO)
       .pipe(catchError(this.handleError));
   }
 
@@ -43,10 +43,10 @@ export class DeliveryManService {
       .pipe(catchError(this.handleError));
   }
 
-  // GET: /api/DeliveryMan
+  // GET: /api/DeliveryMan/All
   getAllDeliveryMen(): Observable<any[]> {
     return this.http
-      .get<any[]>(`${this.apiUrl}/DeliveryMan`)
+      .get<any[]>(`${this.apiUrl}/DeliveryMan/All`)
       .pipe(catchError(this.handleError));
   }
 
