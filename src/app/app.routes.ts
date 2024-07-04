@@ -36,6 +36,7 @@ export const routes: Routes = [
             { path: '', component: AdminDashboardComponent },
             { path: 'home', component: AdminDashboardComponent },
             { path: 'employees', component: EmployeesComponent },
+            { path: 'deliveryman/edit/:id', component: DeliverymanFormComponent },
         ],
     },
     {
