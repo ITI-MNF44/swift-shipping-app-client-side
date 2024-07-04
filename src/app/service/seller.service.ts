@@ -22,7 +22,7 @@ export class SellersService {
 
   addSeller(sellerDTO: any): Observable<any> {
     return this.http
-      .post<any>(this.apiUrl, sellerDTO)
+      .post<any>(`${this.apiUrl}/Add`, sellerDTO)
       .pipe(catchError(this.handleError<any>('addSeller')));
   }
 
