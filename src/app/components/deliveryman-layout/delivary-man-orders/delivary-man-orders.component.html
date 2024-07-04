@@ -73,7 +73,7 @@
             <td class="text-center">
               <select [(ngModel)]="orders.orderStatus" (change)="ChangeOrderStatus($event, orders.id)">
                 @for (statusKey of orderStatusKeys; track $index) {
-                @if (!(statusKey == 2 || statusKey == 3)) {
+                @if (!(statusKey == 1 || statusKey == 2 || statusKey == 3)) {
                 <option [value]="statusKey">
                   {{ getStatusLabel(statusKey) }}
                 </option>
