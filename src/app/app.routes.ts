@@ -17,8 +17,7 @@ import { SellerDashboardComponent } from './components/seller-layout/seller-dash
 import { DeliverymanLayoutComponent } from './components/deliveryman-layout/deliveryman-layout.component';
 import { DelivaryManOrdersComponent } from './components/deliveryman-layout/delivary-man-orders/delivary-man-orders.component';
 import { BranchFormComponent } from './components/admin-layout/branch-form/branch-form.component';
-
-
+import { WeightSettingsComponent } from './components/admin-layout/weight-settings/weight-settings.component';
 
 export const routes: Routes = [
   {
@@ -29,11 +28,12 @@ export const routes: Routes = [
       { path: 'home', component: AdminDashboardComponent },
       { path: 'employees', component: EmployeesComponent },
       { path: 'deliveryman/edit/:id', component: DeliverymanFormComponent },
-       // Add route for branches
-       {path: 'branches',component: BranchesComponent},
-       { path: 'branches/add', component: BranchFormComponent },
-       { path: 'branches/:id/edit', component: BranchFormComponent },
-      
+      // Add route for branches
+      { path: 'branches', component: BranchesComponent },
+      { path: 'branches/add', component: BranchFormComponent },
+      { path: 'branches/:id/edit', component: BranchFormComponent },
+      //Routes for weightSettings
+      { path: 'weightSettings', component: WeightSettingsComponent },
     ],
   },
   {
