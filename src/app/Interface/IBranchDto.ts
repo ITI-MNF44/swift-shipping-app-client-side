@@ -1,4 +1,5 @@
-export interface IBranchDTO {
+export interface IBranchDTO 
+{
   name: string;
   governmentId: number;
 }

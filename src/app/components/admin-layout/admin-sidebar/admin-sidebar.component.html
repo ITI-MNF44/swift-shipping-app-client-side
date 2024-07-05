@@ -10,8 +10,18 @@
   </div>
 
   <div class="search-bar">
-    <form class="search-form d-flex align-items-center" method="POST" action="#">
-      <input type="text" name="query" placeholder="Search" title="Enter search keyword" />
+    <form
+      class="search-form d-flex align-items-center"
+      method="POST"
+      action="#"
+    >
+      <input
+        type="text"
+        name="query"
+        placeholder="Search"
+        title="Enter search keyword"
+      />
+
       <button type="submit" title="Search"><i class="bi bi-search"></i></button>
     </form>
   </div>
@@ -29,7 +39,12 @@
 <!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
-<aside id="sidebar" class="sidebar" [ngClass]="{'toggle-sidebar': !isSidebarOpen}">
+
+<aside
+  id="sidebar"
+  class="sidebar"
+  [ngClass]="{ 'toggle-sidebar': !isSidebarOpen }"
+>
   <ul class="sidebar-nav" id="sidebar-nav">
     <li class="nav-item">
       <a class="nav-link" [routerLink]="['/admin']">
@@ -38,11 +53,32 @@
       </a>
     </li>
 
+    <!--Brnaches By Ola -->
+    <!-- Add Branches section -->
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/admin/branches']">
+        <i class="bi bi-building"></i>
+        <span>Branches</span>
+      </a>
+    </li>
+    <!-- Add Branches section -->
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/admin/branches/add']">
+        <i class="bi bi-plus"></i>
+        <span>Add New Branch</span>
+      </a>
+    </li>
+
+    <!--End of Branches-->
+
+ 
+
     <li class="nav-item">
       <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse">
         <i class="bi bi-card-checklist"></i><span>Orders</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+
         <li>
           <a [routerLink]="['/adminproducts']">
             <i class="bi bi-circle"></i><span>All Products</span>
@@ -55,6 +91,7 @@
         </li>
       </ul>
     </li>
+
 
 
     <li class="nav-item">
@@ -80,6 +117,7 @@
         <i class="bi bi-filter-right"></i><span>Assign Order</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="charts-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+
         <li>
           <a [routerLink]="['/admincategory']">
             <i class="bi bi-circle"></i><span>All Categories</span>
@@ -101,6 +139,7 @@
     </li>
   </ul>
 </aside>
+
 <!-- End Sidebar-->
 
 <!-- <li class="nav-item">

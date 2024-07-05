@@ -10,13 +10,15 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class GovernmentService {
+
   private baseUrl = environment.apiUrl; // Adjust the base URL as necessary
+
 
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<IGovernmentGetDTO[]> {
     return this.http
-      .get<IGovernmentGetDTO[]>(`${this.baseUrl}/government/All`)
+      .get<IGovernmentGetDTO[]>(`${this.baseUrl}/Government/All`)
       .pipe(catchError(this.handleError<IGovernmentGetDTO[]>('getAll', [])));
   }
 
