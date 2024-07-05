@@ -14,6 +14,9 @@ import { DeliverymanLoginComponent } from './components/deliveryman-layout/deliv
 import { EmployeeLayoutComponent } from './components/employee-layout/employee-layout.component';
 import { SellerLayoutComponent } from './components/seller-layout/seller-layout.component';
 import { SellerDashboardComponent } from './components/seller-layout/seller-dashboard/seller-dashboard.component';
+
+import { EmployeeFormComponent } from './components/admin-layout/employee-form/employee-form.component';
+
 import { DeliverymanLayoutComponent } from './components/deliveryman-layout/deliveryman-layout.component';
 import { DelivaryManOrdersComponent } from './components/deliveryman-layout/delivary-man-orders/delivary-man-orders.component';
 
@@ -23,9 +26,36 @@ import { CitiesComponent } from './components/admin-layout/cities/cities.compone
 import { AddCityComponent } from './components/admin-layout/add-city/add-city.component';
 
 
-
-
 export const routes: Routes = [
+
+    {
+        path: 'admin',
+        component: AdminLayoutComponent,
+        children: [
+            { path: '', component: AdminDashboardComponent },
+            { path: 'home', component: AdminDashboardComponent },
+            { path: 'employees', component: EmployeesComponent },
+            { path: 'deliveryman/edit/:id', component: DeliverymanFormComponent },
+            { path: 'employee/edit/:id', component: EmployeeFormComponent },
+        ],
+    },
+    {
+        path: 'employee',
+        component: EmployeeLayoutComponent,
+        children: [
+            { path: '', component: AdminDashboardComponent },
+            { path: 'home', component: EmployeeDashboardComponent },
+        ],
+    },
+    {
+        path: 'seller',
+        component: SellerLayoutComponent,
+        children: [
+            { path: '', component: SellerDashboardComponent },
+            { path: 'home', component: SellerDashboardComponent },
+        ],
+    },
+ 
   {
     path: 'admin',
     component: AdminLayoutComponent,
@@ -34,6 +64,7 @@ export const routes: Routes = [
       { path: 'home', component: AdminDashboardComponent },
       { path: 'employees', component: EmployeesComponent },
       { path: 'deliveryman/edit/:id', component: DeliverymanFormComponent },
+
 
        // Add route for branches
        {path: 'branches',component: BranchesComponent},
