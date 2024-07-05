@@ -3,6 +3,7 @@ export enum OrderStatus {
   AcceptedByDeliveryCompany,
   RejectedByDeliveryCompany,
   Pending,
+  Delivered,
   DeliveredToDeliveryMan,
   CanNotBeReached,
   Postponed,

@@ -52,7 +52,7 @@
         <li>
           @for (key of keys(orderStatuses); track $index) {
 
-          @if(!(key == excludedStatuses[0] || key == excludedStatuses[1]))
+          @if(!(key == excludedStatuses[0] || key == excludedStatuses[1] || key == excludedStatuses[2]))
           {
           <a (click)="getOrdersByStatus($index)">
             <i class="bi bi-circle"></i><span>{{ orderStatuses[key] }}</span>
@@ -64,7 +64,7 @@
       </ul>
     </li>
 
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-filter-right"></i><span>Assign Order</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
@@ -80,7 +80,7 @@
           </a>
         </li>
       </ul>
-    </li>
+    </li> -->
 
     <li class="nav-item">
       <a class="nav-link collapsed" href="pages-login.html">

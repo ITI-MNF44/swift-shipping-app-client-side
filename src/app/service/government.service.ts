@@ -4,12 +4,15 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { IGovernmentDTO } from '../Interface/IGovernmentDTO';
 import { IGovernmentGetDTO } from '../Interface/IGovernmentGetDTO';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GovernmentService {
-  private baseUrl = 'https://localhost:7209/api'; 
+
+  private baseUrl = environment.apiUrl; // Adjust the base URL as necessary
+
 
   constructor(private http: HttpClient) {}
 
