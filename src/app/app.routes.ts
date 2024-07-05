@@ -14,6 +14,7 @@ import { DeliverymanLoginComponent } from './components/deliveryman-layout/deliv
 import { EmployeeLayoutComponent } from './components/employee-layout/employee-layout.component';
 import { SellerLayoutComponent } from './components/seller-layout/seller-layout.component';
 import { SellerDashboardComponent } from './components/seller-layout/seller-dashboard/seller-dashboard.component';
+import { EmployeeFormComponent } from './components/admin-layout/employee-form/employee-form.component';
 
 // export const routes: Routes = [
 //     { path: '', component:  LoginComponent},
@@ -37,6 +38,7 @@ export const routes: Routes = [
             { path: 'home', component: AdminDashboardComponent },
             { path: 'employees', component: EmployeesComponent },
             { path: 'deliveryman/edit/:id', component: DeliverymanFormComponent },
+            { path: 'employee/edit/:id', component: EmployeeFormComponent },
         ],
     },
     {

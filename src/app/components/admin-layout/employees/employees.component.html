@@ -1,5 +1,5 @@
 <main id="main" class="main">
-  <div class="pagetitle">
+  <div class="pagetitle d-flex">
     <nav>
       <ol class="breadcrumb text-center">
         <li class="breadcrumb-item">
@@ -8,23 +8,25 @@
         <li class="breadcrumb-item">Employees</li>
       </ol>
     </nav>
+    <button class="btn btn-primary ms-auto px-3"
+    [routerLink]="['/admin/employee/edit', 0]"
+    >Add Employee</button>
   </div>
   <section class="section employees">
     <div class="card">
       <p-table
         #dt1
-        [value]="customers"
+        [value]="employees"
         dataKey="id"
         [rows]="10"
-        [rowsPerPageOptions]="[5, 10, 20]"
         [loading]="loading"
         [paginator]="true"
-        [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
+        [globalFilterFields]="['name', 'email', 'userName', 'phoneNumber']"
       >
         <ng-template pTemplate="caption">
           <div class="flex">
             <span class="p-input-icon-left ml-auto">
-              <i class="pi pi-search"></i>
+              <i class="pi pi-search start-50 ms-5 ps-4"></i>
               <input
                 pInputText
                 type="text"
@@ -38,83 +40,43 @@
 
         <ng-template pTemplate="header">
           <tr>
-            <th style="min-width: fit-content;">
-              Name
-            </th>
-            <th style="min-width: 15rem;">
-              Country
-            </th>
-            <th style="min-width: 15rem;">
-              Agent
-            </th>
-            <th style="min-width: 10rem;">
-              Date
-            </th>
-            <th style="min-width: 10rem;">
-              Balance
-            </th>
-            <th style="min-width: 10rem;">
-              Status
-            </th>
-            <th style="min-width: 10rem;">
-              Activity
-            </th>
-            <th style="width: 3rem;">
-              Verified
-            </th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Phone Number</th>
+            <th>Branch</th>
+            <th>Status</th>
+            <th>Setting</th>
           </tr>
         </ng-template>
 
-        <ng-template pTemplate="body" let-customer>
+        <ng-template pTemplate="body" let-employee>
           <tr>
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.address }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.userName }}</td>
+            <td>{{ employee.phoneNumber }}</td>
+            <td>{{ employee.branchName }}</td>
             <td>
-              {{ customer.name }}
+              <label class="switch">
+                <input type="checkbox" [checked]="employee.status">
+                <!-- <input type="checkbox" [checked]="employee.status" (change)="onToggleStatus(employee)"> -->
+                <span class="slider round"></span>
+              </label>
             </td>
             <td>
-              <img
-                src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
-                [class]="'flag flag-' + customer.country.code"
-                style="width: 20px;"
-              />
-              <span class="ml-1 vertical-align-middle"
-                >{{ customer.country.name }}</span
-              >
-            </td>
-            <td>
-              <img
-                [alt]="customer.representative.name"
-                src="https://primefaces.org/cdn/primeng/images/demo/avatar/{{ customer.representative.image }}"
-                width="32"
-                style="vertical-align: middle;"
-              />
-              <span class="ml-1 vertical-align-middle"
-                >{{ customer.representative.name }}</span
-              >
-            </td>
-            <td>
-              {{ customer.date | date: 'MM/dd/yyyy' }}
-            </td>
-            <td>
-              {{ customer.balance | currency: 'USD':'symbol' }}
-            </td>
-            <td>
-              <span [class]="'badge ' + getBadgeClass(customer.status.toLowerCase())">{{ customer.status }}</span>
-            </td>
-            <td>
-              <!-- Display activity -->
-            </td>
-            <td class="text-center">
-              <i
-                class="pi"
-                [ngClass]="{'pi-check-circle text-green-500': customer.verified, 'pi-times-circle text-red-500': !customer.verified}"
-              ></i>
+              <button class="bi-pencil-square btn btn-success" 
+                [routerLink]="['/admin/employee/edit', employee.id]">
+              </button>
             </td>
           </tr>
         </ng-template>
 
         <ng-template pTemplate="emptymessage">
           <tr>
-            <td colspan="8">No customers found.</td>
+            <td colspan="8">No employees found.</td>
           </tr>
         </ng-template>
       </p-table>
