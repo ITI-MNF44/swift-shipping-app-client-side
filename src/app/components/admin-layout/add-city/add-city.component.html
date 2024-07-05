@@ -4,7 +4,7 @@
       <nav>
         <ol class="breadcrumb text-center">
           <li class="breadcrumb-item">
-            <a href="index.html"><i class="bi-house-fill text-dark"></i></a>
+            <a [routerLink]="['/admin/cities']"><i class="bi-house-fill text-dark"></i></a>
           </li>
           <li class="breadcrumb-item">{{ (id | async) === 0 ? 'Add City' : 'Edit City' }}</li>
         </ol>

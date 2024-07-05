@@ -11,13 +11,13 @@ import { GovernmentService } from '@service/government.service';
 import { RegionService } from '@service/region.service';
 import { IGovernmentGetDTO } from 'src/app/Interface/IGovernmentGetDTO';
 import { IRegionDTO } from 'src/app/Interface/IRegionDTO';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'app-add-city',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink],
   templateUrl: './add-city.component.html',
   styleUrl: './add-city.component.css',
 })
