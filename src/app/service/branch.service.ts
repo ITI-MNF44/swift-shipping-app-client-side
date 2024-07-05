@@ -16,7 +16,7 @@ export class BranchService {
 
   getAllBranches(): Observable<IBranchGetDTO[]> {
     return this.http
-      .get<IBranchGetDTO[]>(`${this.baseUrl}/Branch`)
+      .get<IBranchGetDTO[]>(`${this.baseUrl}/Branch/All`)
       .pipe(
         catchError(this.handleError<IBranchGetDTO[]>('getAllBranches', []))
       );
@@ -24,25 +24,25 @@ export class BranchService {
 
   addBranch(branchDTO: IBranchDTO): Observable<string> {
     return this.http
-      .post<string>(`${this.baseUrl}/Add`, branchDTO)
+      .post<string>(`${this.baseUrl}/Branch/Add`, branchDTO)
       .pipe(catchError(this.handleError<string>('addBranch')));
   }
 
   getById(id: number): Observable<IBranchGetDTO> {
     return this.http
-      .get<IBranchGetDTO>(`${this.baseUrl}/${id}`)
+      .get<IBranchGetDTO>(`${this.baseUrl}/Branch/${id}`)
       .pipe(catchError(this.handleError<IBranchGetDTO>('getById')));
   }
 
   editBranch(id: number, branchDTO: IBranchDTO): Observable<string> {
     return this.http
-      .put<string>(`${this.baseUrl}/Edit/${id}`, branchDTO)
+      .put<string>(`${this.baseUrl}/Branch/Edit/${id}`, branchDTO)
       .pipe(catchError(this.handleError<string>('editBranch')));
   }
 
   deleteBranch(id: number): Observable<string> {
     return this.http
-      .delete<string>(`${this.baseUrl}/Delete/${id}`)
+      .delete<string>(`${this.baseUrl}/Branch/Delete/${id}`)
       .pipe(catchError(this.handleError<string>('deleteBranch')));
   }
 

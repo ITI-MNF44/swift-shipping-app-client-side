@@ -15,7 +15,9 @@ export class EmployeeService {
   constructor(private http: HttpClient) {}
 
   register(employeeDTO: IEmployeeDTO): Observable<string> {
+
     const url = `${this.baseUrl}/Employee`;
+
     return this.http
       .post<string>(url, employeeDTO)
       .pipe(catchError(this.handleError<string>('register')));
@@ -29,7 +31,9 @@ export class EmployeeService {
   }
 
   getAll(): Observable<IEmployeeDTO[]> {
+
     const url = `${this.baseUrl}/Employee`;
+    
     return this.http
       .get<IEmployeeDTO[]>(url)
       .pipe(catchError(this.handleError<IEmployeeDTO[]>('getAll', [])));

@@ -6,17 +6,18 @@ import { IOrderDTO } from '../Interface/IOrderDTO';
 import { IOrderGetDTO } from '../Interface/IOrderGetDTO';
 import { IOrderCostDTO } from '../Interface/IOrderCostDTO';
 import { OrderStatus } from '../Enum/OrderStatus';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderService {
-  private baseUrl = 'http://localhost:5000/api/order'; // Adjust the base URL as necessary
+  private baseUrl = environment.apiUrl; // Adjust the base URL as necessary
 
   constructor(private http: HttpClient) {}
 
   addOrder(orderDTO: IOrderDTO): Observable<any> {
-    const url = `${this.baseUrl}/Add`;
+    const url = `${this.baseUrl}/order/Add`;
     return this.http
       .post<any>(url, orderDTO)
       .pipe(catchError(this.handleError<any>('addOrder')));
@@ -24,12 +25,12 @@ export class OrderService {
 
   getAll(): Observable<IOrderGetDTO[]> {
     return this.http
-      .get<IOrderGetDTO[]>(`${this.baseUrl}`)
+      .get<IOrderGetDTO[]>(`${this.baseUrl}/order/All`)
       .pipe(catchError(this.handleError<IOrderGetDTO[]>('getAll', [])));
   }
 
   getById(id: number): Observable<IOrderGetDTO> {
-    const url = `${this.baseUrl}/${id}`;
+    const url = `${this.baseUrl}/order/${id}`;
     return this.http
       .get<IOrderGetDTO>(url)
       .pipe(catchError(this.handleError<IOrderGetDTO>('getById')));
@@ -39,56 +40,57 @@ export class OrderService {
     orderID: number,
     deliveryManID: number
   ): Observable<string> {
-    const url = `${this.baseUrl}/AssignToDeliveryMan?orderID=${orderID}&deliveryManID=${deliveryManID}`;
+    const url = `${this.baseUrl}/order/AssignToDeliveryMan?orderID=${orderID}&deliveryManID=${deliveryManID}`;
     return this.http
       .post<string>(url, null) // Assuming no body is needed
       .pipe(catchError(this.handleError<string>('assignDeliveryManToOrder')));
   }
 
   getByStatus(status: OrderStatus): Observable<IOrderGetDTO[]> {
-    const url = `${this.baseUrl}/GetByStatus?status=${status}`;
+    const url = `${this.baseUrl}/order/GetByStatus?status=${status}`;
     return this.http
       .get<IOrderGetDTO[]>(url)
       .pipe(catchError(this.handleError<IOrderGetDTO[]>('getByStatus', [])));
   }
 
   getOrderTypes(): Observable<string[]> {
-    const url = `${this.baseUrl}/OrderTypes`;
+    const url = `${this.baseUrl}/order/OrderTypes`;
     return this.http
       .get<string[]>(url)
       .pipe(catchError(this.handleError<string[]>('getOrderTypes', [])));
   }
 
   getShippingTypes(): Observable<string[]> {
-    const url = `${this.baseUrl}/ShippingTypes`;
+    const url = `${this.baseUrl}/order/ShippingTypes`;
     return this.http
       .get<string[]>(url)
       .pipe(catchError(this.handleError<string[]>('getShippingTypes', [])));
   }
 
   changeOrderStatus(status: OrderStatus, id: number): Observable<string> {
-    const url = `${this.baseUrl}/ChangeOrderStatus?id=${id}`;
+    const url = `${this.baseUrl}/order/ChangeOrderStatus?id=${id}`;
+
     return this.http
-      .put<string>(url, { status })
+      .put<string>(url, status)
       .pipe(catchError(this.handleError<string>('changeOrderStatus')));
   }
 
   editOrder(id: number, orderDTO: IOrderDTO): Observable<string> {
-    const url = `${this.baseUrl}/Edit/${id}`;
+    const url = `${this.baseUrl}/order/Edit/${id}`;
     return this.http
       .put<string>(url, orderDTO)
       .pipe(catchError(this.handleError<string>('editOrder')));
   }
 
   deleteOrder(id: number): Observable<string> {
-    const url = `${this.baseUrl}/Delete/${id}`;
+    const url = `${this.baseUrl}/order/Delete/${id}`;
     return this.http
       .delete<string>(url)
       .pipe(catchError(this.handleError<string>('deleteOrder')));
   }
 
   calculateOrderCost(orderCostDTO: IOrderCostDTO): Observable<number> {
-    const url = `${this.baseUrl}/OrderCost`;
+    const url = `${this.baseUrl}/order/OrderCost`;
     return this.http
       .post<number>(url, orderCostDTO)
       .pipe(catchError(this.handleError<number>('calculateOrderCost')));

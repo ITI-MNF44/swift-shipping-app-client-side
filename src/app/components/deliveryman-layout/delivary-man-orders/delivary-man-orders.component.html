@@ -3,16 +3,16 @@
     <nav>
       <ol class="breadcrumb text-center">
         <li class="breadcrumb-item">
-          <a [routerLink]="['/admin']"><i class="bi-house-fill text-dark"></i></a>
+          <a href="index.html"><i class="bi-house-fill text-dark"></i></a>
         </li>
-        <li class="breadcrumb-item"> Cities </li>
+        <li class="breadcrumb-item">Delivery Man</li>
       </ol>
     </nav>
   </div>
   <section class="section employees">
     <div class="card">
-      <p-table #dt1 [value]="cities" dataKey="id" [rows]="10" [rowsPerPageOptions]="[5, 10, 20]" [loading]="loading"
-        [paginator]="true" [globalFilterFields]="['name', 'pickupPrice', 'normalPrice', 'governmentName']">
+      <p-table #dt1 [value]="orders" dataKey="id" [rows]="10" [rowsPerPageOptions]="[5, 10, 20]" [loading]="loading"
+        [paginator]="true" [globalFilterFields]="['Government', 'Region', 'Customer Info', 'Date']">
         <ng-template pTemplate="caption">
           <div class="flex">
             <span class="p-input-icon-left ml-auto">
@@ -29,53 +29,64 @@
               #
             </th>
             <th style="min-width: 15rem;">
-              Name
+              Customer Info
             </th>
             <th style="min-width: 10rem;">
-            Government Name
+              Date
             </th>
             <th style="min-width: 10rem;">
-              Pickup Price
+              Government
             </th>
             <th style="min-width: 10rem;">
-              Normal Price
+              Region
             </th>
             <th style="min-width: 10rem;">
-              Actions
+              Cost
+            </th>
+            <th style="width: 3rem;">
+              Change Status
             </th>
           </tr>
         </ng-template>
 
-        <ng-template pTemplate="body" let-city>
-          <tr class="text-center">
-            <td id="cityId{{city.id}}">
-              {{ city.id }}
+        <ng-template pTemplate="body" let-orders>
+          <tr>
+            <td id="orderId{{orders.id}}">
+              {{ orders.id }}
             </td>
             <td>
-              {{city.name}}
-            </td>
-            <td>
-              {{ city.governmentName }}
-            </td>
-            <td>
-              {{city.pickupPrice}}
-            </td>
-            <td>
-              {{city.normalPrice}}
-            </td>
-            <td>
-              <i [routerLink]="[city.id, 'edit']" class="bi bi-pencil-square mx-1 text-info"
-                style="cursor: pointer;"></i>
 
-              <i (click)="deleteRegion(city.id)" class="bi bi-trash3-fill mx-1 text-danger" style="cursor: pointer;"></i>
+              <span class="ml-1 vertical-align-middle">{{orders.customerName}} <br />{{orders.customerPhone}}</span>
             </td>
-
+            <td>
+              {{ orders.creationDate | date: 'MM/dd/yyyy' }}
+            </td>
+            <td>
+              {{orders.government}}
+            </td>
+            <td>
+            {{orders.region}}
+            </td>
+            <td>
+            {{orders.orderPrice}}
+            </td>
+            <td class="text-center">
+              <select [(ngModel)]="orders.orderStatus" (change)="ChangeOrderStatus($event, orders.id)">
+                @for (statusKey of orderStatusKeys; track $index) {
+                @if (!(statusKey == 1 || statusKey == 2 || statusKey == 3)) {
+                <option [value]="statusKey">
+                  {{ getStatusLabel(statusKey) }}
+                </option>
+                }
+                }
+              </select>
+            </td>
           </tr>
         </ng-template>
 
         <ng-template pTemplate="emptymessage">
           <tr>
-            <td colspan="8">No Cities found.</td>
+            <td colspan="8">No Orders found.</td>
           </tr>
         </ng-template>
 
