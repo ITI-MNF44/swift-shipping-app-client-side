@@ -1,3 +1,5 @@
+import { OrderStatus } from '../Enum/OrderStatus';
+
 export interface IOrderGetDTO {
   id: number;
   customerName: string;
@@ -14,4 +16,6 @@ export interface IOrderGetDTO {
   orderType: string;
   paymentType: string;
   status: string;
+  orderStatus: OrderStatus;
+  creationDate: Date;
 }

@@ -8,12 +8,25 @@ import { OrderStatus } from '../Enum/OrderStatus';
   providedIn: 'root',
 })
 export class OrderStatusService {
-  private baseUrl = 'http://localhost:5000/api/orderstatus'; // Adjust the base URL as necessary
+  private baseUrl = 'http://localhost:5168/api/OrderStatus'; // Adjust the base URL as necessary
 
   constructor(private http: HttpClient) {}
 
+  getOrderStatuses(): Observable<{ [key: string]: string }> {
+    const url = `${this.baseUrl}/All`;
+
+    return this.http
+      .get<{ [key: string]: string }>(url)
+      .pipe(
+        catchError(
+          this.handleError<{ [key: string]: string }>('getOrderStatuses')
+        )
+      );;
+  }
+
   getOrderStatusCount(status: OrderStatus): Observable<number> {
     const url = `${this.baseUrl}/getCount?status=${status}`;
+
     return this.http
       .get<number>(url)
       .pipe(catchError(this.handleError<number>('getOrderStatusCount')));

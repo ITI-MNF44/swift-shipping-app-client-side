@@ -4,18 +4,18 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { IRegionDTO } from '../Interface/IRegionDTO';
 import { IRegionGetDTO } from '../Interface/IRegionGetDTO';
-
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RegionService {
-  private baseUrl = 'http://localhost:5000/api/region'; // Adjust the base URL as necessary
+  private baseUrl = environment.apiUrl; // Adjust the base URL as necessary
 
   constructor(private http: HttpClient) {}
 
   addRegion(regionDTO: IRegionDTO): Observable<any> {
-    const url = `${this.baseUrl}/Add`;
+    const url = `${this.baseUrl}/region/Add`;
     return this.http
       .post<any>(url, regionDTO)
       .pipe(catchError(this.handleError<any>('addRegion')));
@@ -23,26 +23,26 @@ export class RegionService {
 
   getAllRegions(): Observable<IRegionGetDTO[]> {
     return this.http
-      .get<IRegionGetDTO[]>(`${this.baseUrl}`)
+      .get<IRegionGetDTO[]>(`${this.baseUrl}/region/All`)
       .pipe(catchError(this.handleError<IRegionGetDTO[]>('getAllRegions', [])));
   }
 
   getRegionById(id: number): Observable<IRegionGetDTO> {
-    const url = `${this.baseUrl}/${id}`;
+    const url = `${this.baseUrl}/region/${id}`;
     return this.http
       .get<IRegionGetDTO>(url)
       .pipe(catchError(this.handleError<IRegionGetDTO>('getRegionById')));
   }
 
   editRegion(id: number, regionDTO: IRegionDTO): Observable<string> {
-    const url = `${this.baseUrl}/Edit/${id}`;
+    const url = `${this.baseUrl}/region/Edit/${id}`;
     return this.http
       .put<string>(url, regionDTO)
       .pipe(catchError(this.handleError<string>('editRegion')));
   }
 
   deleteRegion(id: number): Observable<string> {
-    const url = `${this.baseUrl}/Delete/${id}`;
+    const url = `${this.baseUrl}/region/Delete/${id}`;
     return this.http
       .delete<string>(url)
       .pipe(catchError(this.handleError<string>('deleteRegion')));
