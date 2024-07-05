@@ -18,15 +18,15 @@
         #dt1
         [value]="employees"
         dataKey="id"
-        [rows]="10"
+        [rows]="5"
         [loading]="loading"
         [paginator]="true"
         [globalFilterFields]="['name', 'email', 'userName', 'phoneNumber']"
       >
         <ng-template pTemplate="caption">
           <div class="flex">
-            <span class="p-input-icon-left ml-auto">
-              <i class="pi pi-search start-50 ms-5 ps-4"></i>
+            <span class="p-input-icon-right ml-auto">
+              <i class="pi pi-search"></i>
               <input
                 pInputText
                 type="text"
