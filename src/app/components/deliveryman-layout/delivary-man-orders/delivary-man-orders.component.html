@@ -11,14 +11,27 @@
   </div>
   <section class="section employees">
     <div class="card">
-      <p-table #dt1 [value]="orders" dataKey="id" [rows]="10" [rowsPerPageOptions]="[5, 10, 20]" [loading]="loading"
-        [paginator]="true" [globalFilterFields]="['Government', 'Region', 'Customer Info', 'Date']">
+      <p-table
+        #dt1
+        [value]="orders"
+        dataKey="id"
+        [rows]="10"
+        [rowsPerPageOptions]="[5, 10, 20]"
+        [loading]="loading"
+        [paginator]="true"
+        [globalFilterFields]="['Government', 'Region', 'Customer Info', 'Date']"
+      >
         <ng-template pTemplate="caption">
           <div class="flex">
-            <span class="p-input-icon-left ml-auto">
+            <span class="p-input-icon-right ml-auto">
               <i class="pi pi-search"></i>
-              <input pInputText type="text" [(ngModel)]="searchValue"
-                (input)="dt1.filterGlobal(searchValue, 'contains')" placeholder="Search keyword" />
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="searchValue"
+                (input)="dt1.filterGlobal(searchValue, 'contains')"
+                placeholder="Search keyword"
+              />
             </span>
           </div>
         </ng-template>
@@ -55,8 +68,9 @@
               {{ orders.id }}
             </td>
             <td>
-
-              <span class="ml-1 vertical-align-middle">{{orders.customerName}} <br />{{orders.customerPhone}}</span>
+              <span class="ml-1 vertical-align-middle"
+                >{{orders.customerName}} <br />{{orders.customerPhone}}</span
+              >
             </td>
             <td>
               {{ orders.creationDate | date: 'MM/dd/yyyy' }}
@@ -65,20 +79,22 @@
               {{orders.government}}
             </td>
             <td>
-            {{orders.region}}
+              {{orders.region}}
             </td>
             <td>
-            {{orders.orderPrice}}
+              {{orders.orderPrice}}
             </td>
             <td class="text-center">
-              <select [(ngModel)]="orders.orderStatus" (change)="ChangeOrderStatus($event, orders.id)">
-                @for (statusKey of orderStatusKeys; track $index) {
-                @if (!(statusKey == 1 || statusKey == 2 || statusKey == 3)) {
+              <select
+                [(ngModel)]="orders.orderStatus"
+                (change)="ChangeOrderStatus($event, orders.id)"
+              >
+                @for (statusKey of orderStatusKeys; track $index) { @if
+                (!(statusKey == 1 || statusKey == 2 || statusKey == 3)) {
                 <option [value]="statusKey">
                   {{ getStatusLabel(statusKey) }}
                 </option>
-                }
-                }
+                } }
               </select>
             </td>
           </tr>
@@ -89,10 +105,7 @@
             <td colspan="8">No Orders found.</td>
           </tr>
         </ng-template>
-
       </p-table>
     </div>
-
   </section>
-
 </main>
