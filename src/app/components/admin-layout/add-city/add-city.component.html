@@ -1,1 +1,74 @@
-<p>add-city works!</p>
+<main id="main" class="main">
+  <section class="section delivery-man-section">
+    <div class="pagetitle">
+      <nav>
+        <ol class="breadcrumb text-center">
+          <li class="breadcrumb-item">
+            <a href="index.html"><i class="bi-house-fill text-dark"></i></a>
+          </li>
+          <li class="breadcrumb-item">{{ (id | async) === 0 ? 'Add City' : 'Edit City' }}</li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ (id | async) === 0 ? 'Add City' : 'Edit City' }}</h5>
+
+        <form [formGroup]="cityForm" (ngSubmit)="onSubmit()">
+          <div class="row mb-3">
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" formControlName="name" placeholder="Name" />
+
+              <div *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)" class="text-danger">
+                <div *ngIf="f['name'].errors?.['required']">Name is required.</div>
+                <div *ngIf="f['name'].errors?.['minlength']">Name must be at least 2 characters long.</div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <label for="normalPrice" class="form-label">Normal Price</label>
+              <input type="number" class="form-control" id="normalPrice" formControlName="normalPrice"
+                placeholder="Normal Price" />
+              <div *ngIf="f['normalPrice'].invalid && (f['normalPrice'].dirty || f['normalPrice'].touched)"
+                class="text-danger">
+                <div *ngIf="f['normalPrice'].errors?.['required']">Normal price is required.</div>
+                <div *ngIf="f['normalPrice'].errors?.['pattern']">Normal price must be numeric.</div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <label for="pickupPrice" class="form-label">Pickup Price</label>
+              <input type="number" class="form-control" id="pickupPrice" formControlName="pickupPrice"
+                placeholder="Pickup Price" />
+              <div *ngIf="f['pickupPrice'].invalid && (f['pickupPrice'].dirty || f['pickupPrice'].touched)"
+                class="text-danger">
+                <div *ngIf="f['pickupPrice'].errors?.['required']">Pickup price is required.</div>
+                <div *ngIf="f['pickupPrice'].errors?.['pattern']">Pickup price must be numeric.</div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <label for="governmentId" class="form-label">Government</label>
+              <select class="form-select" id="governmentId" formControlName="governmentId">
+                <option value="" disabled selected>Choose...</option>
+                <option *ngFor="let government of governments" [value]="government.id">
+                  {{ government.name }}
+                </option>
+              </select>
+              <div *ngIf="f['governmentId'].invalid && (f['governmentId'].dirty || f['governmentId'].touched)"
+                class="text-danger">
+                <div *ngIf="f['governmentId'].errors?.['required']">Government is required.</div>
+              </div>
+            </div>
+
+          </div>
+          <div class="">
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
