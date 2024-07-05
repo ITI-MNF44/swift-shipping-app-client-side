@@ -9,13 +9,13 @@ import { IGovernmentGetDTO } from '../Interface/IGovernmentGetDTO';
   providedIn: 'root',
 })
 export class GovernmentService {
-  private baseUrl = 'http://localhost:5000/api'; // Adjust the base URL as necessary
+  private baseUrl = 'https://localhost:7209/api'; 
 
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<IGovernmentGetDTO[]> {
     return this.http
-      .get<IGovernmentGetDTO[]>(`${this.baseUrl}/government/All`)
+      .get<IGovernmentGetDTO[]>(`${this.baseUrl}/Government/All`)
       .pipe(catchError(this.handleError<IGovernmentGetDTO[]>('getAll', [])));
   }
 

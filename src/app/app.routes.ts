@@ -16,18 +16,8 @@ import { SellerLayoutComponent } from './components/seller-layout/seller-layout.
 import { SellerDashboardComponent } from './components/seller-layout/seller-dashboard/seller-dashboard.component';
 import { DeliverymanLayoutComponent } from './components/deliveryman-layout/deliveryman-layout.component';
 import { DelivaryManOrdersComponent } from './components/deliveryman-layout/delivary-man-orders/delivary-man-orders.component';
+import { BranchFormComponent } from './components/admin-layout/branch-form/branch-form.component';
 
-// export const routes: Routes = [
-//     { path: '', component:  LoginComponent},
-//     { path: 'login', component: LoginComponent },
-//     { path: 'employees', component: EmployeesComponent },
-//     { path: 'employeedashboard', component: EmployeeDashboardComponent },
-//     { path: 'adddeliveryman', component: DeliverymanFormComponent },
-//     { path: 'addseller', component: SellerFormComponent },
-//     { path: 'branches', component: BranchesComponent },
-
-//     { path: '**', component: NotFoundComponent }
-// ];
 
 
 export const routes: Routes = [
@@ -39,6 +29,11 @@ export const routes: Routes = [
       { path: 'home', component: AdminDashboardComponent },
       { path: 'employees', component: EmployeesComponent },
       { path: 'deliveryman/edit/:id', component: DeliverymanFormComponent },
+       // Add route for branches
+       {path: 'branches',component: BranchesComponent},
+       { path: 'branches/add', component: BranchFormComponent },
+       { path: 'branches/:id/edit', component: BranchFormComponent },
+      
     ],
   },
   {
