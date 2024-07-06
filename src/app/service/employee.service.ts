@@ -32,6 +32,7 @@ export class EmployeeService {
   }
 
   getAll(): Observable<IEmployeeDTO[]> {
+
     const url = `${this.baseUrl}/Employee/all`;
 
     console.log('Request URL:', url);

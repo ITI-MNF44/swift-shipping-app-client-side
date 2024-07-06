@@ -11,166 +11,30 @@
         </nav>
       </div>
       <div class="row">
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-          <div class="card info-card">
-            <div class="card-body">
-              <div class=" d-flex">
-                <p class="card-title">Products</p>
-  
-                <div class="d-flex align-items-center ms-auto">
-                  <div
-                    class="card-icon rounded-circle d-flex align-items-center justify-content-center me-auto"
-                  >
-                    <i class="bi bi-cart"></i>
+        @for (item of seller_orders_status; track $index) {
+          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12" style="cursor: pointer;">
+            <div class="card info-card" (click)="goToOrdersByStatusPage(item.id)">
+              <div class="card-body">
+                <div class=" d-flex">
+                  <p class="card-title">{{item.name}}</p>
+    
+                  <div class="d-flex align-items-center ms-auto">
+                    <div
+                      class="card-icon rounded-circle d-flex align-items-center justify-content-center me-auto"
+                    >
+                      <i class="bi bi-cart"></i>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="">
-                <h6>44</h6>
+                <div class="">
+                  <h6>{{item.count}}</h6>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-          <div class="card info-card">
-            <div class="card-body">
-              <div class=" d-flex">
-                <p class="card-title">Products</p>
-  
-                <div class="d-flex align-items-center ms-auto">
-                  <div
-                    class="card-icon rounded-circle d-flex align-items-center justify-content-center me-auto"
-                  >
-                    <i class="bi bi-cart"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="">
-                <h6>44</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-          <div class="card info-card">
-            <div class="card-body">
-              <div class=" d-flex">
-                <p class="card-title">Products</p>
-  
-                <div class="d-flex align-items-center ms-auto">
-                  <div
-                    class="card-icon rounded-circle d-flex align-items-center justify-content-center me-auto"
-                  >
-                    <i class="bi bi-cart"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="">
-                <h6>44</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-          <div class="card info-card">
-            <div class="card-body">
-              <div class=" d-flex">
-                <p class="card-title">Products</p>
-  
-                <div class="d-flex align-items-center ms-auto">
-                  <div
-                    class="card-icon rounded-circle d-flex align-items-center justify-content-center me-auto"
-                  >
-                    <i class="bi bi-cart"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="">
-                <h6>44</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-          <div class="card info-card">
-            <div class="card-body">
-              <div class=" d-flex">
-                <p class="card-title">Products</p>
-  
-                <div class="d-flex align-items-center ms-auto">
-                  <div
-                    class="card-icon rounded-circle d-flex align-items-center justify-content-center me-auto"
-                  >
-                    <i class="bi bi-cart"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="">
-                <h6>44</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-          <div class="card info-card">
-            <div class="card-body">
-              <div class=" d-flex">
-                <p class="card-title">Products</p>
-  
-                <div class="d-flex align-items-center ms-auto">
-                  <div
-                    class="card-icon rounded-circle d-flex align-items-center justify-content-center me-auto"
-                  >
-                    <i class="bi bi-cart"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="">
-                <h6>44</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-          <div class="card info-card">
-            <div class="card-body">
-              <div class=" d-flex">
-                <p class="card-title">Products</p>
-  
-                <div class="d-flex align-items-center ms-auto">
-                  <div
-                    class="card-icon rounded-circle d-flex align-items-center justify-content-center me-auto"
-                  >
-                    <i class="bi bi-cart"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="">
-                <h6>44</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-          <div class="card info-card">
-            <div class="card-body">
-              <div class=" d-flex">
-                <p class="card-title">Products</p>
-  
-                <div class="d-flex align-items-center ms-auto">
-                  <div
-                    class="card-icon rounded-circle d-flex align-items-center justify-content-center me-auto"
-                  >
-                    <i class="bi bi-cart"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="">
-                <h6>44</h6>
-              </div>
-            </div>
-          </div>
-        </div>
+
+        }
+        
       </div>
     </section>
   </main>
