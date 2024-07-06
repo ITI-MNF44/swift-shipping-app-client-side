@@ -11,8 +11,9 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { EmployeeService } from '@service/employee.service';
 import { IEmployeeDTO } from 'src/app/Interface/IEmployeeDTO';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { IBranchGetDTO } from 'src/app/Interface/IBranchGetDTO';
+import { IEmployeeGetDTO } from 'src/app/Interface/IEmployeeGetDTO';
 
 @Component({
   selector: 'app-employees',
@@ -26,19 +27,22 @@ import { IBranchGetDTO } from 'src/app/Interface/IBranchGetDTO';
 })
 export class EmployeesComponent implements OnInit {
   employees: IEmployeeDTO[] = [];
+  employeesWIthBranchName: IEmployeeGetDTO[] = [];
   branches: IBranchGetDTO[] = [];
-  employee: IEmployeeDTO | undefined;
+  employee: IEmployeeGetDTO | undefined;
   loading: boolean = true;
   searchValue: string | undefined;
 
-  constructor(private employeeService: EmployeeService,
-              private branchService: BranchService) { }
+  constructor(
+    private route: Router,
+    private employeeService: EmployeeService,
+    private branchService: BranchService) { }
 
   ngOnInit(): void {
     this.employeeService.getAll().subscribe((employees) => {
       this.employees = employees.map(employee => ({
         ...employee,
-        status: employee.status ?? false 
+        status: employee.status ?? true
       }));
       this.loadBranches();
       this.loading = false;
@@ -52,7 +56,9 @@ export class EmployeesComponent implements OnInit {
         this.employees = this.employees.map(employee => ({
           ...employee,
           branchName: this.branches.find(branch => branch.id === employee.branchId)?.name
-        }));
+        }
+        ));
+        console.log(this.branches);
       },
       (error) => {
         console.error('Error fetching branches', error);
@@ -65,17 +71,33 @@ export class EmployeesComponent implements OnInit {
     this.searchValue = '';
   }
 
-  // onToggleStatus(employee: IEmployeeDTO) {
-  //   this.employeeService.toggleActivityStatus(employee.id).subscribe({
-  //     next: () => {
-  //       employee.status = !employee.status;
-  //     },
-  //     error: (err) => {
-  //       console.error('Error toggling status', err);
-  //       this.employeeService.getById(employee.id).subscribe((updatedEmployee) => {
-  //         employee.status = updatedEmployee.status;
-  //       });
-  //     }
-  //   });
-  // }
+  onToggleStatus(employee: IEmployeeGetDTO) {
+    this.employeeService.toggleActivityStatus(employee.id).subscribe({
+      next: () => {
+        employee.status = !employee.status;
+      },
+      error: (err) => {
+        console.error('Error toggling status', err);
+        this.employeeService.getById(employee.id).subscribe((updatedEmployee) => {
+          employee.status = updatedEmployee.status;
+        });
+      }
+    });
+  }
+
+  deleteEmployee(employeeId: number): void {
+    const confirmDelete = confirm('Are you sure you want to delete this Employee?');
+    if (confirmDelete) {
+      this.employeeService.deleteEmployee(employeeId).subscribe(
+        () => {
+          this.route.navigateByUrl('admin/employees');
+          this.employeesWIthBranchName = this.employeesWIthBranchName.filter((employee) => employee.id !== employeeId);
+        },
+        (error) => {
+          console.error('Error deleting employee:', error);
+        }
+      );
+    }
+  }
+
 }

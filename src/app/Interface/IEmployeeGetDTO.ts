@@ -1,10 +1,12 @@
-export interface IEmployeeDTO {
+export interface IEmployeeGetDTO {
+  id: number;
   name: string;
   address: string;
   email: string;
   userName: string;
   password: string;
   phoneNumber: string;
-  branchId: number;
+  branchName: number;
   status?: boolean;
+  isDeleted?: boolean;
 }
