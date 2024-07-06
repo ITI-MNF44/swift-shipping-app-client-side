@@ -7,6 +7,9 @@ import { IOrderGetDTO } from '../Interface/IOrderGetDTO';
 import { IOrderCostDTO } from '../Interface/IOrderCostDTO';
 import { OrderStatus } from '../Enum/OrderStatus';
 import { environment } from 'src/environments/environment';
+import { IPaymentTypeDTO } from '../Interface/IPaymentTypeDTO';
+import { IOrderTypeDTO } from '../Interface/IOrderTypeDTO';
+import { IShippingTypeDto } from '../Interface/IShippingTypeDto';
 
 @Injectable({
   providedIn: 'root',
@@ -53,18 +56,23 @@ export class OrderService {
       .pipe(catchError(this.handleError<IOrderGetDTO[]>('getByStatus', [])));
   }
 
-  getOrderTypes(): Observable<string[]> {
+  getOrderTypes(): Observable<IOrderTypeDTO[]> {
     const url = `${this.baseUrl}/order/OrderTypes`;
     return this.http
-      .get<string[]>(url)
-      .pipe(catchError(this.handleError<string[]>('getOrderTypes', [])));
+      .get<IOrderTypeDTO[]>(url)
+      .pipe(catchError(this.handleError<IOrderTypeDTO[]>('getOrderTypes', [])));
   }
 
-  getShippingTypes(): Observable<string[]> {
+  getShippingTypes(): Observable<IShippingTypeDto[]> {
     const url = `${this.baseUrl}/order/ShippingTypes`;
-    return this.http
-      .get<string[]>(url)
-      .pipe(catchError(this.handleError<string[]>('getShippingTypes', [])));
+    return this.http.get<IShippingTypeDto[]>(url)
+      .pipe(catchError(this.handleError<IShippingTypeDto[]>('getShippingTypes', [])));
+  }
+
+  getPaymentTypes():Observable<IPaymentTypeDTO[]>{
+    const url = `${this.baseUrl}/order/PaymentTypes`;
+    return this.http.get<IPaymentTypeDTO[]>(url)
+      .pipe(catchError(this.handleError<IPaymentTypeDTO[]>('getPaymentTypes', []))); 
   }
 
   changeOrderStatus(status: OrderStatus, id: number): Observable<string> {

@@ -1,3 +1,4 @@
+import { SellerOrdersByStatusComponent } from './components/seller-layout/seller-orders/seller-orders.component';
 import { Routes } from '@angular/router';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
 import { EmployeesComponent } from './components/admin-layout/employees/employees.component';
@@ -12,6 +13,19 @@ import { SellerLoginComponent } from './components/seller-layout/seller-login/se
 import { EmployeeLayoutComponent } from './components/employee-layout/employee-layout.component';
 import { SellerLayoutComponent } from './components/seller-layout/seller-layout.component';
 import { SellerDashboardComponent } from './components/seller-layout/seller-dashboard/seller-dashboard.component';
+import { SellerAddOrderComponent } from './components/seller-layout/seller-add-order/seller-add-order.component';
+
+// export const routes: Routes = [
+//     { path: '', component:  LoginComponent},
+//     { path: 'login', component: LoginComponent },
+//     { path: 'employees', component: EmployeesComponent },
+//     { path: 'employeedashboard', component: EmployeeDashboardComponent },
+//     { path: 'adddeliveryman', component: DeliverymanFormComponent },
+//     { path: 'addseller', component: SellerFormComponent },
+//     { path: 'branches', component: BranchesComponent },
+
+//     { path: '**', component: NotFoundComponent }
+// ];
 import { DeliverymanLayoutComponent } from './components/deliveryman-layout/deliveryman-layout.component';
 import { DelivaryManOrdersComponent } from './components/deliveryman-layout/delivary-man-orders/delivary-man-orders.component';
 import { BranchFormComponent } from './components/admin-layout/branch-form/branch-form.component';
@@ -24,6 +38,7 @@ import { employeeGaurdGuard } from './Gaurds/employee-gaurd.guard';
 import { UserLoginComponent } from './components/shared/user-login/user-login.component';
 import { adminGaurdGuard } from './Gaurds/admin-gaurd.guard';
 import { deliveryManGaurdGuard } from './Gaurds/delivery-man-gaurd.guard';
+import { DisplayOrdersComponent } from './components/employee-layout/display-orders/display-orders.component';
 
 
 export const routes: Routes = [
@@ -60,6 +75,7 @@ export const routes: Routes = [
       { path: 'cities', component: CitiesComponent },
       { path: 'cities/:id/edit', component: AddCityComponent },
       { path: 'cities/0/add', component: AddCityComponent },
+      {path: 'orders', component: DisplayOrdersComponent}
     ],
   },
   {
@@ -84,6 +100,8 @@ export const routes: Routes = [
     children: [
       { path: '', component: SellerDashboardComponent },
       { path: 'home', component: SellerDashboardComponent },
+      { path: 'orders/:sellerId/:statusId', component: SellerOrdersByStatusComponent },
+      { path: 'add', component: SellerAddOrderComponent },
     ],
   },
 
