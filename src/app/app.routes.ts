@@ -14,16 +14,17 @@ import { SellerLayoutComponent } from './components/seller-layout/seller-layout.
 import { SellerDashboardComponent } from './components/seller-layout/seller-dashboard/seller-dashboard.component';
 import { DeliverymanLayoutComponent } from './components/deliveryman-layout/deliveryman-layout.component';
 import { DelivaryManOrdersComponent } from './components/deliveryman-layout/delivary-man-orders/delivary-man-orders.component';
-
 import { BranchFormComponent } from './components/admin-layout/branch-form/branch-form.component';
 import { CitiesComponent } from './components/admin-layout/cities/cities.component';
 import { AddCityComponent } from './components/admin-layout/add-city/add-city.component';
 import { EmployeeFormComponent } from './components/admin-layout/employee-form/employee-form.component';
+
 import { RolePermissionsComponent } from './components/admin-layout/role-permissions/role-permissions.component';
 import { employeeGaurdGuard } from './Gaurds/employee-gaurd.guard';
 import { UserLoginComponent } from './components/shared/user-login/user-login.component';
 import { adminGaurdGuard } from './Gaurds/admin-gaurd.guard';
 import { deliveryManGaurdGuard } from './Gaurds/delivery-man-gaurd.guard';
+
 
 export const routes: Routes = [
   {
@@ -36,6 +37,12 @@ export const routes: Routes = [
       { path: 'employees', component: EmployeesComponent },
       { path: 'deliverymen', component: EmployeesComponent },
       { path: 'deliveryman/edit/:id', component: DeliverymanFormComponent },
+      { path: 'employee/edit/:id', component: EmployeeFormComponent },
+
+      // Add route for branches
+      { path: 'branches', component: BranchesComponent },
+      { path: 'branches/add', component: BranchFormComponent },
+      { path: 'branches/:id/edit', component: BranchFormComponent },
 
       {
         path: 'roles/:role/permissions',
@@ -48,6 +55,7 @@ export const routes: Routes = [
       { path: 'branches', component: BranchesComponent },
       { path: 'branches/add', component: BranchFormComponent },
       { path: 'branches/:id/edit', component: BranchFormComponent },
+
 
       { path: 'cities', component: CitiesComponent },
       { path: 'cities/:id/edit', component: AddCityComponent },
@@ -85,10 +93,12 @@ export const routes: Routes = [
     component: DeliverymanLayoutComponent,
     children: [{ path: '', component: DelivaryManOrdersComponent }],
   },
+
   {
     path: 'user/login',
     component: UserLoginComponent,
   },
+
   {
     path: 'admin/login',
 
