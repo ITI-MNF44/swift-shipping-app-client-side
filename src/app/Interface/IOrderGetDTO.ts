@@ -11,11 +11,12 @@ export interface IOrderGetDTO {
   villageName?: string;
   weight: number;
   orderPrice: number;
-  note: string;
+  note?: string;
   shippingType: string;
   orderType: string;
-  paymentType: string;
+  paymentType: string;    
   status: string;
   orderStatus: OrderStatus;
   creationDate: Date;
+  deliveryCost: number;
 }

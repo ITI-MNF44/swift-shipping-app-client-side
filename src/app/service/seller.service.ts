@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ILoginDTO } from '../Interface/ILoginDTO';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SellersService {
-  private apiUrl = 'https://your-api-base-url/api'; // Replace with your actual API base URL
+  private apiUrl = environment.apiUrl; // Replace with your actual API base URL
 
   constructor(private http: HttpClient) {}
 
@@ -76,6 +77,22 @@ export class SellersService {
 
   getAllOrdersStatusCount(sellerId: number): Observable<any> {
     const url = `${this.apiUrl}/seller/AllStatusCount/${sellerId}`;
+
+    return this.http
+      .get<any>(url)
+      .pipe(catchError(this.handleError<any>('getAllOrdersStatusCount')));
+  }
+
+  // getSellersOrdersByStatus(sellerId: number, status:number): Observable<any> {
+  //   const url = `${this.apiUrl}/${sellerId}/orders/${status}`;
+
+  //   return this.http
+  //     .get<any>(url)
+  //     .pipe(catchError(this.handleError<any>('getAllOrdersStatusCount')));
+  // }
+
+  getSellersOrdersByStatus(sellerId: number, status:number): Observable<any> {
+    const url = `${this.apiUrl}/Seller/${sellerId}/orders/${status}`;
 
     return this.http
       .get<any>(url)

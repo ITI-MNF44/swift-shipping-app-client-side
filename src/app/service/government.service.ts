@@ -4,12 +4,15 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { IGovernmentDTO } from '../Interface/IGovernmentDTO';
 import { IGovernmentGetDTO } from '../Interface/IGovernmentGetDTO';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GovernmentService {
-  private baseUrl = 'https://localhost:7209/api'; 
+
+  private baseUrl = environment.apiUrl; // Adjust the base URL as necessary
+
 
   constructor(private http: HttpClient) {}
 
@@ -22,7 +25,7 @@ export class GovernmentService {
   addGovernment(name: string): Observable<any> {
     const url = `${this.baseUrl}/government/Add`;
     return this.http
-      .post<any>(url, { name })
+      .post<any>(`${url}?name=${name}`, null)
       .pipe(catchError(this.handleError<any>('addGovernment')));
   }
 
@@ -43,13 +46,13 @@ export class GovernmentService {
       .pipe(catchError(this.handleError<string>('editGovernment')));
   }
 
-  deleteGovernment(id: number): Observable<string> {
-    const url = `${this.baseUrl}/government/Delete/${id}`;
+  deleteGovernment(id: number): Observable<any> {
+    const url = `${this.baseUrl}/Government/Delete/${id}`;
     return this.http
-      .delete<string>(url)
-      .pipe(catchError(this.handleError<string>('deleteGovernment')));
+      .delete<any>(url)
+      .pipe(catchError(this.handleError<any>('deleteGovernment')));
   }
-
+  
   // Error handler method
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

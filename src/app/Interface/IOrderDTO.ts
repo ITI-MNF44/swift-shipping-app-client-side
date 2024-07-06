@@ -12,7 +12,7 @@ export interface IOrderDTO {
   villageName?: string;
   weight: number;
   orderPrice: number;
-  note: string;
+  note?: string;
   sellerId: number;
   shippingType: ShippingType;
   orderType: OrderType;

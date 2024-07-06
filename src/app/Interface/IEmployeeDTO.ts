@@ -6,4 +6,5 @@ export interface IEmployeeDTO {
   password: string;
   phoneNumber: string;
   branchId: number;
+  status?: boolean;
 }

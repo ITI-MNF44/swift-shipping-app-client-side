@@ -4,12 +4,13 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { IRegionDTO } from '../Interface/IRegionDTO';
 import { IRegionGetDTO } from '../Interface/IRegionGetDTO';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RegionService {
-  private baseUrl = 'http://localhost:5000/api'; // Adjust the base URL as necessary
+ private baseUrl = environment.apiUrl; // Adjust the base URL as necessary
 
   constructor(private http: HttpClient) {}
 
@@ -45,6 +46,13 @@ export class RegionService {
     return this.http
       .delete<string>(url)
       .pipe(catchError(this.handleError<string>('deleteRegion')));
+  }
+
+  GetRegionsByGovernrmnt(governmentId: number): Observable<IRegionGetDTO[]> {
+    const url = `${this.baseUrl}/Region/Government/${governmentId}`;
+
+    return this.http.get<IRegionGetDTO[]>(url)
+      .pipe(catchError(this.handleError<IRegionGetDTO[]>('calculateOrderCost')));
   }
 
   // Error handler method

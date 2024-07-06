@@ -3,5 +3,6 @@ export interface IRegionGetDTO {
   name: string;
   normalPrice: number;
   pickupPrice: number;
+  governmentId: number;
   governmentName: string;
 }

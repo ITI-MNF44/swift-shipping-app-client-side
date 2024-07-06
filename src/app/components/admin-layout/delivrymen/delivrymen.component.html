@@ -1,0 +1,107 @@
+<main id="main" class="main">
+  <div class="pagetitle d-flex">
+    <nav>
+      <ol class="breadcrumb text-center">
+        <li class="breadcrumb-item">
+          <a href="index.html"><i class="bi-house-fill text-dark"></i></a>
+        </li>
+        <li class="breadcrumb-item">Deliverymen</li>
+      </ol>
+    </nav>
+    <button
+      class="btn btn-primary ms-auto px-3"
+      [routerLink]="['/admin/deliveryman/edit', 0]"
+    >
+      Add Delivery Man
+    </button>
+  </div>
+  <section class="section employees">
+    <div class="card">
+      <p-table
+        #dt1
+        [value]="deliverymen"
+        dataKey="id"
+        [rows]="10"
+        [loading]="loading"
+        [paginator]="true"
+        [globalFilterFields]="['name', 'email', 'userName', 'phoneNumber']"
+      >
+        <ng-template pTemplate="caption">
+          <div class="flex">
+            <span class="p-input-icon-right ml-auto">
+              <i class="pi pi-search"></i>
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="searchValue"
+                (input)="dt1.filterGlobal(searchValue, 'contains')"
+                placeholder="Search keyword"
+              />
+            </span>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Phone Number</th>
+            <th>Branch</th>
+            <th>Status</th>
+            <th>Setting</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-employee>
+          <tr>
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.address }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.userName }}</td>
+            <td>{{ employee.phoneNumber }}</td>
+            <td>{{ employee.branchName }}</td>
+            <td>
+              <p-multiSelect
+                [options]="groupedCities"
+                [group]="true"
+                [(ngModel)]="selectedCities"
+                placeholder="Select Cities"
+                scrollHeight="250px"
+                display="chip"
+              >
+                <ng-template let-group pTemplate="group">
+                  <div class="flex align-items-center">
+                    <img
+                      src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                      [class]="'mr-2 flag flag-' + group.value"
+                      style="width: 20px;"
+                    />
+                    <span>{{ group.label }}</span>
+                  </div>
+                </ng-template>
+              </p-multiSelect>
+            </td>
+            <td>
+              <button
+                class="bi-pencil-square btn btn-success"
+                [routerLink]="['/admin/employee/edit', employee.id]"
+              ></button>
+              <button
+                class="bi-trash-fill btn btn-danger"
+            
+              ></button>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="8">No employees found.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </section>
+</main>

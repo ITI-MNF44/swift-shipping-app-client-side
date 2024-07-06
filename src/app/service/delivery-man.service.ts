@@ -5,6 +5,8 @@ import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { OrderStatus } from '../Enum/OrderStatus';
 import { IOrderGetDTO } from '../Interface/IOrderGetDTO';
+import { IDeliveryManGetDTO } from '../Interface/IDeliveryManGetDTO';
+import { IDeliveryManDTO } from '../Interface/IDeliveryManDTO';
 
 @Injectable({
   providedIn: 'root',
@@ -67,23 +69,23 @@ export class DeliveryManService {
   }
 
   // GET: /api/DeliveryMan/All
-  getAllDeliveryMen(): Observable<any[]> {
+  getAllDeliveryMen(): Observable<IDeliveryManGetDTO[]> {
     return this.http
-      .get<any[]>(`${this.apiUrl}/DeliveryMan/All`)
+      .get<IDeliveryManGetDTO[]>(`${this.apiUrl}/DeliveryMan/All`)
       .pipe(catchError(this.handleError));
   }
 
   // GET: /api/DeliveryMan/{id}
-  getDeliveryManById(id: number): Observable<any> {
+  getDeliveryManById(id: number): Observable<IDeliveryManGetDTO> {
     return this.http
-      .get<any>(`${this.apiUrl}/DeliveryMan/${id}`)
+      .get<IDeliveryManGetDTO>(`${this.apiUrl}/DeliveryMan/${id}`)
       .pipe(catchError(this.handleError));
   }
 
   // PUT: /api/DeliveryMan/Update/{id}
-  updateDeliveryMan(id: number, deliveryManDTO: any): Observable<any> {
+  updateDeliveryMan(id: number, deliveryManDTO: any): Observable<IDeliveryManDTO> {
     return this.http
-      .put<any>(`${this.apiUrl}/DeliveryMan/Update/${id}`, deliveryManDTO)
+      .put<IDeliveryManDTO>(`${this.apiUrl}/DeliveryMan/Update/${id}`, deliveryManDTO)
       .pipe(catchError(this.handleError));
   }
 

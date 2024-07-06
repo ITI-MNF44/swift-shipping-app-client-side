@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { OrderStatus } from 'src/app/Enum/OrderStatus';
 import { OrderStatusService } from '@service/orderStatus.service';
 import { DeliveryManService } from '@service/delivery-man.service';
 import { IOrderGetDTO } from 'src/app/Interface/IOrderGetDTO';
+import { AccountService } from '@service/account.service';
 
 @Component({
   selector: 'app-deliveryman-sidebar',
@@ -18,17 +19,20 @@ export class DeliverymanSidebarComponent implements OnInit {
 
   orderStatuses: { [key: string]: string } = {};
   excludedStatuses: string[] = [
+    'New',
     'AcceptedByDeliveryCompany',
     'RejectedByDeliveryCompany',
   ];
 
-  delivaryManId: number = 1;
+  delivaryManId: number = Number(localStorage.getItem('userId'));
   status?: OrderStatus = undefined;
   orders: IOrderGetDTO[] = [];
 
   constructor(
     private orderStatusService: OrderStatusService,
     private deliveryManService: DeliveryManService,
+    private accountService: AccountService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -72,6 +76,19 @@ export class DeliverymanSidebarComponent implements OnInit {
         },
         complete: () => {},
       });
+  }
+
+  logOut() {
+    this.accountService.logOut().subscribe({
+      next: (res) => {
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userRole');
+        localStorage.removeItem('userToken');
+        this.router.navigate(['/deliveryman/login']);
+      },
+      error: () => {},
+      complete: () => {},
+    });
   }
 
   toggleSidebar() {
