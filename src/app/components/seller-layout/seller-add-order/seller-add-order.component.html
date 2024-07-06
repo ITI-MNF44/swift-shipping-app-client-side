@@ -1,0 +1,191 @@
+<main class="main" id="main">
+    <form method="post" [formGroup]="orderForm" (submit)="addOrder()">
+
+        <div class="row">
+
+            <div class="form-group col-md-3 mt-md-2">
+                <label class="form-label">Customer Name</label>
+                <input class="form-control" formControlName="customerName" type="text" name="name" placeholder="Customer Name">
+                <ng-container *ngIf="customerName.touched"> <!-- check if user focus on input -->
+                    <div *ngIf="customerName.hasError('required')" class="form-text text-danger">name is required</div>
+                </ng-container>
+            </div>
+            
+              
+            <div class="form-group col-md-3 mt-md-2">
+                <label class="form-label">Customer Phone</label>
+                <input class="form-control" formControlName="phone" type="text" name="phone" placeholder="Enter Phone number">
+                <ng-container *ngIf="phone.touched==true" > <!-- check if user focus on input and it's invalid -->
+                    <div *ngIf="phone.hasError('required')" class="form-text text-danger">Invalid phone number format</div>
+                    <div *ngIf="phone.hasError('pattern')" class="form-text text-danger">Invalid phone number format</div>
+                </ng-container>
+
+            </div>
+
+            <div class="form-group col-md-3 mt-md-2">
+                <label class="form-label">Email</label>
+                <input class="form-control" formControlName="email" type="email" name="email" placeholder="Enter Email">
+                <ng-container *ngIf="email.touched==true"> <!-- check if user focus on input and it's invalid -->
+                    <div *ngIf="email.hasError('required')" class="form-text text-danger">email is required</div>
+                    <div *ngIf="email.hasError('pattern')" class="form-text text-danger">Enter a valid email</div>
+                </ng-container>
+            </div>
+
+            <div class="form-group col-md-3 mt-md-2">
+                <label class="form-label">Government</label>
+                <select class="form-select" formControlName="government" type="text" name="government" placeholder="Government" (change)="governmentChanged($event)">
+                    <option value="0">Select government</option>
+                    @for (item of governments; track $index) {
+                        <option value={{item.id}}>{{item.name}}</option>
+                    }
+                </select>
+                <ng-container *ngIf="government.touched">
+                    <div *ngIf="government.hasError('pattern')" class="form-text text-danger">choose government</div>
+                </ng-container>
+
+            </div>
+
+            <div class="form-group col-md-3 mt-md-2">
+                <label class="form-label">City/Region</label>
+                <select (change)="calculateShippingCost()" class="form-select" formControlName="region" type="text" name="region" placeholder="Region">
+                    <option value="0" selected>Select Region</option>
+                    @for (region of regions; track $index) {
+                        <option value={{region.id}}>{{region.name}}</option>
+                    }
+                </select>
+                <ng-container *ngIf="region.touched">
+                    <div *ngIf="region.hasError('pattern')" class="form-text text-danger">choose region</div>
+                </ng-container>
+            </div>
+            
+            <div class="form-group col-md-6 mt-md-2 ">
+               <div class="row">
+                   <div class="col-md-6">
+                        <label class="form-label">Address(village,street)</label>
+                        <input class="form-control"  formControlName="address"type="text" name="address" placeholder="Address">
+                   </div>
+                   <div class="form-check form-switch fs-4 col-6 align-self-end">
+                        <input class="form-check-input" formControlName="isShippedToVillage" type="checkbox" id="flexSwitchCheckDefault">
+                        <label class="form-check-label ms-2 mb-0" for="flexSwitchCheckDefault">is shipped to village?</label>
+                    </div>
+                </div>
+                <ng-container *ngIf="address.touched">
+                    <div *ngIf="address.hasError('required')" class="form-text text-danger">enter an address</div>
+                </ng-container>
+            </div>    
+            
+            <div class="form-group col-md-3 mt-md-2">
+                <label class="form-label">Village Name</label>
+                <input class="form-control" formControlName="villageName" type="text" name="villageName" placeholder="Enter Email">
+                <ng-container *ngIf="villageName.touched==true"> <!-- check if user focus on input and it's invalid -->
+                    <div *ngIf="villageName.hasError('required')" class="form-text text-danger">village is required</div>
+                </ng-container>
+            </div>
+
+            <div class="form-group col-md-3 mt-md-2">
+                <label class="form-label">Branch</label>
+                <select class="form-select" formControlName="branch" type="text" name="branch">
+                    <option value="0">Select Branch</option>
+                    @for (branch of branches; track $index) {
+                        <option value={{branch.id}}>{{branch.name}}</option>
+                    }
+                </select>
+                <ng-container *ngIf="branch.touched">
+                    <div *ngIf="branch.hasError('pattern')" class="form-text text-danger">choose branch</div>
+                </ng-container>
+            </div>
+
+            <div class="form-group col-md-3 mt-md-2">
+                <label class="form-label">Order Type</label>
+                <select (change)="calculateShippingCost()" class="form-select" formControlName="ordertype" type="text" name="ordertype">
+                    <option value="0">Select Order Type</option>
+                    @for (item of orderTypes; track $index) {
+                        <option value="{{item.id}}">{{item.name}}</option>
+                    }
+                </select>
+                <ng-container *ngIf="ordertype.touched">
+                    <div *ngIf="ordertype.hasError('pattern')" class="form-text text-danger">select order type</div>
+                </ng-container>
+            </div>
+
+            <div class="form-group col-md-3 mt-md-2">
+                <label class="form-label">Shipping Type</label>
+                <select (change)="calculateShippingCost()" class="form-select" type="text" formControlName="shippingType" name="shippingtype">
+                    <option value="0">Select Shipping Type</option>
+                    @for (item of shippingTypes; track $index) {
+                        <option value={{item.id}}>{{item.name}}</option>
+                    }
+                </select>
+                <ng-container *ngIf="shippingType.touched">
+                    <div *ngIf="shippingType.hasError('pattern')" class="form-text text-danger">choose shipping type</div>
+                </ng-container>
+            </div>
+
+            <div class="form-group col-md-3 mt-md-2">
+                <label class="form-label">Payment Type</label>
+                <select class="form-select" formControlName="paymentType" type="text" name="paymenttype">
+                    <option value="0">Select Payment Type</option>
+                    @for (item of paymentTypes; track $index) {
+                        <option value={{item.id}}>{{item.name}}</option>
+                    }
+                </select>
+                <ng-container *ngIf="paymentType.touched">
+                    <div *ngIf="paymentType.hasError('pattern')" class="form-text text-danger">choose payment type</div>
+                </ng-container>
+            </div>
+
+
+            <div class="form-group col-md-4 mt-md-2">
+                <label class="form-label">Total Weight</label>
+                <input (blur)="calculateShippingCost()" class="form-control" formControlName="totalWeight" type="text" name="weight" placeholder="Enter Shipping Weight">
+                <ng-container *ngIf="totalWeight.touched">
+                    <div *ngIf="totalWeight.hasError('required')" class="form-text text-danger">enter shipping weight</div>
+                    <div *ngIf="totalWeight.hasError('pattern')" class="form-text text-danger">enter shipping weight</div>
+                </ng-container>
+            </div>
+            
+            <div class="form-group col-md-4 mt-md-2">
+                <label class="form-label">Order Cost</label>
+                <input class="form-control" formControlName="orderCost" type="number" name="ordercost">
+                <ng-container *ngIf="orderCost.touched">
+                    <div *ngIf="orderCost.hasError('required')" class="form-text text-danger">enter order price</div>
+                    <div *ngIf="orderCost.hasError('pattern')" class="form-text text-danger">Not Valid Value</div>
+                </ng-container>
+            </div>
+
+            <div class="form-group col-md-4 mt-md-2">
+                <div class="row">
+                    <div class="col-md-9" >
+                        <label class="form-label">shipping Cost</label>
+                        <input class="form-control" formControlName="shippingCost" type="number" name="shippingcost" value={{ShippingWeightCost}}>
+                    </div>
+                    <div class="col-md-3 align-self-end">
+                        <!-- if loading show the pinner -->
+                        @if(isLoading==true){
+                            <ng-container *ngIf="isLoading">
+                                <p-progressSpinner [style]="{width: '35px', height: '35px'}"
+                                  strokeWidth="4" strokeColor="red" >
+                                </p-progressSpinner>
+                            </ng-container>
+                        }@else if(isShippingWeightCalculated==false){
+                            <i class="bi bi-x-circle-fill fs-3 text-danger"></i>
+                        }@else {
+                            <i class="bi bi-check-circle-fill q fs-3 text-success"></i>
+                        }
+                       
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group col-md-12 mt-md-2">
+                <label class="form-label">Note</label>
+                <textarea  class="form-control" formControlName="note" style="resize: none;" rows="4" type="text" name="note" placeholder="Add a note if you want"></textarea>
+            </div>
+
+            <button class="btn btn-success mt-4" type="submit">ADD ORDER</button>
+               
+        </div>
+        
+    </form>
+    
+</main>

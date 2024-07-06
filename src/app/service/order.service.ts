@@ -6,19 +6,22 @@ import { IOrderDTO } from '../Interface/IOrderDTO';
 import { IOrderGetDTO } from '../Interface/IOrderGetDTO';
 import { IOrderCostDTO } from '../Interface/IOrderCostDTO';
 import { OrderStatus } from '../Enum/OrderStatus';
+import { IPaymentTypeDTO } from '../Interface/IPaymentTypeDTO';
+import { IOrderTypeDTO } from '../Interface/IOrderTypeDTO';
+import { IShippingTypeDto } from '../Interface/IShippingTypeDto';
+import { BASE_URL } from '../constants';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderService {
-  private baseUrl = 'http://localhost:5000/api/order'; // Adjust the base URL as necessary
+  private baseUrl = `${BASE_URL}/Order`; // Adjust the base URL as necessary
 
   constructor(private http: HttpClient) {}
 
   addOrder(orderDTO: IOrderDTO): Observable<any> {
     const url = `${this.baseUrl}/Add`;
-    return this.http
-      .post<any>(url, orderDTO)
+    return this.http.post<any>(url, orderDTO)
       .pipe(catchError(this.handleError<any>('addOrder')));
   }
 
@@ -52,18 +55,23 @@ export class OrderService {
       .pipe(catchError(this.handleError<IOrderGetDTO[]>('getByStatus', [])));
   }
 
-  getOrderTypes(): Observable<string[]> {
+  getOrderTypes(): Observable<IOrderTypeDTO[]> {
     const url = `${this.baseUrl}/OrderTypes`;
     return this.http
-      .get<string[]>(url)
-      .pipe(catchError(this.handleError<string[]>('getOrderTypes', [])));
+      .get<IOrderTypeDTO[]>(url)
+      .pipe(catchError(this.handleError<IOrderTypeDTO[]>('getOrderTypes', [])));
   }
 
-  getShippingTypes(): Observable<string[]> {
+  getShippingTypes(): Observable<IShippingTypeDto[]> {
     const url = `${this.baseUrl}/ShippingTypes`;
-    return this.http
-      .get<string[]>(url)
-      .pipe(catchError(this.handleError<string[]>('getShippingTypes', [])));
+    return this.http.get<IShippingTypeDto[]>(url)
+      .pipe(catchError(this.handleError<IShippingTypeDto[]>('getShippingTypes', [])));
+  }
+
+  getPaymentTypes():Observable<IPaymentTypeDTO[]>{
+    const url = `${this.baseUrl}/PaymentTypes`;
+    return this.http.get<IPaymentTypeDTO[]>(url)
+      .pipe(catchError(this.handleError<IPaymentTypeDTO[]>('getPaymentTypes', []))); 
   }
 
   changeOrderStatus(status: OrderStatus, id: number): Observable<string> {

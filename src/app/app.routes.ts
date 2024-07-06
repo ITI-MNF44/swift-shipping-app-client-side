@@ -1,3 +1,4 @@
+import { SellerOrdersByStatusComponent } from './components/seller-layout/seller-orders/seller-orders.component';
 import { Routes } from '@angular/router';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
 import { EmployeesComponent } from './components/admin-layout/employees/employees.component';
@@ -14,6 +15,7 @@ import { DeliverymanLoginComponent } from './components/deliveryman-layout/deliv
 import { EmployeeLayoutComponent } from './components/employee-layout/employee-layout.component';
 import { SellerLayoutComponent } from './components/seller-layout/seller-layout.component';
 import { SellerDashboardComponent } from './components/seller-layout/seller-dashboard/seller-dashboard.component';
+import { SellerAddOrderComponent } from './components/seller-layout/seller-add-order/seller-add-order.component';
 
 // export const routes: Routes = [
 //     { path: '', component:  LoginComponent},
@@ -52,6 +54,8 @@ export const routes: Routes = [
         children: [
             { path: '', component: SellerDashboardComponent },
             { path: 'home', component: SellerDashboardComponent },
+            { path: 'orders/:id/:status', component: SellerOrdersByStatusComponent },
+            { path: 'addorder', component: SellerAddOrderComponent },
         ],
     },
     // {
@@ -80,10 +84,7 @@ export const routes: Routes = [
     //         },
     //     ],
     // },
-
-
-
-
+    
     {
         path: 'admin/login',
         component: AdminLoginComponent,

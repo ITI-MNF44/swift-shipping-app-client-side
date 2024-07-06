@@ -4,19 +4,20 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { IGovernmentDTO } from '../Interface/IGovernmentDTO';
 import { IGovernmentGetDTO } from '../Interface/IGovernmentGetDTO';
+import { BASE_URL } from '../constants';
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class GovernmentService {
-  private baseUrl = 'http://localhost:5000/api/government'; // Adjust the base URL as necessary
+  private baseUrl = `${BASE_URL}/Government`; // Adjust the base URL as necessary
 
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<IGovernmentGetDTO[]> {
     return this.http
-      .get<IGovernmentGetDTO[]>(`${this.baseUrl}`)
+      .get<IGovernmentGetDTO[]>(`${this.baseUrl}/All`)
       .pipe(catchError(this.handleError<IGovernmentGetDTO[]>('getAll', [])));
   }
 
