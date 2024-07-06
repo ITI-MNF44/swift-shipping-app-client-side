@@ -2,19 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { ILoginWithUserNameDTO } from '../Interface/ILoginWithUserNameDTO';
+import { environment } from 'src/environments/environment';
+import { ILoginDataDTO } from '../Interface/IloginDataDTO';
+import { ILoginWithEmailDTO } from '../Interface/ILoginWithEmailDTO';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService {
-  private apiUrl = 'https://your-api-url';
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
-
-
   checkEmail(email: string): Observable<any> {
-    const url = `${this.apiUrl}/CheckEmail?email=${email}`;
+    const url = `${this.apiUrl}/account/CheckEmail?email=${email}`;
 
     return this.http
       .get<any>(url)
@@ -22,30 +24,30 @@ export class AccountService {
   }
 
   checkUsername(username: string): Observable<any> {
-    const url = `${this.apiUrl}/CheckUsername?username=${username}`;
+    const url = `${this.apiUrl}/account/CheckUsername?username=${username}`;
 
     return this.http
       .get<any>(url)
       .pipe(catchError(this.handleError<any>('checkUsername')));
   }
 
-  loginWithUserName(loginDTO: any): Observable<any> {
-    const url = `${this.apiUrl}/LoginWithUserName`;
+  loginWithUserName(
+    loginDTO: ILoginWithUserNameDTO
+  ): Observable<ILoginDataDTO> {
+    const url = `${this.apiUrl}/account/LoginWithUserName`;
 
     return this.http
       .post<any>(url, loginDTO)
       .pipe(catchError(this.handleError<any>('loginWithUserName')));
   }
 
-  loginWithEmail(loginDTO: any): Observable<any> {
-    const url = `${this.apiUrl}/LoginWithEmail`;
+  loginWithEmail(loginDTO: ILoginWithEmailDTO): Observable<ILoginDataDTO> {
+    const url = `${this.apiUrl}/account/LoginWithEmail`;
 
     return this.http
       .post<any>(url, loginDTO)
       .pipe(catchError(this.handleError<any>('loginWithEmail')));
   }
-
-
 
   // Error handler method
   private handleError<T>(operation = 'operation', result?: T) {

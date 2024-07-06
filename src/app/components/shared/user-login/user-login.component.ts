@@ -1,20 +1,20 @@
-import { AccountService } from './../../../service/account.service';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
-  Validators,
-  ReactiveFormsModule,
   FormsModule,
+  ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { PasswordModule } from 'primeng/password';
+import { Router } from '@angular/router';
+import { AccountService } from '@service/account.service';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputGroupModule } from 'primeng/inputgroup';
-import { Router } from '@angular/router';
+import { PasswordModule } from 'primeng/password';
 
 @Component({
-  selector: 'app-employee-login',
+  selector: 'app-user-login',
   standalone: true,
   imports: [
     CommonModule,
@@ -24,10 +24,10 @@ import { Router } from '@angular/router';
     FloatLabelModule,
     InputGroupModule,
   ],
-  templateUrl: './employee-login.component.html',
-  styleUrl: './employee-login.component.css',
+  templateUrl: './user-login.component.html',
+  styleUrl: './user-login.component.css',
 })
-export class EmployeeLoginComponent {
+export class UserLoginComponent {
   value!: string;
   loginForm: FormGroup;
   emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
