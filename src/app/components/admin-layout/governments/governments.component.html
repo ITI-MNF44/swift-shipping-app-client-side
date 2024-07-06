@@ -1,1 +1,33 @@
-<p>governments works!</p>
+<main id="main" class="main">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Settings</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Loop through governemnt data -->
+          <tr *ngFor="let governemnt of governemnts">
+            <td>{{ governemnt.id }}</td>
+            <td>{{ governemnt.name }}</td>
+            <td><i class=" fs-1 bi bi-toggle-{{ governemnt.isActive ? 'on text-success' : 'off text-muted'}}"></i>
+            </td>
+            <td>
+              
+                <i class="bi bi-pencil-square text-success m-1" style="font-size: 1.5rem"></i>
+                
+                <a (click)="deleteGovernemnt(governemnt.id)">
+                    <i  class="bi bi-trash text-danger m-1 icon-rounded" style="font-size: 1.5rem"></i>
+                </a>
+            
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  

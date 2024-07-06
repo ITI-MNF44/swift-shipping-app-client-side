@@ -25,7 +25,7 @@ export class GovernmentService {
   addGovernment(name: string): Observable<any> {
     const url = `${this.baseUrl}/government/Add`;
     return this.http
-      .post<any>(url, { name })
+      .post<any>(`${url}?name=${name}`, null)
       .pipe(catchError(this.handleError<any>('addGovernment')));
   }
 
@@ -46,13 +46,13 @@ export class GovernmentService {
       .pipe(catchError(this.handleError<string>('editGovernment')));
   }
 
-  deleteGovernment(id: number): Observable<string> {
-    const url = `${this.baseUrl}/government/Delete/${id}`;
+  deleteGovernment(id: number): Observable<any> {
+    const url = `${this.baseUrl}/Government/Delete/${id}`;
     return this.http
-      .delete<string>(url)
-      .pipe(catchError(this.handleError<string>('deleteGovernment')));
+      .delete<any>(url)
+      .pipe(catchError(this.handleError<any>('deleteGovernment')));
   }
-
+  
   // Error handler method
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
