@@ -73,6 +73,8 @@ export const routes: Routes = [
     children: [
       { path: '', component: SellerDashboardComponent },
       { path: 'home', component: SellerDashboardComponent },
+      { path: 'orders/:sellerId/:statusId', component: SellerOrdersByStatusComponent },
+      { path: 'home', component: SellerDashboardComponent },
     ],
   },
 

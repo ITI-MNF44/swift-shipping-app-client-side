@@ -42,8 +42,8 @@ export class SellerOrdersByStatusComponent implements OnInit{
   constructor(public activatedRoute: ActivatedRoute,
     private SellerService: SellersService
   ) {
-		this.sellerId = this.activatedRoute.snapshot.params['id'];
-		this.status = this.activatedRoute.snapshot.params['status'];
+		this.sellerId = this.activatedRoute.snapshot.params['sellerId'];
+		this.status = this.activatedRoute.snapshot.params['statusId'];
 
 	}
   ngOnInit(): void {
