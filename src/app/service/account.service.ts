@@ -49,6 +49,12 @@ export class AccountService {
       .pipe(catchError(this.handleError<any>('loginWithEmail')));
   }
 
+  logOut(): Observable<any> {
+    return this.http
+      .post(`${this.apiUrl}/LogOut`, {})
+      .pipe(catchError(this.handleError<any>('logOut')));
+  }
+
   // Error handler method
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
