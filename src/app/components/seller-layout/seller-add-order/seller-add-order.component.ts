@@ -142,29 +142,34 @@ export class SellerAddOrderComponent implements OnInit {
 
   calculateShippingCost(){
 
-    this.shippingCost.value == 22;
 
     this.isLoading = true;
-    if(this.ordertype.valid && this.shippingType.valid &&this.region.valid && this.totalWeight.valid){
-      let orderCostDTO: IOrderCostDTO = {
-        isShippedToVillage:  Boolean(this.isShippedToVillage.value),
-        orderType: Number(this.ordertype.value),
-        weight: Number(this.totalWeight.value),
-        regionId : Number(this.region.value),
-        shippingType: Number(this.shippingType.value)
+  
+    setTimeout(() => {
+      console.log('This message is displayed after 1 second.');
+      // You can place any other code here that you want to execute after the delay
+      if(this.ordertype.valid && this.shippingType.valid &&this.region.valid && this.totalWeight.valid){
+        let orderCostDTO: IOrderCostDTO = {
+          isShippedToVillage:  Boolean(this.isShippedToVillage.value),
+          orderType: Number(this.ordertype.value),
+          weight: Number(this.totalWeight.value),
+          regionId : Number(this.region.value),
+          shippingType: Number(this.shippingType.value)
+        }
+        this.OrderService.calculateOrderCost(orderCostDTO).subscribe({
+          next: (data)=>{
+            console.log(data);
+            this.ShippingWeightCost = data;
+          },
+          error: (error)=> {console.log(error)}
+        })
+        this.isShippingWeightCalculated = true;
+      }else{
+        this.isShippingWeightCalculated = false;
       }
-      this.OrderService.calculateOrderCost(orderCostDTO).subscribe({
-        next: (data)=>{
-          console.log(data);
-          this.ShippingWeightCost = data;
-        },
-        error: (error)=> {console.log(error)}
-      })
-      this.isShippingWeightCalculated = true;
-    }else{
-      this.isShippingWeightCalculated = false;
-    }
-    this.isLoading = false;
+      this.isLoading = false;
+    }, 600);
+    
   }
 
   addOrder(){
