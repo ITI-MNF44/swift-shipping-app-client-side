@@ -43,6 +43,8 @@ import { deliveryManGaurdGuard } from './Gaurds/delivery-man-gaurd.guard';
 import { DisplayOrdersComponent } from './components/employee-layout/display-orders/display-orders.component';
 import { GovernmentsComponent } from './components/admin-layout/governments/governments.component';
 import { AddGovernmentComponent } from './components/admin-layout/add-government/add-government.component';
+import { AcceptordersComponent } from './components/employee-layout/acceptorders/acceptorders.component';
+
 import { sellerGaurdGuard } from './Gaurds/seller-gaurd.guard';
 
 export const routes: Routes = [
@@ -100,6 +102,8 @@ export const routes: Routes = [
       { path: 'cities', component: CitiesComponent },
       { path: 'cities/:id/edit', component: AddCityComponent },
       { path: 'cities/0/add', component: AddCityComponent },
+      //{ path: 'neworders', component:  },
+      { path: 'neworders', component: AcceptordersComponent },
     ],
   },
   {
