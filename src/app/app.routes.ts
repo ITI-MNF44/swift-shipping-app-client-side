@@ -29,6 +29,7 @@ import { SellerAddOrderComponent } from './components/seller-layout/seller-add-o
 import { DeliverymanLayoutComponent } from './components/deliveryman-layout/deliveryman-layout.component';
 import { DelivaryManOrdersComponent } from './components/deliveryman-layout/delivary-man-orders/delivary-man-orders.component';
 import { BranchFormComponent } from './components/admin-layout/branch-form/branch-form.component';
+import { WeightSettingsComponent } from './components/admin-layout/weight-settings/weight-settings.component';
 import { CitiesComponent } from './components/admin-layout/cities/cities.component';
 import { AddCityComponent } from './components/admin-layout/add-city/add-city.component';
 import { EmployeeFormComponent } from './components/admin-layout/employee-form/employee-form.component';
@@ -55,12 +56,15 @@ export const routes: Routes = [
       { path: 'employees', component: EmployeesComponent },
       { path: 'deliverymen', component: DeliverymenComponent },
       { path: 'deliveryman/edit/:id', component: DeliverymanFormComponent },
+
       { path: 'employee/edit/:id', component: EmployeeFormComponent },
 
       // Add route for branches
       { path: 'branches', component: BranchesComponent },
       { path: 'branches/add', component: BranchFormComponent },
       { path: 'branches/:id/edit', component: BranchFormComponent },
+      //Routes for weightSettings
+      { path: 'weightSettings', component: WeightSettingsComponent },
 
       {
         path: 'roles/:role/permissions',
