@@ -16,6 +16,7 @@ import { SellerLayoutComponent } from './components/seller-layout/seller-layout.
 import { SellerDashboardComponent } from './components/seller-layout/seller-dashboard/seller-dashboard.component';
 import { DeliverymanLayoutComponent } from './components/deliveryman-layout/deliveryman-layout.component';
 import { DelivaryManOrdersComponent } from './components/deliveryman-layout/delivary-man-orders/delivary-man-orders.component';
+<<<<<<< HEAD
 import { RolePermissionsComponent } from './components/admin-layout/role-permissions/role-permissions.component';
 
 // export const routes: Routes = [
@@ -29,6 +30,12 @@ import { RolePermissionsComponent } from './components/admin-layout/role-permiss
 
 //     { path: '**', component: NotFoundComponent }
 // ];
+=======
+import { BranchFormComponent } from './components/admin-layout/branch-form/branch-form.component';
+import { CitiesComponent } from './components/admin-layout/cities/cities.component';
+import { AddCityComponent } from './components/admin-layout/add-city/add-city.component';
+import { EmployeeFormComponent } from './components/admin-layout/employee-form/employee-form.component';
+>>>>>>> fddea768d82ab648c432ad39f4d7ec1804beb3a7
 
 export const routes: Routes = [
   {
@@ -38,11 +45,26 @@ export const routes: Routes = [
       { path: '', component: AdminDashboardComponent },
       { path: 'home', component: AdminDashboardComponent },
       { path: 'employees', component: EmployeesComponent },
+      { path: 'deliverymen', component: EmployeesComponent },
       { path: 'deliveryman/edit/:id', component: DeliverymanFormComponent },
+<<<<<<< HEAD
       {
         path: 'roles/:role/permissions',
         component: RolePermissionsComponent,
       },
+=======
+      { path: 'employee/edit/:id', component: EmployeeFormComponent },
+
+      // Add route for branches
+      { path: 'branches', component: BranchesComponent },
+      { path: 'branches/add', component: BranchFormComponent },
+      { path: 'branches/:id/edit', component: BranchFormComponent },
+
+
+      { path: 'cities', component: CitiesComponent },
+      { path: 'cities/:id/edit', component: AddCityComponent },
+      { path: 'cities/0/add', component: AddCityComponent },
+>>>>>>> fddea768d82ab648c432ad39f4d7ec1804beb3a7
     ],
   },
   {
@@ -61,38 +83,12 @@ export const routes: Routes = [
       { path: 'home', component: SellerDashboardComponent },
     ],
   },
+
   {
     path: 'deliveryman',
     component: DeliverymanLayoutComponent,
     children: [{ path: '', component: DelivaryManOrdersComponent }],
   },
-
-  // {
-  //     path: 'dashboard',
-  //     component: DashboardComponent,
-  //     children: [
-  //         {
-  //             path: 'home',
-  //             component: AdminHomeComponent,
-  //         },
-  //         {
-  //             path: 'allproducts',
-  //             component: ProductsTableComponent,
-  //         },
-  //         {
-  //             path: 'product/:id/edit',
-  //             component: AddProductComponent,
-  //         },
-  //         {
-  //             path: 'category',
-  //             component: CategoryTableComponent,
-  //         },
-  //         {
-  //             path: 'brands',
-  //             component: BrandTableComponent,
-  //         },
-  //     ],
-  // },
 
   {
     path: 'admin/login',
@@ -111,7 +107,7 @@ export const routes: Routes = [
     component: DeliverymanLoginComponent,
   },
   {
-    path: '**',
+    path: '',
     component: NotFoundComponent,
   },
 ];

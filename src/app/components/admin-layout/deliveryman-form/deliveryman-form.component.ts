@@ -43,7 +43,7 @@ export class DeliverymanFormComponent implements OnInit, OnDestroy {
       phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       branchId: [null, Validators.required],
       address: ['', Validators.required],
-      
+
       // governments: ['', Validators.required],
 
       // discountPercentage: ['', Validators.required],

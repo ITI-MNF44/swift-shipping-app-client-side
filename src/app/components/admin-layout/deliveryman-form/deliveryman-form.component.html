@@ -6,13 +6,17 @@
           <li class="breadcrumb-item">
             <a href="index.html"><i class="bi-house-fill text-dark"></i></a>
           </li>
-          <li class="breadcrumb-item">Add Delivery Man</li>
+          <li class="breadcrumb-item">
+            {{deliverymanId == '0' ? "Add Delivery Man" : "Edit Delivery Man"}}
+          </li>
         </ol>
       </nav>
     </div>
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Add Delivery Man</h5>
+        <h5 class="card-title">
+          {{deliverymanId == '0' ? "Add Delivery Man" : "Edit Delivery Man"}}
+        </h5>
         <form [formGroup]="deliverymanForm" (ngSubmit)="deliverymanHandler()">
           <div class="row mb-3">
             <div class="col-lg-4 col-md-6 col-sm-12">
@@ -24,9 +28,16 @@
                 formControlName="name"
                 placeholder="Name"
               />
-              <div *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)" class="text-danger">
-                <div *ngIf="f['name'].errors?.['required']">Name is required.</div>
-                <div *ngIf="f['name'].errors?.['minlength']">Name must be at least 2 characters long.</div>
+              <div
+                *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)"
+                class="text-danger"
+              >
+                <div *ngIf="f['name'].errors?.['required']">
+                  Name is required.
+                </div>
+                <div *ngIf="f['name'].errors?.['minlength']">
+                  Name must be at least 2 characters long.
+                </div>
               </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12">
@@ -38,9 +49,16 @@
                 formControlName="userName"
                 placeholder="UserName"
               />
-              <div *ngIf="f['userName'].invalid && (f['userName'].dirty || f['userName'].touched)" class="text-danger">
-                <div *ngIf="f['userName'].errors?.['required']">UserName is required.</div>
-                <div *ngIf="f['userName'].errors?.['minlength']">UserName must be at least 2 characters long.</div> 
+              <div
+                *ngIf="f['userName'].invalid && (f['userName'].dirty || f['userName'].touched)"
+                class="text-danger"
+              >
+                <div *ngIf="f['userName'].errors?.['required']">
+                  UserName is required.
+                </div>
+                <div *ngIf="f['userName'].errors?.['minlength']">
+                  UserName must be at least 2 characters long.
+                </div>
               </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
@@ -52,9 +70,16 @@
                 formControlName="email"
                 placeholder="Email"
               />
-              <div *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)" class="text-danger">
-                <div *ngIf="f['email'].errors?.['required']">Email is required.</div>
-                <div *ngIf="f['email'].errors?.['email']">Invalid email format.</div>
+              <div
+                *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)"
+                class="text-danger"
+              >
+                <div *ngIf="f['email'].errors?.['required']">
+                  Email is required.
+                </div>
+                <div *ngIf="f['email'].errors?.['email']">
+                  Invalid email format.
+                </div>
               </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
@@ -66,9 +91,16 @@
                 formControlName="password"
                 placeholder="Password"
               />
-              <div *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)" class="text-danger">
-                <div *ngIf="f['password'].errors?.['required']">Password is required.</div>
-                <div *ngIf="f['password'].errors?.['minlength']">Password must be at least 6 characters long.</div>
+              <div
+                *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)"
+                class="text-danger"
+              >
+                <div *ngIf="f['password'].errors?.['required']">
+                  Password is required.
+                </div>
+                <div *ngIf="f['password'].errors?.['minlength']">
+                  Password must be at least 6 characters long.
+                </div>
               </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
@@ -80,9 +112,16 @@
                 formControlName="phoneNumber"
                 placeholder="Phone Number"
               />
-              <div *ngIf="f['phoneNumber'].invalid && (f['phoneNumber'].dirty || f['phoneNumber'].touched)" class="text-danger">
-                <div *ngIf="f['phoneNumber'].errors?.['required']">Phone number is required.</div>
-                <div *ngIf="f['phoneNumber'].errors?.['pattern']">Phone number must be numeric.</div>
+              <div
+                *ngIf="f['phoneNumber'].invalid && (f['phoneNumber'].dirty || f['phoneNumber'].touched)"
+                class="text-danger"
+              >
+                <div *ngIf="f['phoneNumber'].errors?.['required']">
+                  Phone number is required.
+                </div>
+                <div *ngIf="f['phoneNumber'].errors?.['pattern']">
+                  Phone number must be numeric.
+                </div>
               </div>
             </div>
             <!-- <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
@@ -98,14 +137,25 @@
                 <div *ngIf="f['branchId'].errors?.['required']">Branch is required.</div>
               </div>
             </div> -->
-            
+
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
               <label for="branch" class="form-label">Branch Name</label>
-              <select id="branch" class="form-control" formControlName="branchId">
-                <option *ngFor="let branch of branches" [value]="branch.id">{{ branch.name }}</option>
+              <select
+                id="branch"
+                class="form-control"
+                formControlName="branchId"
+              >
+                <option *ngFor="let branch of branches" [value]="branch.id"
+                  >{{ branch.name }}</option
+                >
               </select>
-              <div *ngIf="f['branchId'].invalid && (f['branchId'].dirty || f['branchId'].touched)" class="text-danger">
-                <div *ngIf="f['branchId'].errors?.['required']">Branch is required.</div>
+              <div
+                *ngIf="f['branchId'].invalid && (f['branchId'].dirty || f['branchId'].touched)"
+                class="text-danger"
+              >
+                <div *ngIf="f['branchId'].errors?.['required']">
+                  Branch is required.
+                </div>
               </div>
             </div>
             <!-- <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
@@ -130,8 +180,13 @@
                 formControlName="address"
                 placeholder="Address"
               />
-              <div *ngIf="f['address'].invalid && (f['address'].dirty || f['address'].touched)" class="text-danger">
-                <div *ngIf="f['address'].errors?.['required']">Address is required.</div>
+              <div
+                *ngIf="f['address'].invalid && (f['address'].dirty || f['address'].touched)"
+                class="text-danger"
+              >
+                <div *ngIf="f['address'].errors?.['required']">
+                  Address is required.
+                </div>
               </div>
             </div>
             <!-- <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
