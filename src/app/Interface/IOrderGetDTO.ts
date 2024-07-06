@@ -19,4 +19,6 @@ export interface IOrderGetDTO {
   orderStatus: OrderStatus;
   creationDate: Date;
   deliveryCost: number;
+  //delivery man id
+  deliveryId?:number;
 }
