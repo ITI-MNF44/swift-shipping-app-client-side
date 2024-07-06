@@ -49,9 +49,9 @@ export class RegionService {
   }
 
   GetRegionsByGovernrmnt(governmentId: number): Observable<IRegionGetDTO[]> {
-    const url = `${this.baseUrl}/OrderCost`;
+    const url = `${this.baseUrl}/Region/Government/${governmentId}`;
 
-    return this.http.get<IRegionGetDTO[]>(`${this.baseUrl}/Government/${governmentId}`)
+    return this.http.get<IRegionGetDTO[]>(url)
       .pipe(catchError(this.handleError<IRegionGetDTO[]>('calculateOrderCost')));
   }
 

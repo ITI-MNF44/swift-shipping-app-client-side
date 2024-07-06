@@ -10,7 +10,6 @@ import { environment } from 'src/environments/environment';
 })
 export class SellersService {
   private apiUrl = environment.apiUrl; // Replace with your actual API base URL
-  // private apiUrl = `${BASE_URL}/seller`; // Replace with your actual API base URL
 
   constructor(private http: HttpClient) {}
 
@@ -93,7 +92,7 @@ export class SellersService {
   // }
 
   getSellersOrdersByStatus(sellerId: number, status:number): Observable<any> {
-    const url = `${this.apiUrl}/${sellerId}/orders/${status}`;
+    const url = `${this.apiUrl}/Seller/${sellerId}/orders/${status}`;
 
     return this.http
       .get<any>(url)

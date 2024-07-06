@@ -37,6 +37,7 @@ import { EmployeeFormComponent } from './components/admin-layout/employee-form/e
 import { RolePermissionsComponent } from './components/admin-layout/role-permissions/role-permissions.component';
 import { employeeGaurdGuard } from './Gaurds/employee-gaurd.guard';
 import { UserLoginComponent } from './components/shared/user-login/user-login.component';
+import { DisplayOrdersComponent } from './components/employee-layout/display-orders/display-orders.component';
 
 export const routes: Routes = [
   {
@@ -64,6 +65,7 @@ export const routes: Routes = [
       { path: 'cities', component: CitiesComponent },
       { path: 'cities/:id/edit', component: AddCityComponent },
       { path: 'cities/0/add', component: AddCityComponent },
+      {path: 'orders', component: DisplayOrdersComponent}
     ],
   },
   {
@@ -89,7 +91,7 @@ export const routes: Routes = [
       { path: '', component: SellerDashboardComponent },
       { path: 'home', component: SellerDashboardComponent },
       { path: 'orders/:sellerId/:statusId', component: SellerOrdersByStatusComponent },
-      { path: 'home', component: SellerDashboardComponent },
+      { path: 'add', component: SellerAddOrderComponent },
     ],
   },
 

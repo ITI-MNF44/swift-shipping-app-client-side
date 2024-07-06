@@ -70,7 +70,7 @@ export class OrderService {
   }
 
   getPaymentTypes():Observable<IPaymentTypeDTO[]>{
-    const url = `${this.baseUrl}/PaymentTypes`;
+    const url = `${this.baseUrl}/order/PaymentTypes`;
     return this.http.get<IPaymentTypeDTO[]>(url)
       .pipe(catchError(this.handleError<IPaymentTypeDTO[]>('getPaymentTypes', []))); 
   }

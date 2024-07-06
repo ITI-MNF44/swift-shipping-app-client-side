@@ -28,11 +28,11 @@ import { DropdownModule } from 'primeng/dropdown';
 export class SellerOrdersByStatusComponent implements OnInit{
 
   sellerId:number;
-  status: number;
+  orderStatusId: number;
   orders: IOrderGetDTO[] = [];
-  searchValue: string | undefined;
-
-
+  
+  // table variable
+    searchValue: string | undefined;
     representatives!: any;
     statuses!: any[];
     loading: boolean = true;
@@ -43,11 +43,13 @@ export class SellerOrdersByStatusComponent implements OnInit{
     private SellerService: SellersService
   ) {
 		this.sellerId = this.activatedRoute.snapshot.params['sellerId'];
-		this.status = this.activatedRoute.snapshot.params['statusId'];
+		this.orderStatusId = this.activatedRoute.snapshot.params['statusId'];
 
 	}
   ngOnInit(): void {
-    this.SellerService.getSellersOrdersByStatus(this.sellerId, this.status).subscribe({
+    // console.log(this.sellerId, this.orderStatusId, `${environment.apiUrl}/${this.sellerId}/${this.orderStatusId}`);
+
+    this.SellerService.getSellersOrdersByStatus(this.sellerId, this.orderStatusId).subscribe({
       next: (data) => {
         this.orders = data;
         // console.log(this.orders.length);

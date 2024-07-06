@@ -126,13 +126,14 @@ export class SellerAddOrderComponent implements OnInit {
     let target = event.target as HTMLInputElement;
     let governmentId = parseInt(target.value);
     // console.log(governmentId);
-    if(governmentId!=0){
+    if(governmentId!=0){      
       this.RegionService.GetRegionsByGovernrmnt(governmentId).subscribe({
         next: (data)=>{
           this.regions = data
-          // console.log(this.regions);
+          console.log(this.regions);
         },
         error: (error) => {console.log(error);},
+        
       })
     }else{
       this.regions = [];
