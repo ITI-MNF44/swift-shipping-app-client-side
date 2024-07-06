@@ -40,12 +40,14 @@ import { UserLoginComponent } from './components/shared/user-login/user-login.co
 import { adminGaurdGuard } from './Gaurds/admin-gaurd.guard';
 import { deliveryManGaurdGuard } from './Gaurds/delivery-man-gaurd.guard';
 import { DisplayOrdersComponent } from './components/employee-layout/display-orders/display-orders.component';
+import { GovernmentsComponent } from './components/admin-layout/governments/governments.component';
+import { AddGovernmentComponent } from './components/admin-layout/add-government/add-government.component';
 
 
 export const routes: Routes = [
   {
     path: 'admin',
-    canActivate: [adminGaurdGuard],
+    // canActivate: [adminGaurdGuard],
     component: AdminLayoutComponent,
     children: [
       { path: '', component: AdminDashboardComponent },
@@ -76,7 +78,10 @@ export const routes: Routes = [
       { path: 'cities', component: CitiesComponent },
       { path: 'cities/:id/edit', component: AddCityComponent },
       { path: 'cities/0/add', component: AddCityComponent },
-      {path: 'orders', component: DisplayOrdersComponent}
+      {path: 'orders', component: DisplayOrdersComponent},
+      {path: 'governments', component: GovernmentsComponent},
+      {path: 'governments/add', component: AddGovernmentComponent}
+
     ],
   },
   {
