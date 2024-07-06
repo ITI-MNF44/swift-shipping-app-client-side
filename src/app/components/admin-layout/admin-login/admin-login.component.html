@@ -12,13 +12,13 @@
         </div>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div class="p-field">
-            <label for="email">Username or Email</label>
+            <label for="userName">Username</label>
             <input
-              id="email"
+              id="userName"
               type="text"
               class="form-control"
               pInputText
-              formControlName="email"
+              formControlName="userName"
             />
           </div>
           <div class="p-field">

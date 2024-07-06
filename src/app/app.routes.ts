@@ -8,9 +8,7 @@ import { BranchesComponent } from './components/admin-layout/branches/branches.c
 import { AdminLayoutComponent } from './components/admin-layout/admin-layout.component';
 import { AdminDashboardComponent } from './components/admin-layout/admin-dashboard/admin-dashboard.component';
 import { AdminLoginComponent } from './components/admin-layout/admin-login/admin-login.component';
-import { EmployeeLoginComponent } from './components/employee-layout/employee-login/employee-login.component';
 import { SellerLoginComponent } from './components/seller-layout/seller-login/seller-login.component';
-import { DeliverymanLoginComponent } from './components/deliveryman-layout/deliveryman-login/deliveryman-login.component';
 import { EmployeeLayoutComponent } from './components/employee-layout/employee-layout.component';
 import { SellerLayoutComponent } from './components/seller-layout/seller-layout.component';
 import { SellerDashboardComponent } from './components/seller-layout/seller-dashboard/seller-dashboard.component';
@@ -21,16 +19,36 @@ import { CitiesComponent } from './components/admin-layout/cities/cities.compone
 import { AddCityComponent } from './components/admin-layout/add-city/add-city.component';
 import { EmployeeFormComponent } from './components/admin-layout/employee-form/employee-form.component';
 
+import { RolePermissionsComponent } from './components/admin-layout/role-permissions/role-permissions.component';
+import { employeeGaurdGuard } from './Gaurds/employee-gaurd.guard';
+import { UserLoginComponent } from './components/shared/user-login/user-login.component';
+import { adminGaurdGuard } from './Gaurds/admin-gaurd.guard';
+import { deliveryManGaurdGuard } from './Gaurds/delivery-man-gaurd.guard';
+
 
 export const routes: Routes = [
   {
     path: 'admin',
+    canActivate: [adminGaurdGuard],
     component: AdminLayoutComponent,
     children: [
       { path: '', component: AdminDashboardComponent },
       { path: 'home', component: AdminDashboardComponent },
       { path: 'employees', component: EmployeesComponent },
+      { path: 'deliverymen', component: EmployeesComponent },
       { path: 'deliveryman/edit/:id', component: DeliverymanFormComponent },
+      { path: 'employee/edit/:id', component: EmployeeFormComponent },
+
+      // Add route for branches
+      { path: 'branches', component: BranchesComponent },
+      { path: 'branches/add', component: BranchFormComponent },
+      { path: 'branches/:id/edit', component: BranchFormComponent },
+
+      {
+        path: 'roles/:role/permissions',
+        component: RolePermissionsComponent,
+      },
+
       { path: 'employee/edit/:id', component: EmployeeFormComponent },
 
       // Add route for branches
@@ -46,10 +64,18 @@ export const routes: Routes = [
   },
   {
     path: 'employee',
+    canActivate: [employeeGaurdGuard],
     component: EmployeeLayoutComponent,
     children: [
       { path: '', component: AdminDashboardComponent },
       { path: 'home', component: EmployeeDashboardComponent },
+      { path: 'branches', component: BranchesComponent },
+      { path: 'branches/add', component: BranchFormComponent },
+      { path: 'branches/:id/edit', component: BranchFormComponent },
+
+      { path: 'cities', component: CitiesComponent },
+      { path: 'cities/:id/edit', component: AddCityComponent },
+      { path: 'cities/0/add', component: AddCityComponent },
     ],
   },
   {
@@ -63,25 +89,32 @@ export const routes: Routes = [
 
   {
     path: 'deliveryman',
+    canActivate: [deliveryManGaurdGuard],
     component: DeliverymanLayoutComponent,
     children: [{ path: '', component: DelivaryManOrdersComponent }],
   },
 
   {
+    path: 'user/login',
+    component: UserLoginComponent,
+  },
+
+  {
     path: 'admin/login',
+
     component: AdminLoginComponent,
   },
   {
     path: 'employee/login',
-    component: EmployeeLoginComponent,
+    component: UserLoginComponent,
   },
   {
     path: 'seller/login',
-    component: SellerLoginComponent,
+    component: UserLoginComponent,
   },
   {
     path: 'deliveryman/login',
-    component: DeliverymanLoginComponent,
+    component: UserLoginComponent,
   },
   {
     path: '',
