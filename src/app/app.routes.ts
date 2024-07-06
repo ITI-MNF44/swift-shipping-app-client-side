@@ -10,7 +10,6 @@ import { AdminLayoutComponent } from './components/admin-layout/admin-layout.com
 import { AdminDashboardComponent } from './components/admin-layout/admin-dashboard/admin-dashboard.component';
 import { AdminLoginComponent } from './components/admin-layout/admin-login/admin-login.component';
 import { SellerLoginComponent } from './components/seller-layout/seller-login/seller-login.component';
-import { DeliverymanLoginComponent } from './components/deliveryman-layout/deliveryman-login/deliveryman-login.component';
 import { EmployeeLayoutComponent } from './components/employee-layout/employee-layout.component';
 import { SellerLayoutComponent } from './components/seller-layout/seller-layout.component';
 import { SellerDashboardComponent } from './components/seller-layout/seller-dashboard/seller-dashboard.component';
@@ -37,11 +36,14 @@ import { EmployeeFormComponent } from './components/admin-layout/employee-form/e
 import { RolePermissionsComponent } from './components/admin-layout/role-permissions/role-permissions.component';
 import { employeeGaurdGuard } from './Gaurds/employee-gaurd.guard';
 import { UserLoginComponent } from './components/shared/user-login/user-login.component';
+import { adminGaurdGuard } from './Gaurds/admin-gaurd.guard';
+import { deliveryManGaurdGuard } from './Gaurds/delivery-man-gaurd.guard';
 import { DisplayOrdersComponent } from './components/employee-layout/display-orders/display-orders.component';
 
 export const routes: Routes = [
   {
     path: 'admin',
+    canActivate: [adminGaurdGuard],
     component: AdminLayoutComponent,
     children: [
       { path: '', component: AdminDashboardComponent },
@@ -97,6 +99,7 @@ export const routes: Routes = [
 
   {
     path: 'deliveryman',
+    canActivate: [deliveryManGaurdGuard],
     component: DeliverymanLayoutComponent,
     children: [{ path: '', component: DelivaryManOrdersComponent }],
   },
