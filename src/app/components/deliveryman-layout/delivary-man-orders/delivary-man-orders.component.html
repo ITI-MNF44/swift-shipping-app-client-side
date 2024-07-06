@@ -1,0 +1,111 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <nav>
+      <ol class="breadcrumb text-center">
+        <li class="breadcrumb-item">
+          <a href="index.html"><i class="bi-house-fill text-dark"></i></a>
+        </li>
+        <li class="breadcrumb-item">Delivery Man</li>
+      </ol>
+    </nav>
+  </div>
+  <section class="section employees">
+    <div class="card">
+      <p-table
+        #dt1
+        [value]="orders"
+        dataKey="id"
+        [rows]="10"
+        [rowsPerPageOptions]="[5, 10, 20]"
+        [loading]="loading"
+        [paginator]="true"
+        [globalFilterFields]="['Government', 'Region', 'Customer Info', 'Date']"
+      >
+        <ng-template pTemplate="caption">
+          <div class="flex">
+            <span class="p-input-icon-right ml-auto">
+              <i class="pi pi-search"></i>
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="searchValue"
+                (input)="dt1.filterGlobal(searchValue, 'contains')"
+                placeholder="Search keyword"
+              />
+            </span>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="min-width: fit-content;">
+              #
+            </th>
+            <th style="min-width: 15rem;">
+              Customer Info
+            </th>
+            <th style="min-width: 10rem;">
+              Date
+            </th>
+            <th style="min-width: 10rem;">
+              Government
+            </th>
+            <th style="min-width: 10rem;">
+              Region
+            </th>
+            <th style="min-width: 10rem;">
+              Cost
+            </th>
+            <th style="width: 3rem;">
+              Change Status
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-orders>
+          <tr>
+            <td id="orderId{{orders.id}}">
+              {{ orders.id }}
+            </td>
+            <td>
+              <span class="ml-1 vertical-align-middle"
+                >{{orders.customerName}} <br />{{orders.customerPhone}}</span
+              >
+            </td>
+            <td>
+              {{ orders.creationDate | date: 'MM/dd/yyyy' }}
+            </td>
+            <td>
+              {{orders.government}}
+            </td>
+            <td>
+              {{orders.region}}
+            </td>
+            <td>
+              {{orders.orderPrice}}
+            </td>
+            <td class="text-center">
+              <select
+                [(ngModel)]="orders.orderStatus"
+                (change)="ChangeOrderStatus($event, orders.id)"
+              >
+                @for (statusKey of orderStatusKeys; track $index) { @if
+                (!(statusKey == 1 || statusKey == 2 || statusKey == 3)) {
+                <option [value]="statusKey">
+                  {{ getStatusLabel(statusKey) }}
+                </option>
+                } }
+              </select>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="8">No Orders found.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </section>
+</main>

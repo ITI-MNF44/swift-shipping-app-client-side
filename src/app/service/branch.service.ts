@@ -4,43 +4,42 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { IBranchGetDTO } from '../Interface/IBranchGetDTO';
 import { IBranchDTO } from '../Interface/IBranchDto';
-import { BASE_URL } from '../constants';
-
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class BranchService {
-  private baseUrl = `${BASE_URL}/branch`; // Adjust the base URL as necessary
+  private baseUrl : string = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
   getAllBranches(): Observable<IBranchGetDTO[]> {
     return this.http
-      .get<IBranchGetDTO[]>(`${this.baseUrl}/All`)
+      .get<IBranchGetDTO[]>(`${this.baseUrl}/Branch/All`)
       .pipe(catchError(this.handleError<IBranchGetDTO[]>('getAllBranches', [])));
   }
 
   addBranch(branchDTO: IBranchDTO): Observable<string> {
     return this.http
-      .post<string>(`${this.baseUrl}/Add`, branchDTO)
+      .post<string>(`${this.baseUrl}/Branch/Add`, branchDTO)
       .pipe(catchError(this.handleError<string>('addBranch')));
   }
 
   getById(id: number): Observable<IBranchGetDTO> {
     return this.http
-      .get<IBranchGetDTO>(`${this.baseUrl}/${id}`)
+      .get<IBranchGetDTO>(`${this.baseUrl}/Branch/${id}`)
       .pipe(catchError(this.handleError<IBranchGetDTO>('getById')));
   }
 
   editBranch(id: number, branchDTO: IBranchDTO): Observable<string> {
     return this.http
-      .put<string>(`${this.baseUrl}/Edit/${id}`, branchDTO)
+      .put<string>(`${this.baseUrl}/Branch/Edit/${id}`, branchDTO)
       .pipe(catchError(this.handleError<string>('editBranch')));
   }
 
   deleteBranch(id: number): Observable<string> {
     return this.http
-      .delete<string>(`${this.baseUrl}/Delete/${id}`)
+      .delete<string>(`${this.baseUrl}/Branch/Delete/${id}`)
       .pipe(catchError(this.handleError<string>('deleteBranch')));
   }
 

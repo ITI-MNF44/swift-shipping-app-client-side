@@ -28,82 +28,78 @@ import { SellerAddOrderComponent } from './components/seller-layout/seller-add-o
 
 //     { path: '**', component: NotFoundComponent }
 // ];
+import { DeliverymanLayoutComponent } from './components/deliveryman-layout/deliveryman-layout.component';
+import { DelivaryManOrdersComponent } from './components/deliveryman-layout/delivary-man-orders/delivary-man-orders.component';
+import { BranchFormComponent } from './components/admin-layout/branch-form/branch-form.component';
+import { CitiesComponent } from './components/admin-layout/cities/cities.component';
+import { AddCityComponent } from './components/admin-layout/add-city/add-city.component';
+import { EmployeeFormComponent } from './components/admin-layout/employee-form/employee-form.component';
 
 
 export const routes: Routes = [
-    {
-        path: 'admin',
-        component: AdminLayoutComponent,
-        children: [
-            { path: '', component: AdminDashboardComponent },
-            { path: 'home', component: AdminDashboardComponent },
-            { path: 'employees', component: EmployeesComponent },
-        ],
-    },
-    {
-        path: 'employee',
-        component: EmployeeLayoutComponent,
-        children: [
-            { path: '', component: AdminDashboardComponent },
-            { path: 'home', component: EmployeeDashboardComponent },
-        ],
-    },
-    {
-        path: 'seller',
-        component: SellerLayoutComponent,
-        children: [
-            { path: '', component: SellerDashboardComponent },
-            { path: 'home', component: SellerDashboardComponent },
-            { path: 'orders/:id/:status', component: SellerOrdersByStatusComponent },
-            { path: 'addorder', component: SellerAddOrderComponent },
-        ],
-    },
-    // {
-    //     path: 'dashboard',
-    //     component: DashboardComponent,
-    //     children: [
-    //         {
-    //             path: 'home',
-    //             component: AdminHomeComponent,
-    //         },
-    //         {
-    //             path: 'allproducts',
-    //             component: ProductsTableComponent,
-    //         },
-    //         {
-    //             path: 'product/:id/edit',
-    //             component: AddProductComponent,
-    //         },
-    //         {
-    //             path: 'category',
-    //             component: CategoryTableComponent,
-    //         },
-    //         {
-    //             path: 'brands',
-    //             component: BrandTableComponent,
-    //         },
-    //     ],
-    // },
-    
-    {
-        path: 'admin/login',
-        component: AdminLoginComponent,
-    },
-    {
-        path: 'employee/login',
-        component: EmployeeLoginComponent,
-    },
-    {
-        path: 'seller/login',
-        component: SellerLoginComponent,
-    },
-    {
-        path: 'deliveryman/login',
-        component: DeliverymanLoginComponent,
-    },
-    {
-        path: '**',
-        component: NotFoundComponent,
-    },
+  {
+    path: 'admin',
+    component: AdminLayoutComponent,
+    children: [
+      { path: '', component: AdminDashboardComponent },
+      { path: 'home', component: AdminDashboardComponent },
+      { path: 'employees', component: EmployeesComponent },
+      { path: 'deliverymen', component: EmployeesComponent },
+      { path: 'deliveryman/edit/:id', component: DeliverymanFormComponent },
+      { path: 'employee/edit/:id', component: EmployeeFormComponent },
 
+      // Add route for branches
+      { path: 'branches', component: BranchesComponent },
+      { path: 'branches/add', component: BranchFormComponent },
+      { path: 'branches/:id/edit', component: BranchFormComponent },
+
+
+      { path: 'cities', component: CitiesComponent },
+      { path: 'cities/:id/edit', component: AddCityComponent },
+      { path: 'cities/0/add', component: AddCityComponent },
+    ],
+  },
+  {
+    path: 'employee',
+    component: EmployeeLayoutComponent,
+    children: [
+      { path: '', component: AdminDashboardComponent },
+      { path: 'home', component: EmployeeDashboardComponent },
+    ],
+  },
+  {
+    path: 'seller',
+    component: SellerLayoutComponent,
+    children: [
+      { path: '', component: SellerDashboardComponent },
+      { path: 'home', component: SellerDashboardComponent },
+    ],
+  },
+
+  {
+    path: 'deliveryman',
+    component: DeliverymanLayoutComponent,
+    children: [{ path: '', component: DelivaryManOrdersComponent }],
+  },
+
+  {
+    path: 'admin/login',
+    component: AdminLoginComponent,
+  },
+  {
+    path: 'employee/login',
+    component: EmployeeLoginComponent,
+  },
+  {
+    path: 'seller/login',
+    component: SellerLoginComponent,
+  },
+  {
+    path: 'deliveryman/login',
+    component: DeliverymanLoginComponent,
+  },
+  {
+    path: '',
+    component: NotFoundComponent,
+  },
 ];
