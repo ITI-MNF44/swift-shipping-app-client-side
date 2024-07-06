@@ -5,12 +5,11 @@ import { catchError } from 'rxjs/operators';
 import { IRolePermissions } from '../Interface/IRolePermissions';
 import { IPermissionDTO } from '../Interface/IPermissionDTO';
 
-
 @Injectable({
   providedIn: 'root',
 })
 export class RoleService {
-  private baseUrl = 'http://localhost:5000/api/role'; // Adjust the base URL as necessary
+  private baseUrl = 'http://localhost:5168/api/role'; // Adjust the base URL as necessary
 
   constructor(private http: HttpClient) {}
 
