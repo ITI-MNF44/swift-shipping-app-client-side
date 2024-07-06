@@ -16,6 +16,7 @@ import { SellerLayoutComponent } from './components/seller-layout/seller-layout.
 import { SellerDashboardComponent } from './components/seller-layout/seller-dashboard/seller-dashboard.component';
 import { DeliverymanLayoutComponent } from './components/deliveryman-layout/deliveryman-layout.component';
 import { DelivaryManOrdersComponent } from './components/deliveryman-layout/delivary-man-orders/delivary-man-orders.component';
+import { RolePermissionsComponent } from './components/admin-layout/role-permissions/role-permissions.component';
 
 // export const routes: Routes = [
 //     { path: '', component:  LoginComponent},
@@ -29,7 +30,6 @@ import { DelivaryManOrdersComponent } from './components/deliveryman-layout/deli
 //     { path: '**', component: NotFoundComponent }
 // ];
 
-
 export const routes: Routes = [
   {
     path: 'admin',
@@ -39,6 +39,10 @@ export const routes: Routes = [
       { path: 'home', component: AdminDashboardComponent },
       { path: 'employees', component: EmployeesComponent },
       { path: 'deliveryman/edit/:id', component: DeliverymanFormComponent },
+      {
+        path: 'roles/:role/permissions',
+        component: RolePermissionsComponent,
+      },
     ],
   },
   {
