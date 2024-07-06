@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { IOrderDTO } from '../Interface/IOrderDTO';
 import { IOrderGetDTO } from '../Interface/IOrderGetDTO';
 import { IOrderCostDTO } from '../Interface/IOrderCostDTO';
@@ -11,7 +11,7 @@ import { OrderStatus } from '../Enum/OrderStatus';
   providedIn: 'root',
 })
 export class OrderService {
-  private baseUrl = 'http://localhost:5000/api'; // Adjust the base URL as necessary
+  private baseUrl = 'https://localhost:7209/api';
 
   constructor(private http: HttpClient) {}
 
@@ -39,14 +39,14 @@ export class OrderService {
     orderID: number,
     deliveryManID: number
   ): Observable<string> {
-    const url = `${this.baseUrl}/order/AssignToDeliveryMan?orderID=${orderID}&deliveryManID=${deliveryManID}`;
+    const url = `${this.baseUrl}/Order/AssignToDeliveryMan?orderID=${orderID}&deliveryManID=${deliveryManID}`;
     return this.http
       .post<string>(url, null) // Assuming no body is needed
       .pipe(catchError(this.handleError<string>('assignDeliveryManToOrder')));
   }
 
   getByStatus(status: OrderStatus): Observable<IOrderGetDTO[]> {
-    const url = `${this.baseUrl}/order/GetByStatus?status=${status}`;
+    const url = `${this.baseUrl}/Order/GetByStatus?status=${status}`;
     return this.http
       .get<IOrderGetDTO[]>(url)
       .pipe(catchError(this.handleError<IOrderGetDTO[]>('getByStatus', [])));
@@ -66,11 +66,20 @@ export class OrderService {
       .pipe(catchError(this.handleError<string[]>('getShippingTypes', [])));
   }
 
-  changeOrderStatus(status: OrderStatus, id: number): Observable<string> {
-    const url = `${this.baseUrl}/order/ChangeOrderStatus?id=${id}`;
-    return this.http
-      .put<string>(url, { status })
-      .pipe(catchError(this.handleError<string>('changeOrderStatus')));
+  changeOrderStatus(newStatus: OrderStatus, id: number): Observable<any> {
+    const url = `${this.baseUrl}/Order/ChangeOrderStatus/${id}`;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const requestBody = newStatus; 
+  
+    return this.http.put(url, requestBody, { headers, responseType: 'text' }).pipe(
+      map(response => {
+        return response; 
+      }),
+      catchError(error => {
+        console.error('Error occurred while changing order status:', error);
+        throw error;
+      })
+    );
   }
 
   editOrder(id: number, orderDTO: IOrderDTO): Observable<string> {

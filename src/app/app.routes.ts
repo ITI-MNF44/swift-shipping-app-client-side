@@ -18,6 +18,7 @@ import { DeliverymanLayoutComponent } from './components/deliveryman-layout/deli
 import { DelivaryManOrdersComponent } from './components/deliveryman-layout/delivary-man-orders/delivary-man-orders.component';
 import { BranchFormComponent } from './components/admin-layout/branch-form/branch-form.component';
 import { WeightSettingsComponent } from './components/admin-layout/weight-settings/weight-settings.component';
+import { DisplayOrdersComponent } from './components/employee-layout/display-orders/display-orders.component';
 
 export const routes: Routes = [
   {
@@ -42,6 +43,10 @@ export const routes: Routes = [
     children: [
       { path: '', component: AdminDashboardComponent },
       { path: 'home', component: EmployeeDashboardComponent },
+      //{ path: 'orders', component:  },
+      { path: 'orders', component: DisplayOrdersComponent },
+
+
     ],
   },
   {

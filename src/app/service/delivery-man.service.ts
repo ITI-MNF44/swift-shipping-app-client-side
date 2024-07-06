@@ -67,7 +67,8 @@ export class DeliveryManService {
   }
 
   // GET: /api/DeliveryMan/All
-  getAllDeliveryMen(): Observable<any[]> {
+  getAllDeliveryMen(): Observable<any[]> 
+  {
     return this.http
       .get<any[]>(`${this.apiUrl}/DeliveryMan/All`)
       .pipe(catchError(this.handleError));

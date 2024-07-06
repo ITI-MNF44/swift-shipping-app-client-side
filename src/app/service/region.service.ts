@@ -9,7 +9,7 @@ import { IRegionGetDTO } from '../Interface/IRegionGetDTO';
   providedIn: 'root',
 })
 export class RegionService {
-  private baseUrl = 'http://localhost:5000/api'; // Adjust the base URL as necessary
+  private baseUrl = 'https://localhost:7209/api';
 
   constructor(private http: HttpClient) {}
 
@@ -22,12 +22,12 @@ export class RegionService {
 
   getAllRegions(): Observable<IRegionGetDTO[]> {
     return this.http
-      .get<IRegionGetDTO[]>(`${this.baseUrl}/region/All`)
+      .get<IRegionGetDTO[]>(`${this.baseUrl}/Region/All`)
       .pipe(catchError(this.handleError<IRegionGetDTO[]>('getAllRegions', [])));
   }
 
   getRegionById(id: number): Observable<IRegionGetDTO> {
-    const url = `${this.baseUrl}/region/${id}`;
+    const url = `${this.baseUrl}/Region/${id}`;
     return this.http
       .get<IRegionGetDTO>(url)
       .pipe(catchError(this.handleError<IRegionGetDTO>('getRegionById')));
