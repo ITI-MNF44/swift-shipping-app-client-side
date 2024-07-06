@@ -5,18 +5,21 @@
         <li class="breadcrumb-item">
           <a href="index.html"><i class="bi-house-fill text-dark"></i></a>
         </li>
-        <li class="breadcrumb-item">Employees</li>
+        <li class="breadcrumb-item">Deliverymen</li>
       </ol>
     </nav>
-    <button class="btn btn-primary ms-auto px-3"
-    [routerLink]="['/admin/employee/edit', 0]"
-    >Add Employee</button>
+    <button
+      class="btn btn-primary ms-auto px-3"
+      [routerLink]="['/admin/deliveryman/edit', 0]"
+    >
+      Add Delivery Man
+    </button>
   </div>
   <section class="section employees">
     <div class="card">
       <p-table
         #dt1
-        [value]="employees"
+        [value]="deliverymen"
         dataKey="id"
         [rows]="10"
         [loading]="loading"
@@ -58,26 +61,37 @@
             <td>{{ employee.email }}</td>
             <td>{{ employee.userName }}</td>
             <td>{{ employee.phoneNumber }}</td>
-            <td>{{ employee.branchId }}</td>
+            <td>{{ employee.branchName }}</td>
             <td>
-              <label class="switch">
-                <input type="checkbox" [checked]="employee.status" (change)="onToggleStatus(employee)">
-                <span class="slider round"></span>
-              </label>
-              <!-- <i
-              class=" fs-1 bi bi-toggle-{{
-                employee.status ? 'on text-success' : 'off text-muted'
-              }}"
-               (change)="onToggleStatus(employee)"
-            ></i> -->
+              <p-multiSelect
+                [options]="groupedCities"
+                [group]="true"
+                [(ngModel)]="selectedCities"
+                placeholder="Select Cities"
+                scrollHeight="250px"
+                display="chip"
+              >
+                <ng-template let-group pTemplate="group">
+                  <div class="flex align-items-center">
+                    <img
+                      src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                      [class]="'mr-2 flag flag-' + group.value"
+                      style="width: 20px;"
+                    />
+                    <span>{{ group.label }}</span>
+                  </div>
+                </ng-template>
+              </p-multiSelect>
             </td>
             <td>
-              <button class="bi-pencil-square btn btn-success px-2 py-1" 
-                [routerLink]="['/admin/employee/edit', employee.id]">
-              </button>
-              <button class="bi-trash-fill btn btn-danger ms-2 px-2 py-1" 
-               (click)="deleteEmployee(employee.id)">
-              </button>
+              <button
+                class="bi-pencil-square btn btn-success"
+                [routerLink]="['/admin/employee/edit', employee.id]"
+              ></button>
+              <button
+                class="bi-trash-fill btn btn-danger"
+            
+              ></button>
             </td>
           </tr>
         </ng-template>

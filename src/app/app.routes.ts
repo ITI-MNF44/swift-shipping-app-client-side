@@ -20,6 +20,7 @@ import { BranchFormComponent } from './components/admin-layout/branch-form/branc
 import { CitiesComponent } from './components/admin-layout/cities/cities.component';
 import { AddCityComponent } from './components/admin-layout/add-city/add-city.component';
 import { EmployeeFormComponent } from './components/admin-layout/employee-form/employee-form.component';
+import { DeliverymenComponent } from './components/admin-layout/delivrymen/delivrymen.component';
 
 
 export const routes: Routes = [
@@ -30,7 +31,7 @@ export const routes: Routes = [
       { path: '', component: AdminDashboardComponent },
       { path: 'home', component: AdminDashboardComponent },
       { path: 'employees', component: EmployeesComponent },
-      { path: 'deliverymen', component: EmployeesComponent },
+      { path: 'deliverymen', component: DeliverymenComponent },
       { path: 'deliveryman/edit/:id', component: DeliverymanFormComponent },
       { path: 'employee/edit/:id', component: EmployeeFormComponent },
 
