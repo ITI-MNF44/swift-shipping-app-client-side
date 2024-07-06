@@ -45,11 +45,12 @@ import { GovernmentsComponent } from './components/admin-layout/governments/gove
 import { AddGovernmentComponent } from './components/admin-layout/add-government/add-government.component';
 import { AcceptordersComponent } from './components/employee-layout/acceptorders/acceptorders.component';
 
+import { sellerGaurdGuard } from './Gaurds/seller-gaurd.guard';
 
 export const routes: Routes = [
   {
     path: 'admin',
-    // canActivate: [adminGaurdGuard],
+    canActivate: [adminGaurdGuard],
     component: AdminLayoutComponent,
     children: [
       { path: '', component: AdminDashboardComponent },
@@ -79,14 +80,12 @@ export const routes: Routes = [
       { path: 'branches/add', component: BranchFormComponent },
       { path: 'branches/:id/edit', component: BranchFormComponent },
 
-
       { path: 'cities', component: CitiesComponent },
       { path: 'cities/:id/edit', component: AddCityComponent },
       { path: 'cities/0/add', component: AddCityComponent },
-      {path: 'orders', component: DisplayOrdersComponent},
-      {path: 'governments', component: GovernmentsComponent},
-      {path: 'governments/add', component: AddGovernmentComponent}
-
+      { path: 'orders', component: DisplayOrdersComponent },
+      { path: 'governments', component: GovernmentsComponent },
+      { path: 'governments/add', component: AddGovernmentComponent },
     ],
   },
   {
@@ -109,11 +108,15 @@ export const routes: Routes = [
   },
   {
     path: 'seller',
+    canActivate: [sellerGaurdGuard],
     component: SellerLayoutComponent,
     children: [
       { path: '', component: SellerDashboardComponent },
       { path: 'home', component: SellerDashboardComponent },
-      { path: 'orders/:sellerId/:statusId', component: SellerOrdersByStatusComponent },
+      {
+        path: 'orders/:sellerId/:statusId',
+        component: SellerOrdersByStatusComponent,
+      },
       { path: 'add', component: SellerAddOrderComponent },
     ],
   },
