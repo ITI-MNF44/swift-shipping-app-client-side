@@ -2,7 +2,8 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
   <div class="d-flex align-items-center justify-content-between">
     <div class="logo d-flex align-items-center">
-      <img src="../../../../favicon.ico" alt="" />
+      <!-- <img src="../../../../favicon.ico" alt="" /> -->
+      <app-logo-icon></app-logo-icon>
       <span class="d-none d-lg-block">Swift Shipping</span>
     </div>
     <!-- <i class="bi bi-list toggle-sidebar-btn"></i> -->
@@ -47,7 +48,7 @@
 >
   <ul class="sidebar-nav" id="sidebar-nav">
     <li class="nav-item">
-      <a class="nav-link" [routerLink]="['/admin']">
+      <a class="nav-link">
         <i class="bi bi-grid"></i>
         <span>Admin Dashboard</span>
       </a>
@@ -74,7 +75,7 @@
           </a>
         </li>
         <li>
-          <a [routerLink]="['/admin/employee', 0, 'edit']">
+          <a [routerLink]="['/admin/employee', 'edit', 0]">
             <i class="bi bi-circle"></i><span>Add Employee</span>
           </a>
         </li>
@@ -113,13 +114,7 @@
         </li> -->
       </ul>
     </li>
-    <!--Weight Settings -->
-    <li class="nav-item">
-      <a class="nav-link" [routerLink]="['/admin/weightSettings']">
-        <i class="bi bi-sliders"></i>
-        <span>Weight Settings</span>
-      </a>
-    </li>
+
     <!--End of Branches-->
 
     <!-- sellers -->
@@ -166,7 +161,7 @@
         data-bs-parent="#sidebar-nav"
       >
         <li>
-          <a [routerLink]="['/adminproducts']">
+          <a [routerLink]="['/admin/orders']">
             <i class="bi bi-circle"></i><span>All Orders</span>
           </a>
         </li>
@@ -305,7 +300,7 @@
         data-bs-parent="#sidebar-nav"
       >
         <li>
-          <a [routerLink]="['cities']">
+          <a [routerLink]="['/admin/weightSettings']">
             <i class="bi bi-circle"></i><span>Weight Settings</span>
           </a>
         </li>

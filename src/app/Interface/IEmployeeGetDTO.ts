@@ -7,6 +7,6 @@ export interface IEmployeeGetDTO {
   password: string;
   phoneNumber: string;
   branchName: number;
-  status?: boolean;
+  isActive?: boolean;
   isDeleted?: boolean;
 }

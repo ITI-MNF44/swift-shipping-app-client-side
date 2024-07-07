@@ -51,8 +51,8 @@ export const routes: Routes = [
     canActivate: [adminGaurdGuard],
     component: AdminLayoutComponent,
     children: [
-      { path: '', component: AdminDashboardComponent },
-      { path: 'home', component: AdminDashboardComponent },
+      { path: '', component: AdminLayoutComponent },
+      { path: 'home', component: AdminLayoutComponent },
       { path: 'employees', component: EmployeesComponent },
       { path: 'deliverymen', component: DeliverymenComponent },
       { path: 'deliveryman/edit/:id', component: DeliverymanFormComponent },
@@ -65,6 +65,7 @@ export const routes: Routes = [
       { path: 'branches/:id/edit', component: BranchFormComponent },
       //Routes for weightSettings
       { path: 'weightSettings', component: WeightSettingsComponent },
+      { path: 'orders', component: DisplayOrdersComponent },
 
       {
         path: 'roles/:role/permissions',
@@ -100,6 +101,9 @@ export const routes: Routes = [
       { path: 'cities', component: CitiesComponent },
       { path: 'cities/:id/edit', component: AddCityComponent },
       { path: 'cities/0/add', component: AddCityComponent },
+
+      { path: 'governments', component: GovernmentsComponent },
+      { path: 'governments/add', component: AddGovernmentComponent },
     ],
   },
   {
