@@ -46,7 +46,7 @@ export class EmployeeService {
           password: employee.password,
           phoneNumber: employee.phoneNumber,
           branchId: employee.branchName,
-          status: employee.isActive ?? false,
+          isActive: employee.isActive ?? false,
           isDeleted: employee.isDeleted ?? false,
         }))
       ),

@@ -1,6 +1,12 @@
 import { GovernmentService } from './../../../service/government.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DeliveryManService } from '@service/delivery-man.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,7 +20,7 @@ import { BranchService } from '@service/branch.service';
   standalone: true,
   templateUrl: './deliveryman-form.component.html',
   styleUrls: ['./deliveryman-form.component.css'],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule],
 })
 export class DeliverymanFormComponent implements OnInit, OnDestroy {
   deliverymanForm!: FormGroup;
@@ -32,7 +38,7 @@ export class DeliverymanFormComponent implements OnInit, OnDestroy {
     public deliverymanService: DeliveryManService,
     public governmentService: GovernmentService,
     public branchService: BranchService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.deliverymanForm = this.fb.group({
@@ -56,17 +62,19 @@ export class DeliverymanFormComponent implements OnInit, OnDestroy {
       next: (params) => {
         this.deliverymanId = params['id'];
         if (this.deliverymanId != '0') {
-          this.subscriber = this.deliverymanService.getDeliveryManById(this.deliverymanId).subscribe({
-            next: (data) => {
-              this.deliveryman = data;
-              this.deliverymanForm.patchValue(this.deliveryman);
-            },
-            error: (error) => {
-              console.log(error);
-            }
-          });
+          this.subscriber = this.deliverymanService
+            .getDeliveryManById(this.deliverymanId)
+            .subscribe({
+              next: (data) => {
+                this.deliveryman = data;
+                this.deliverymanForm.patchValue(this.deliveryman);
+              },
+              error: (error) => {
+                console.log(error);
+              },
+            });
         }
-      }
+      },
     });
   }
 
@@ -94,26 +102,30 @@ export class DeliverymanFormComponent implements OnInit, OnDestroy {
   deliverymanHandler() {
     if (this.deliverymanForm.valid) {
       if (this.deliverymanId == '0') {
-        this.deliverymanService.registerDeliveryMan(this.deliverymanForm.value).subscribe({
-          next: () => {
-            this.router.navigate(['/admin/home']);
-          },
-          error: (error) => {
-            console.log(error);
-          }
-        });
+        this.deliverymanService
+          .registerDeliveryMan(this.deliverymanForm.value)
+          .subscribe({
+            next: () => {
+              this.router.navigate(['admin/deliverymen']);
+            },
+            error: (error) => {
+              console.log(error);
+            },
+          });
       } else {
-        this.deliverymanService.updateDeliveryMan(this.deliverymanId, this.deliverymanForm.value).subscribe({
-          next: () => {
-            this.router.navigate(['/admin/home']);
-          },
-          error: (error) => {
-            console.log(error);
-          }
-        });
+        this.deliverymanService
+          .updateDeliveryMan(this.deliverymanId, this.deliverymanForm.value)
+          .subscribe({
+            next: () => {
+              this.router.navigate(['admin/deliverymen']);
+            },
+            error: (error) => {
+              console.log(error);
+            },
+          });
       }
     } else {
-      console.log("Invalid form");
+      console.log('Invalid form');
     }
   }
 

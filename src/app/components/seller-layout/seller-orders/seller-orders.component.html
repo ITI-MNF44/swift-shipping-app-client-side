@@ -9,7 +9,7 @@
         </ol>
       </nav>
     </div>
-  
+
     <section class="section employees">
       <div class="card">
         <p-table
@@ -24,7 +24,7 @@
         >
           <ng-template pTemplate="caption">
             <div class="flex">
-              <span class="p-input-icon-left ml-auto">
+              <span class="p-input-icon-right ml-auto">
                 <i class="pi pi-search"></i>
                 <input
                   pInputText
@@ -36,7 +36,7 @@
               </span>
             </div>
           </ng-template>
-  
+
           <ng-template pTemplate="header">
             <tr>
               <th style="min-width: fit-content;">ID</th>
@@ -54,7 +54,7 @@
               <th style="min-width: 7rem;">Delivery cost</th>
             </tr>
           </ng-template>
-  
+
           <ng-template pTemplate="body" let-order>
             <tr>
               <td>{{ order.id }}</td>
@@ -75,7 +75,7 @@
               <td>{{ order.deliveryCost }}</td>
             </tr>
           </ng-template>
-  
+
           <ng-template pTemplate="emptymessage">
             <tr>
               <td colspan="10" class="text-center">No orders found.</td>
@@ -85,4 +85,3 @@
       </div>
     </section>
   </main>
-  
