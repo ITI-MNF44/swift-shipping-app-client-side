@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ILoginDTO } from '../Interface/ILoginDTO';
 import { environment } from 'src/environments/environment';
+import { ISellerGetDTO } from '../Interface/ISellerGetDTO';
 
 @Injectable({
   providedIn: 'root',
@@ -27,20 +28,20 @@ export class SellersService {
       .pipe(catchError(this.handleError<any>('addSeller')));
   }
 
-  getSellerById(id: number): Observable<any> {
+  getSellerById(id: number): Observable<ISellerGetDTO> {
     const url = `${this.apiUrl}/seller/${id}`;
 
     return this.http
-      .get<any>(url)
-      .pipe(catchError(this.handleError<any>('getSellerById')));
+      .get<ISellerGetDTO>(url)
+      .pipe(catchError(this.handleError<ISellerGetDTO>('getSellerById')));
   }
 
-  getAllSellers(): Observable<any[]> {
+  getAllSellers(): Observable<ISellerGetDTO[]> {
     const url = `${this.apiUrl}/seller/All`;
 
     return this.http
-      .get<any[]>(url)
-      .pipe(catchError(this.handleError<any[]>('getAllSellers', [])));
+      .get<ISellerGetDTO[]>(url)
+      .pipe(catchError(this.handleError<ISellerGetDTO[]>('getAllSellers', [])));
   }
 
   getSellerOrders(id: number): Observable<any[]> {

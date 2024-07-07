@@ -40,9 +40,13 @@ import { UserLoginComponent } from './components/shared/user-login/user-login.co
 import { adminGaurdGuard } from './Gaurds/admin-gaurd.guard';
 import { deliveryManGaurdGuard } from './Gaurds/delivery-man-gaurd.guard';
 import { DisplayOrdersComponent } from './components/employee-layout/display-orders/display-orders.component';
+
+import { SellersComponent } from './components/admin-layout/sellers/sellers.component';
+
 import { GovernmentsComponent } from './components/admin-layout/governments/governments.component';
 import { AddGovernmentComponent } from './components/admin-layout/add-government/add-government.component';
 import { AcceptordersComponent } from './components/employee-layout/acceptorders/acceptorders.component';
+
 
 import { sellerGaurdGuard } from './Gaurds/seller-gaurd.guard';
 import { HomePageComponent } from './components/shared/home-page/home-page.component';
@@ -57,6 +61,7 @@ export const routes: Routes = [
       { path: 'home', component: AdminLayoutComponent },
       { path: 'employees', component: EmployeesComponent },
       { path: 'deliverymen', component: DeliverymenComponent },
+      { path: 'sellers', component: SellersComponent },
       { path: 'deliveryman/edit/:id', component: DeliverymanFormComponent },
 
       { path: 'employee/edit/:id', component: EmployeeFormComponent },

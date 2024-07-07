@@ -7,5 +7,7 @@ export interface ISellerGetDTO {
   address: string;
   email: string;
   userName: string;
+  password: string;
   phoneNumber: string;
+  isDeleted?: boolean;
 }
