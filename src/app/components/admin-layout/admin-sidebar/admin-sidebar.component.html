@@ -2,7 +2,8 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
   <div class="d-flex align-items-center justify-content-between">
     <div class="logo d-flex align-items-center">
-      <img src="../../../../favicon.ico" alt="" />
+      <!-- <img src="../../../../favicon.ico" alt="" /> -->
+      <app-logo-icon></app-logo-icon>
       <span class="d-none d-lg-block">Swift Shipping</span>
     </div>
     <!-- <i class="bi bi-list toggle-sidebar-btn"></i> -->
@@ -10,17 +11,8 @@
   </div>
 
   <div class="search-bar">
-    <form
-      class="search-form d-flex align-items-center"
-      method="POST"
-      action="#"
-    >
-      <input
-        type="text"
-        name="query"
-        placeholder="Search"
-        title="Enter search keyword"
-      />
+    <form class="search-form d-flex align-items-center" method="POST" action="#">
+      <input type="text" name="query" placeholder="Search" title="Enter search keyword" />
 
       <button type="submit" title="Search"><i class="bi bi-search"></i></button>
     </form>
@@ -40,14 +32,10 @@
 
 <!-- ======= Sidebar ======= -->
 
-<aside
-  id="sidebar"
-  class="sidebar"
-  [ngClass]="{ 'toggle-sidebar': !isSidebarOpen }"
->
+<aside id="sidebar" class="sidebar" [ngClass]="{ 'toggle-sidebar': !isSidebarOpen }">
   <ul class="sidebar-nav" id="sidebar-nav">
     <li class="nav-item">
-      <a class="nav-link" [routerLink]="['/admin']">
+      <a class="nav-link">
         <i class="bi bi-grid"></i>
         <span>Admin Dashboard</span>
       </a>
@@ -55,26 +43,17 @@
 
     <!-- employees -->
     <li class="nav-item">
-      <a
-        class="nav-link collapsed"
-        data-bs-target="#employee-nav"
-        data-bs-toggle="collapse"
-      >
-        <i class="bi bi-card-checklist"></i><span>Employees</span
-        ><i class="bi bi-chevron-down ms-auto"></i>
+      <a class="nav-link collapsed" data-bs-target="#employee-nav" data-bs-toggle="collapse">
+        <i class="bi bi-card-checklist"></i><span>Employees</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul
-        id="employee-nav"
-        class="nav-content collapse"
-        data-bs-parent="#sidebar-nav"
-      >
+      <ul id="employee-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li>
           <a [routerLink]="['/admin/employees']">
             <i class="bi bi-circle"></i><span>All Employees</span>
           </a>
         </li>
         <li>
-          <a [routerLink]="['/admin/employee', 0, 'edit']">
+          <a [routerLink]="['/admin/employee', 'edit', 0]">
             <i class="bi bi-circle"></i><span>Add Employee</span>
           </a>
         </li>
@@ -83,26 +62,17 @@
 
     <!-- delivey men -->
     <li class="nav-item">
-      <a
-        class="nav-link collapsed"
-        data-bs-target="#deliveryman-nav"
-        data-bs-toggle="collapse"
-      >
-        <i class="bi bi-card-checklist"></i><span>Delivery Men</span
-        ><i class="bi bi-chevron-down ms-auto"></i>
+      <a class="nav-link collapsed" data-bs-target="#deliveryman-nav" data-bs-toggle="collapse">
+        <i class="bi bi-card-checklist"></i><span>Delivery Men</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul
-        id="deliveryman-nav"
-        class="nav-content collapse"
-        data-bs-parent="#sidebar-nav"
-      >
+      <ul id="deliveryman-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li>
           <a [routerLink]="['/admin/deliverymen']">
             <i class="bi bi-circle"></i><span>All Delivey Men</span>
           </a>
         </li>
         <li>
-          <a [routerLink]="['/admin/deliveryman', 0, 'edit']">
+          <a [routerLink]="['/admin/deliveryman', 'edit',0]">
             <i class="bi bi-circle"></i><span>Add Delivey Man</span>
           </a>
         </li>
@@ -114,21 +84,14 @@
       </ul>
     </li>
 
+    <!--End of Branches-->
+
     <!-- sellers -->
-    <li class="nav-item">
-      <a
-        class="nav-link collapsed"
-        data-bs-target="#seller-nav"
-        data-bs-toggle="collapse"
-      >
-        <i class="bi bi-card-checklist"></i><span>Sellers</span
-        ><i class="bi bi-chevron-down ms-auto"></i>
+    <!-- <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#seller-nav" data-bs-toggle="collapse">
+        <i class="bi bi-card-checklist"></i><span>Sellers</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul
-        id="seller-nav"
-        class="nav-content collapse"
-        data-bs-parent="#sidebar-nav"
-      >
+      <ul id="seller-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li>
           <a [routerLink]="['/admin/seller']">
             <i class="bi bi-circle"></i><span>All Sellers</span>
@@ -140,25 +103,16 @@
           </a>
         </li>
       </ul>
-    </li>
+    </li> -->
 
     <!-- orders -->
     <li class="nav-item">
-      <a
-        class="nav-link collapsed"
-        data-bs-target="#order-nav"
-        data-bs-toggle="collapse"
-      >
-        <i class="bi bi-card-checklist"></i><span>Orders</span
-        ><i class="bi bi-chevron-down ms-auto"></i>
+      <a class="nav-link collapsed" data-bs-target="#order-nav" data-bs-toggle="collapse">
+        <i class="bi bi-card-checklist"></i><span>Orders</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul
-        id="order-nav"
-        class="nav-content collapse"
-        data-bs-parent="#sidebar-nav"
-      >
+      <ul id="order-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li>
-          <a [routerLink]="['/adminproducts']">
+          <a [routerLink]="['/admin/orders']">
             <i class="bi bi-circle"></i><span>All Orders</span>
           </a>
         </li>
@@ -167,19 +121,10 @@
 
     <!--Brnaches -->
     <li class="nav-item">
-      <a
-        class="nav-link collapsed"
-        data-bs-target="#branch-nav"
-        data-bs-toggle="collapse"
-      >
-        <i class="bi bi-building"></i><span>Branches</span
-        ><i class="bi bi-chevron-down ms-auto"></i>
+      <a class="nav-link collapsed" data-bs-target="#branch-nav" data-bs-toggle="collapse">
+        <i class="bi bi-building"></i><span>Branches</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul
-        id="branch-nav"
-        class="nav-content collapse"
-        data-bs-parent="#sidebar-nav"
-      >
+      <ul id="branch-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li>
           <a [routerLink]="['/admin/branches']">
             <i class="bi bi-circle"></i><span>All Branches</span>
@@ -195,20 +140,10 @@
 
     <!-- regions -->
     <li class="nav-item">
-      <a
-        class="nav-link collapsed"
-        data-bs-target="#region-nav"
-        data-bs-toggle="collapse"
-        href="#"
-      >
-        <i class="bi bi-filter-right"></i><span>Regions</span
-        ><i class="bi bi-chevron-down ms-auto"></i>
+      <a class="nav-link collapsed" data-bs-target="#region-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-filter-right"></i><span>Regions</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul
-        id="region-nav"
-        class="nav-content collapse"
-        data-bs-parent="#sidebar-nav"
-      >
+      <ul id="region-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li>
           <a [routerLink]="['cities']">
             <i class="bi bi-circle"></i><span>All Regions</span>
@@ -224,27 +159,17 @@
 
     <!-- governments -->
     <li class="nav-item">
-      <a
-        class="nav-link collapsed"
-        data-bs-target="#government-nav"
-        data-bs-toggle="collapse"
-        href="#"
-      >
-        <i class="bi bi-filter-right"></i><span>Governments</span
-        ><i class="bi bi-chevron-down ms-auto"></i>
+      <a class="nav-link collapsed" data-bs-target="#government-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-filter-right"></i><span>Governments</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul
-        id="government-nav"
-        class="nav-content collapse"
-        data-bs-parent="#sidebar-nav"
-      >
+      <ul id="government-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li>
-          <a [routerLink]="['cities']">
+          <a [routerLink]="['governments']">
             <i class="bi bi-circle"></i><span>All Governments</span>
           </a>
         </li>
         <li>
-          <a [routerLink]="['cities', 0, 'add']">
+          <a [routerLink]="['governments/add']">
             <i class="bi bi-circle"></i><span>Add Government</span>
           </a>
         </li>
@@ -253,27 +178,17 @@
 
     <!-- Permissions -->
     <li class="nav-item">
-      <a
-        class="nav-link collapsed"
-        data-bs-target="#permission-nav"
-        data-bs-toggle="collapse"
-        href="#"
-      >
-        <i class="bi bi-filter-right"></i><span>Permissions</span
-        ><i class="bi bi-chevron-down ms-auto"></i>
+      <a class="nav-link collapsed" data-bs-target="#permission-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-filter-right"></i><span>Permissions</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul
-        id="permission-nav"
-        class="nav-content collapse"
-        data-bs-parent="#sidebar-nav"
-      >
+      <ul id="permission-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li>
-          <a [routerLink]="['cities']">
+          <a>
             <i class="bi bi-circle"></i><span>All Permissions</span>
           </a>
         </li>
         <li>
-          <a [routerLink]="['cities', 0, 'add']">
+          <a>
             <i class="bi bi-circle"></i><span>Add Permissions</span>
           </a>
         </li>
@@ -282,22 +197,12 @@
 
     <!-- settings -->
     <li class="nav-item">
-      <a
-        class="nav-link collapsed"
-        data-bs-target="#setting-nav"
-        data-bs-toggle="collapse"
-        href="#"
-      >
-        <i class="bi bi-gear"></i><span>Settings</span
-        ><i class="bi bi-chevron-down ms-auto"></i>
+      <a class="nav-link collapsed" data-bs-target="#setting-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-gear"></i><span>Settings</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul
-        id="setting-nav"
-        class="nav-content collapse"
-        data-bs-parent="#sidebar-nav"
-      >
+      <ul id="setting-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li>
-          <a [routerLink]="['cities']">
+          <a [routerLink]="['/admin/weightSettings']">
             <i class="bi bi-circle"></i><span>Weight Settings</span>
           </a>
         </li>

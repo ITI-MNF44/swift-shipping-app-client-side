@@ -15,7 +15,7 @@
         [paginator]="true" [globalFilterFields]="['name', 'pickupPrice', 'normalPrice', 'governmentName']">
         <ng-template pTemplate="caption">
           <div class="flex">
-            <span class="p-input-icon-left ml-auto">
+            <span class="p-input-icon-right ml-auto">
               <i class="pi pi-search"></i>
               <input pInputText type="text" [(ngModel)]="searchValue"
                 (input)="dt1.filterGlobal(searchValue, 'contains')" placeholder="Search keyword" />
@@ -32,7 +32,7 @@
               Name
             </th>
             <th style="min-width: 10rem;">
-            Government Name
+              Government Name
             </th>
             <th style="min-width: 10rem;">
               Pickup Price
@@ -67,7 +67,8 @@
               <i [routerLink]="[city.id, 'edit']" class="bi bi-pencil-square mx-1 text-info"
                 style="cursor: pointer;"></i>
 
-              <i (click)="deleteRegion(city.id)" class="bi bi-trash3-fill mx-1 text-danger" style="cursor: pointer;"></i>
+              <i (click)="deleteRegion(city.id)" class="bi bi-trash3-fill mx-1 text-danger"
+                style="cursor: pointer;"></i>
             </td>
 
           </tr>

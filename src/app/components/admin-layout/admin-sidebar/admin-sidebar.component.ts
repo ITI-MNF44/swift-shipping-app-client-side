@@ -2,11 +2,19 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AccountService } from '@service/account.service';
+import { LogoComponent } from '../../shared/logo/logo.component';
+import { LogoIconComponent } from '../../shared/logo-icon/logo-icon.component';
 
 @Component({
   selector: 'app-admin-sidebar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, CommonModule],
+  imports: [
+    RouterLink,
+    RouterLinkActive,
+    CommonModule,
+    LogoComponent,
+    LogoIconComponent,
+  ],
   templateUrl: './admin-sidebar.component.html',
   styleUrl: './admin-sidebar.component.css',
 })

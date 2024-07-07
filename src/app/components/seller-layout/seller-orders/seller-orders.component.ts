@@ -30,7 +30,7 @@ export class SellerOrdersByStatusComponent implements OnInit{
   sellerId:number;
   orderStatusId: number;
   orders: IOrderGetDTO[] = [];
-  
+
   // table variable
     searchValue: string | undefined;
     representatives!: any;
@@ -42,7 +42,7 @@ export class SellerOrdersByStatusComponent implements OnInit{
   constructor(public activatedRoute: ActivatedRoute,
     private SellerService: SellersService
   ) {
-		this.sellerId = this.activatedRoute.snapshot.params['sellerId'];
+		this.sellerId = Number(localStorage.getItem('userId'));
 		this.orderStatusId = this.activatedRoute.snapshot.params['statusId'];
 
 	}
