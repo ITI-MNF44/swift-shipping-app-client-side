@@ -76,6 +76,11 @@
             <i class="bi bi-circle"></i><span>Assign Order</span>
           </a>
         </li>
+        <li>
+          <a [routerLink]="['/employee/neworders']">
+            <i class="bi bi-circle"></i><span>Accept Order</span>
+          </a>
+        </li>
       </ul>
     </li>
 
@@ -153,12 +158,12 @@
         data-bs-parent="#sidebar-nav"
       >
         <li>
-          <a [routerLink]="['cities']">
+          <a [routerLink]="['/employee/governments']">
             <i class="bi bi-circle"></i><span>All Governments</span>
           </a>
         </li>
         <li>
-          <a [routerLink]="['cities', 0, 'add']">
+          <a [routerLink]="['/employee/governments/add']">
             <i class="bi bi-circle"></i><span>Add Government</span>
           </a>
         </li>
