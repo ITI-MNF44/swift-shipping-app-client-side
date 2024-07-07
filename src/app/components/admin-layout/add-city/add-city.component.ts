@@ -31,7 +31,7 @@ export class AddCityComponent {
     private governmentService: GovernmentService,
     private regionService: RegionService,
     private router: Router,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -42,14 +42,10 @@ export class AddCityComponent {
       governmentId: [0, Validators.required],
     });
 
-
-    const id = this.route.snapshot.paramMap.get('id');
-
-
     this.id = this.route.paramMap.pipe(
       map((params) => {
         const idParam = params.get('id');
-        return idParam !== null ? +idParam : 0;
+        return idParam == null || undefined ? 0 : +idParam;
       })
     );
 
@@ -73,8 +69,8 @@ export class AddCityComponent {
       this.id?.subscribe((id) => {
         if (id == 0) {
           this.addCity(regionDTO);
-        } else if (!(id == 0 || id == null)) {
-          this.editCity(this.id, regionDTO);
+        } else {
+          this.editCity(id, regionDTO);
         }
       });
     } else {
@@ -86,6 +82,7 @@ export class AddCityComponent {
     this.regionService.addRegion(regionDTO).subscribe({
       next: (response) => {
         console.log(response);
+        this.router.navigate(['/admin/cities']);
       },
       error: (error) => {
         console.log(error);
@@ -99,7 +96,7 @@ export class AddCityComponent {
     this.regionService.editRegion(id, regionDTO).subscribe({
       next: (response) => {
         console.log(response);
-         this.router.navigate(['/admin/cities']);
+        this.router.navigate(['/admin/cities']);
       },
       error: (error) => {
         console.log(error);
@@ -124,7 +121,6 @@ export class AddCityComponent {
       complete: () => {},
     });
   }
-
 
   getGovernments() {
     this.governmentService.getAll().subscribe({

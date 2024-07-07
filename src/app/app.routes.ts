@@ -105,7 +105,7 @@ export const routes: Routes = [
 
       { path: 'governments', component: GovernmentsComponent },
       { path: 'governments/add', component: AddGovernmentComponent },
-      //{ path: 'neworders', component:  },
+      { path: 'order', component: DisplayOrdersComponent },
       { path: 'neworders', component: AcceptordersComponent },
     ],
   },
