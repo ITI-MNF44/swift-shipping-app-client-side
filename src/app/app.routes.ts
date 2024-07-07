@@ -45,6 +45,7 @@ import { AddGovernmentComponent } from './components/admin-layout/add-government
 import { AcceptordersComponent } from './components/employee-layout/acceptorders/acceptorders.component';
 
 import { sellerGaurdGuard } from './Gaurds/seller-gaurd.guard';
+import { HomePageComponent } from './components/shared/home-page/home-page.component';
 
 export const routes: Routes = [
   {
@@ -130,6 +131,14 @@ export const routes: Routes = [
     component: DeliverymanLayoutComponent,
     children: [{ path: '', component: DelivaryManOrdersComponent }],
   },
+  {
+    path: '',
+    component: HomePageComponent,
+  },
+  {
+    path: 'home',
+    component: HomePageComponent,
+  },
 
   {
     path: 'user/login',
@@ -154,7 +163,7 @@ export const routes: Routes = [
     component: UserLoginComponent,
   },
   {
-    path: '',
+    path: '**',
     component: NotFoundComponent,
   },
 ];
