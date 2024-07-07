@@ -7,7 +7,7 @@
             <a href="index.html"><i class="bi-house-fill text-dark"></i></a>
           </li>
           <li class="breadcrumb-item">
-            {{employeeId == '0' ? "Add Employee" : "Edit Employee"}}
+            {{ employeeId == "0" ? "Add Employee" : "Edit Employee" }}
           </li>
         </ol>
       </nav>
@@ -15,7 +15,7 @@
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">
-          {{employeeId == '0' ? "Add Employee" : "Edit Employee"}}
+          {{ employeeId == "0" ? "Add Employee" : "Edit Employee" }}
         </h5>
         <form [formGroup]="employeeForm" (ngSubmit)="employeeHandler()">
           <div class="row mb-3">
@@ -29,7 +29,9 @@
                 placeholder="Name"
               />
               <div
-                *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)"
+                *ngIf="
+                  f['name'].invalid && (f['name'].dirty || f['name'].touched)
+                "
                 class="text-danger"
               >
                 <div *ngIf="f['name'].errors?.['required']">
@@ -50,7 +52,10 @@
                 placeholder="UserName"
               />
               <div
-                *ngIf="f['userName'].invalid && (f['userName'].dirty || f['userName'].touched)"
+                *ngIf="
+                  f['userName'].invalid &&
+                  (f['userName'].dirty || f['userName'].touched)
+                "
                 class="text-danger"
               >
                 <div *ngIf="f['userName'].errors?.['required']">
@@ -71,7 +76,9 @@
                 placeholder="Email"
               />
               <div
-                *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)"
+                *ngIf="
+                  f['email'].invalid && (f['email'].dirty || f['email'].touched)
+                "
                 class="text-danger"
               >
                 <div *ngIf="f['email'].errors?.['required']">
@@ -92,7 +99,10 @@
                 placeholder="Password"
               />
               <div
-                *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)"
+                *ngIf="
+                  f['password'].invalid &&
+                  (f['password'].dirty || f['password'].touched)
+                "
                 class="text-danger"
               >
                 <div *ngIf="f['password'].errors?.['required']">
@@ -113,7 +123,10 @@
                 placeholder="Phone Number"
               />
               <div
-                *ngIf="f['phoneNumber'].invalid && (f['phoneNumber'].dirty || f['phoneNumber'].touched)"
+                *ngIf="
+                  f['phoneNumber'].invalid &&
+                  (f['phoneNumber'].dirty || f['phoneNumber'].touched)
+                "
                 class="text-danger"
               >
                 <div *ngIf="f['phoneNumber'].errors?.['required']">
@@ -130,13 +143,17 @@
                 id="branch"
                 class="form-control"
                 formControlName="branchId"
+                [value]=""
               >
-                <option *ngFor="let branch of branches" [value]="branch.id"
-                  >{{ branch.name }}</option
-                >
+                <option *ngFor="let branch of branches" [value]="branch.id">
+                  {{ branch.name }}
+                </option>
               </select>
               <div
-                *ngIf="f['branchId'].invalid && (f['branchId'].dirty || f['branchId'].touched)"
+                *ngIf="
+                  f['branchId'].invalid &&
+                  (f['branchId'].dirty || f['branchId'].touched)
+                "
                 class="text-danger"
               >
                 <div *ngIf="f['branchId'].errors?.['required']">
@@ -154,7 +171,10 @@
                 placeholder="Address"
               />
               <div
-                *ngIf="f['address'].invalid && (f['address'].dirty || f['address'].touched)"
+                *ngIf="
+                  f['address'].invalid &&
+                  (f['address'].dirty || f['address'].touched)
+                "
                 class="text-danger"
               >
                 <div *ngIf="f['address'].errors?.['required']">

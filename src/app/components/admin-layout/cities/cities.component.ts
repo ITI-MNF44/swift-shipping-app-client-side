@@ -44,6 +44,7 @@ export class CitiesComponent implements OnInit {
     this.regionService.getAllRegions().subscribe({
       next: (response) => {
         this.cities = response;
+        console.log('regions : ', this.cities);
       },
       error: (error) => {
         console.log(error);

@@ -13,10 +13,9 @@ import { IEmployeeGetDTO } from '../Interface/IEmployeeGetDTO';
 export class EmployeeService {
   private baseUrl: string = environment.apiUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   register(employeeDTO: IEmployeeDTO): Observable<string> {
-
     const url = `${this.baseUrl}/Employee/Add`;
 
     return this.http
@@ -32,15 +31,13 @@ export class EmployeeService {
   }
 
   getAll(): Observable<IEmployeeDTO[]> {
-
     const url = `${this.baseUrl}/Employee/all`;
 
     console.log('Request URL:', url);
 
-    return this.http
-      .get<IEmployeeGetDTO[]>(url)
-      .pipe(
-        map(employees => employees.map(employee => ({
+    return this.http.get<IEmployeeGetDTO[]>(url).pipe(
+      map((employees) =>
+        employees.map((employee) => ({
           id: employee.id,
           name: employee.name,
           address: employee.address,
@@ -49,12 +46,13 @@ export class EmployeeService {
           password: employee.password,
           phoneNumber: employee.phoneNumber,
           branchId: employee.branchName,
-          status: employee.status ?? false,
-          isDeleted: employee.isDeleted ?? false
-
-        }))), map(employees => employees.filter(employee => !employee.isDeleted)),
-        catchError(this.handleError<IEmployeeDTO[]>('getAll', []))
-      );
+          status: employee.isActive ?? false,
+          isDeleted: employee.isDeleted ?? false,
+        }))
+      ),
+      map((employees) => employees.filter((employee) => !employee.isDeleted)),
+      catchError(this.handleError<IEmployeeDTO[]>('getAll', []))
+    );
   }
 
   getById(id: number): Observable<IEmployeeGetDTO> {
