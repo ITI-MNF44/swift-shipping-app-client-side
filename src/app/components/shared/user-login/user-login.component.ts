@@ -68,9 +68,9 @@ export class UserLoginComponent {
               if (data.role == 'Employee') {
                 this.router.navigate(['/employee']);
               } else if (data.role == 'DeliveryMan') {
-                this.router.navigate(['/DeliveryMan']);
+                this.router.navigate(['/deliveryman']);
               } else if (data.role == 'Seller') {
-                this.router.navigate(['/Seller']);
+                this.router.navigate(['/seller']);
               }
             },
           });
@@ -87,9 +87,9 @@ export class UserLoginComponent {
               if (data.role == 'Employee') {
                 this.router.navigate(['/employee']);
               } else if (data.role == 'DeliveryMan') {
-                this.router.navigate(['/DeliveryMan']);
+                this.router.navigate(['/deliveryman']);
               } else if (data.role == 'Seller') {
-                this.router.navigate(['/Seller']);
+                this.router.navigate(['/seller']);
               }
             },
           });

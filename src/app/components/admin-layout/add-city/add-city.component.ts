@@ -11,7 +11,7 @@ import { GovernmentService } from '@service/government.service';
 import { RegionService } from '@service/region.service';
 import { IGovernmentGetDTO } from 'src/app/Interface/IGovernmentGetDTO';
 import { IRegionDTO } from 'src/app/Interface/IRegionDTO';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Observable, map } from 'rxjs';
 
 @Component({
@@ -30,7 +30,8 @@ export class AddCityComponent {
     private fb: FormBuilder,
     private governmentService: GovernmentService,
     private regionService: RegionService,
-    private route: ActivatedRoute
+    private router: Router,
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit() {
@@ -40,6 +41,10 @@ export class AddCityComponent {
       pickupPrice: [0, [Validators.required, Validators.pattern('^[0-9]*$')]],
       governmentId: [0, Validators.required],
     });
+
+
+    const id = this.route.snapshot.paramMap.get('id');
+
 
     this.id = this.route.paramMap.pipe(
       map((params) => {
@@ -90,9 +95,11 @@ export class AddCityComponent {
   }
 
   editCity(id: any, regionDTO: IRegionDTO) {
+    console.log(id);
     this.regionService.editRegion(id, regionDTO).subscribe({
       next: (response) => {
         console.log(response);
+         this.router.navigate(['/admin/cities']);
       },
       error: (error) => {
         console.log(error);

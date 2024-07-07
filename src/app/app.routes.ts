@@ -9,7 +9,6 @@ import { BranchesComponent } from './components/admin-layout/branches/branches.c
 import { AdminLayoutComponent } from './components/admin-layout/admin-layout.component';
 import { AdminDashboardComponent } from './components/admin-layout/admin-dashboard/admin-dashboard.component';
 import { AdminLoginComponent } from './components/admin-layout/admin-login/admin-login.component';
-import { SellerLoginComponent } from './components/seller-layout/seller-login/seller-login.component';
 import { EmployeeLayoutComponent } from './components/employee-layout/employee-layout.component';
 import { SellerLayoutComponent } from './components/seller-layout/seller-layout.component';
 import { SellerDashboardComponent } from './components/seller-layout/seller-dashboard/seller-dashboard.component';
@@ -108,7 +107,6 @@ export const routes: Routes = [
       { path: 'governments/add', component: AddGovernmentComponent },
       //{ path: 'neworders', component:  },
       { path: 'neworders', component: AcceptordersComponent },
-
     ],
   },
   {
@@ -118,11 +116,11 @@ export const routes: Routes = [
     children: [
       { path: '', component: SellerDashboardComponent },
       { path: 'home', component: SellerDashboardComponent },
+      { path: 'order/:id/add', component: SellerAddOrderComponent },
       {
-        path: 'orders/:sellerId/:statusId',
+        path: 'orders/:statusId',
         component: SellerOrdersByStatusComponent,
       },
-      { path: 'add', component: SellerAddOrderComponent },
     ],
   },
 

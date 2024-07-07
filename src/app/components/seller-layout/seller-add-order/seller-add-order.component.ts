@@ -21,6 +21,7 @@ import { CommonModule } from '@angular/common';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { IOrderCostDTO } from 'src/app/Interface/IOrderCostDTO';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import {Router } from '@angular/router';
 
 // import { ToastModule } from 'primeng/toast';
 // import {BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -41,7 +42,7 @@ export class SellerAddOrderComponent implements OnInit {
   isLoading: boolean = false;
   isShippingWeightCalculated: boolean = false;
   ShippingWeightCost: number | undefined;
-  sellerId = 1; // you need to get it from token
+  sellerId = Number(localStorage.getItem('userId')); // you need to get it from token
   //---------------------------------------------
   governments: IGovernmentGetDTO[] = [];
   regions: IRegionGetDTO[] = [];
@@ -138,7 +139,8 @@ export class SellerAddOrderComponent implements OnInit {
     private RegionService: RegionService,
     private GovernmentService: GovernmentService,
     private BranchService: BranchService,
-    private OrderService: OrderService
+    private OrderService: OrderService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -266,6 +268,7 @@ export class SellerAddOrderComponent implements OnInit {
         next: (data) => {
           console.log('order added successfully', data);
           this.orderForm.reset();
+           this.router.navigate(['/seller/orders/','1']);
         },
         error: (error) => {
           console.log(error);
