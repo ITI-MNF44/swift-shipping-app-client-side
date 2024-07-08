@@ -22,6 +22,7 @@
         [value]="deliverymen"
         dataKey="id"
         [rows]="10"
+        [rowsPerPageOptions]="[5, 10, 20]"
         [loading]="loading"
         [paginator]="true"
         [globalFilterFields]="['name', 'email', 'userName', 'phoneNumber']"
@@ -62,7 +63,7 @@
             <td>{{ employee.userName }}</td>
             <td>{{ employee.phoneNumber }}</td>
             <td>{{ employee.branchName }}</td>
-            <td>
+            <td colspan="8">
               <p-multiSelect
                 [options]="groupedCities"
                 [group]="true"
@@ -83,7 +84,7 @@
                 </ng-template>
               </p-multiSelect>
             </td>
-            <td>
+            <td colspan="4">
               <button
                 class="bi-pencil-square btn btn-success"
                 [routerLink]="['/admin/deliveryman/edit', employee.id]"
