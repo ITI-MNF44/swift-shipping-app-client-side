@@ -34,7 +34,7 @@
           </td>
           <td>{{ branch.creationDate | date : "yyyy-MM-dd" }}</td>
           <td>
-            <a routerLink="/admin/branches/{{ branch.id }}/edit" title="Edit">
+            <a [routerLink]="[branch.id ,'edit']" title="Edit">
               <i
                 class="bi bi-pencil-square text-success m-1"
                 style="font-size: 1.5rem"
