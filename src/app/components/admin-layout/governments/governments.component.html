@@ -22,10 +22,10 @@
             ></i>
           </td>
           <td>
-            <i
-              class="bi bi-pencil-square text-success m-1"
-              style="font-size: 1.5rem"
-            ></i>
+            <a (click)="editGovernment(governemnt.id)">
+              <i class="bi bi-pencil-square text-success m-1"
+                style="font-size: 1.5rem"></i>
+            </a>
 
             <a (click)="deleteGovernemnt(governemnt.id)">
               <i
