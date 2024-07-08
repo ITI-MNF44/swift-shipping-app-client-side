@@ -26,9 +26,9 @@ export class DeliveryManService {
 
 
   // POST: /api/DeliveryMan/Register
-  registerDeliveryMan(deliveryManDTO: any): Observable<any> {
+  registerDeliveryMan(deliveryManDTO: IDeliveryManDTO): Observable<IDeliveryManDTO> {
     return this.http
-      .post<any>(`${this.apiUrl}/DeliveryMan/Add`, deliveryManDTO)
+      .post<IDeliveryManDTO>(`${this.apiUrl}/DeliveryMan/Add`, deliveryManDTO)
       .pipe(catchError(this.handleError));
   }
 
@@ -83,7 +83,7 @@ export class DeliveryManService {
   }
 
   // PUT: /api/DeliveryMan/Update/{id}
-  updateDeliveryMan(id: number, deliveryManDTO: any): Observable<IDeliveryManDTO> {
+  updateDeliveryMan(id: number, deliveryManDTO: IDeliveryManDTO): Observable<IDeliveryManDTO> {
     return this.http
       .put<IDeliveryManDTO>(`${this.apiUrl}/DeliveryMan/Update/${id}`, deliveryManDTO)
       .pipe(catchError(this.handleError));
