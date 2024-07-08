@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class RegionService {
- private baseUrl = environment.apiUrl; // Adjust the base URL as necessary
+ private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -34,14 +34,14 @@ export class RegionService {
       .pipe(catchError(this.handleError<IRegionGetDTO>('getRegionById')));
   }
 
-  editRegion(id: number, regionDTO: IRegionDTO): Observable<string> {
+  editRegion(id: number, regionDTO: IRegionDTO): Observable<any> {
     const url = `${this.baseUrl}/region/Edit/${id}`;
     return this.http
       .put<string>(url, regionDTO)
       .pipe(catchError(this.handleError<string>('editRegion')));
   }
 
-  deleteRegion(id: number): Observable<string> {
+  deleteRegion(id: number): Observable<any> {
     const url = `${this.baseUrl}/region/Delete/${id}`;
     return this.http
       .delete<string>(url)

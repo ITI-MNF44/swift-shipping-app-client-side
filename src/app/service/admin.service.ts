@@ -9,14 +9,14 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class AdminService {
-  apiUrl: string = environment.apiUrl; // Replace with your actual API base URL
+  apiUrl: string = environment.apiUrl; 
 
   constructor(private http: HttpClient) {}
 
   login(loginDTO: ILoginWithUserNameDTO): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/Login`, loginDTO).pipe(
-      catchError(this.handleError<any>('loginWithUserName')) 
-    );
+    return this.http
+      .post<any>(`${this.apiUrl}/admin/Login`, loginDTO)
+      .pipe(catchError(this.handleError<any>('loginWithUserName')));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

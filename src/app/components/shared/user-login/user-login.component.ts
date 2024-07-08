@@ -51,7 +51,7 @@ export class UserLoginComponent {
   }
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
+
       if (this.emailRegex.test(this.userName)) {
         console.log('email login called');
         this.accountService
@@ -75,8 +75,6 @@ export class UserLoginComponent {
             },
           });
       } else {
-        console.log('username login called');
-
         this.accountService
           .loginWithUserName({ ...this.loginForm.value, rememberMe: true })
           .subscribe({
