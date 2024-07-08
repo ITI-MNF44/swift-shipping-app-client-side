@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { IRegionDTO } from '../Interface/IRegionDTO';
 import { IRegionGetDTO } from '../Interface/IRegionGetDTO';
 import { environment } from 'src/environments/environment';
+import { IGovernmentWithRegionsDTO } from '../Interface/IGovernmentWithRegionsDTO';
 
 @Injectable({
   providedIn: 'root',
@@ -55,12 +56,16 @@ export class RegionService {
       .pipe(catchError(this.handleError<IRegionGetDTO[]>('calculateOrderCost')));
   }
 
+  // get all governments with their regions
+  getAllGovernmentsWithRegions(): Observable<IGovernmentWithRegionsDTO[]> {
+    return this.http.get<IGovernmentWithRegionsDTO[]>(`${this.baseUrl}/Government/GetAllGovernmentsWithRegions`)
+      .pipe(catchError(this.handleError<IGovernmentWithRegionsDTO[]>('getAllGovernmentsWithRegions', [])));
+  }
+
   // Error handler method
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
-      // You can log the error to remote logging infrastructure if needed
-      // Let the app keep running by returning an empty result
       return of(result as T);
     };
   }
