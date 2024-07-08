@@ -9,11 +9,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
-import { EmployeeService } from '@service/employee.service';
-import { IEmployeeDTO } from 'src/app/Interface/IEmployeeDTO';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { IBranchGetDTO } from 'src/app/Interface/IBranchGetDTO';
-import { IEmployeeGetDTO } from 'src/app/Interface/IEmployeeGetDTO';
 import { IDeliveryManDTO } from 'src/app/Interface/IDeliveryManDTO';
 import { IDeliveryManGetDTO } from 'src/app/Interface/IDeliveryManGetDTO';
 import { DeliveryManService } from '@service/delivery-man.service';
@@ -47,7 +44,8 @@ export class DeliverymenComponent implements OnInit {
   selectedCities!: City[];
   constructor(
     private deliveryManService: DeliveryManService,
-    private branchService: BranchService
+    private branchService: BranchService, 
+    private route: Router
   ) {
     this.groupedCities = [
       {
@@ -99,11 +97,6 @@ export class DeliverymenComponent implements OnInit {
     this.branchService.getAllBranches().subscribe(
       (data: IBranchGetDTO[]) => {
         this.branches = data;
-        // this.deliverymen = this.deliverymen.map(deliveryman => ({
-        //   ...deliveryman,
-        //   branchName: this.branches.find(branch => branch.id === deliveryman.branchId)?.name
-        // }
-        // ));
         console.log(this.branches);
       },
       (error) => {
@@ -117,5 +110,20 @@ export class DeliverymenComponent implements OnInit {
     this.searchValue = '';
   }
 
-
+  deleteDeliveryman(deliverymanId: number): void {
+    const confirmDelete = confirm(
+      'Are you sure you want to delete this deliveryman?'
+    );
+    if (confirmDelete) {
+      this.deliveryManService.deleteDeliveryMan(deliverymanId).subscribe(
+        () => {
+          this.route.navigateByUrl('admin/deliverymen');
+          this.deliverymen = this.deliverymen.filter((deliveryman) => deliveryman.id !== deliverymanId);
+        },
+        (error) => {
+          console.error('Error deleting deliveryman:', error);
+        }
+      );
+    }
+  }
 }
