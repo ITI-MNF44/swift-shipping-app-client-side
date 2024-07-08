@@ -11,7 +11,7 @@ import { GovernmentService } from '@service/government.service';
 import { RegionService } from '@service/region.service';
 import { IGovernmentGetDTO } from 'src/app/Interface/IGovernmentGetDTO';
 import { IRegionDTO } from 'src/app/Interface/IRegionDTO';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Observable, map } from 'rxjs';
 
 @Component({
@@ -30,6 +30,7 @@ export class AddCityComponent {
     private fb: FormBuilder,
     private governmentService: GovernmentService,
     private regionService: RegionService,
+    private router: Router,
     private route: ActivatedRoute
   ) {}
 
@@ -44,7 +45,7 @@ export class AddCityComponent {
     this.id = this.route.paramMap.pipe(
       map((params) => {
         const idParam = params.get('id');
-        return idParam !== null ? +idParam : 0;
+        return idParam == null || undefined ? 0 : +idParam;
       })
     );
 
@@ -68,8 +69,8 @@ export class AddCityComponent {
       this.id?.subscribe((id) => {
         if (id == 0) {
           this.addCity(regionDTO);
-        } else if (!(id == 0 || id == null)) {
-          this.editCity(this.id, regionDTO);
+        } else {
+          this.editCity(id, regionDTO);
         }
       });
     } else {
@@ -81,6 +82,13 @@ export class AddCityComponent {
     this.regionService.addRegion(regionDTO).subscribe({
       next: (response) => {
         console.log(response);
+        const role = localStorage.getItem('userRole');
+
+        if (role == 'Employee') {
+          this.router.navigate(['/employee/cities']);
+        } else if (role == 'Admin') {
+          this.router.navigate(['/admin/cities']);
+        }
       },
       error: (error) => {
         console.log(error);
@@ -90,9 +98,16 @@ export class AddCityComponent {
   }
 
   editCity(id: any, regionDTO: IRegionDTO) {
+    console.log(id);
     this.regionService.editRegion(id, regionDTO).subscribe({
       next: (response) => {
-        console.log(response);
+        const role = localStorage.getItem('userRole');
+
+        if (role == 'Employee') {
+          this.router.navigate(['/employee/cities']);
+        } else if (role == 'Admin') {
+          this.router.navigate(['/admin/cities']);
+        }
       },
       error: (error) => {
         console.log(error);
@@ -117,7 +132,6 @@ export class AddCityComponent {
       complete: () => {},
     });
   }
-
 
   getGovernments() {
     this.governmentService.getAll().subscribe({

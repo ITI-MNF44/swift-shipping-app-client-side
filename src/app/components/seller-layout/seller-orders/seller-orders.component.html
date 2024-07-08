@@ -1,0 +1,87 @@
+<main id="main" class="main">
+    <div class="pagetitle">
+      <nav>
+        <ol class="breadcrumb text-center">
+          <li class="breadcrumb-item">
+            <a routerLink="/home"><i class="bi bi-house-fill text-dark"></i></a>
+          </li>
+          <li class="breadcrumb-item">Orders</li>
+        </ol>
+      </nav>
+    </div>
+
+    <section class="section employees">
+      <div class="card">
+        <p-table
+          #dt1
+          [value]="orders"
+          dataKey="id"
+          [rows]="10"
+          [rowsPerPageOptions]="[5, 10, 20]"
+          [loading]="loading"
+          [paginator]="true"
+          [globalFilterFields]="['customerName', 'government', 'region', 'villageName', 'address', 'orderType', 'paymentType', 'shippingType']"
+        >
+          <ng-template pTemplate="caption">
+            <div class="flex">
+              <span class="p-input-icon-right ml-auto">
+                <i class="pi pi-search"></i>
+                <input
+                  pInputText
+                  type="text"
+                  [(ngModel)]="searchValue"
+                  (input)="dt1.filterGlobal(searchValue, 'contains')"
+                  placeholder="Search keyword"
+                />
+              </span>
+            </div>
+          </ng-template>
+
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="min-width: fit-content;">ID</th>
+              <th style="min-width: 10rem;">Customer Info</th>
+              <th style="min-width: 5rem;">Government</th>
+              <th style="min-width: 6rem;">Region</th>
+              <th style="width: 3rem;">Village</th>
+              <th style="min-width: 10rem;">Address</th>
+              <th style="min-width: 4rem;">Weight</th>
+              <th style="min-width: 4rem;">Order Cost</th>
+              <th style="min-width: 7rem;">Order Type</th>
+              <th style="min-width: 7rem;">Shipping Type</th>
+              <th style="min-width: 7rem;">Payment Type</th>
+              <th style="min-width: 7rem;">Status</th>
+              <th style="min-width: 7rem;">Delivery cost</th>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="body" let-order>
+            <tr>
+              <td>{{ order.id }}</td>
+              <td>
+                <p>{{ order.customerName }}</p>
+                <p>{{ order.customerPhone }}</p>
+              </td>
+              <td>{{ order.government }}</td>
+              <td>{{ order.region }}</td>
+              <td>{{ order.isShippedToVillage ? order.villageName : '-' }}</td>
+              <td>{{ order.address }}</td>
+              <td>{{ order.weight }}</td>
+              <td>{{ order.orderPrice }}</td>
+              <td>{{ order.orderType }}</td>
+              <td>{{ order.shippingType }}</td>
+              <td>{{ order.paymentType }}</td>
+              <td>{{ order.status }}</td>
+              <td>{{ order.deliveryCost }}</td>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="10" class="text-center">No orders found.</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </section>
+  </main>

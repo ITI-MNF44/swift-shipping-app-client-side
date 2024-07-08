@@ -1,0 +1,58 @@
+<main id="main" class="main">
+  <form class="card p-5" [formGroup]="weightForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <div class="d-flex gap-3">
+        <div class="w-50">
+          <label for="defaultWeight">Default Shipping Weight Price (LE)</label>
+          <input
+            id="defaultWeight"
+            formControlName="defaultWeight"
+            type="number"
+            class="form-control"
+            placeholder="Enter default weight price"
+            required
+          />
+          <div
+            class="text-danger"
+            *ngIf="
+              weightForm.get('defaultWeight')?.hasError('required') &&
+              weightForm.get('defaultWeight')?.touched
+            "
+          >
+            Default weight price is required.
+          </div>
+        </div>
+        <div class="form-group w-50">
+          <label for="kgPrice">Additional Cost per Extra Kilogram (LE)</label>
+          <input
+            id="kgPrice"
+            formControlName="kgPrice"
+            type="number"
+            class="form-control"
+            placeholder="Enter price for extra kg weight"
+            required
+          />
+          <div
+            class="text-danger"
+            *ngIf="
+              weightForm.get('kgPrice')?.hasError('required') &&
+              weightForm.get('kgPrice')?.touched
+            "
+          >
+            Price for extra kg weight is required.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group button-container">
+      <button
+        type="submit"
+        class="btn btn-primary btn-small"
+        [disabled]="weightForm.invalid"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</main>

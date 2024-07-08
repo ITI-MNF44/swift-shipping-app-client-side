@@ -1,102 +1,76 @@
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
-    <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <img src="../../../../favicon.ico" alt="" />
-        <span class="d-none d-lg-block">Swift Shipping</span>
+  <div class="d-flex align-items-center justify-content-between">
+    <a href="index.html" class="logo d-flex align-items-center">
+      <img src="../../../../favicon.ico" alt="" />
+      <span class="d-none d-lg-block">Swift Shipping</span>
+    </a>
+    <!-- <i class="bi bi-list toggle-sidebar-btn"></i> -->
+    <i class="bi bi-list toggle-sidebar-btn" (click)="toggleSidebar()"></i>
+  </div>
+
+  <div class="search-bar">
+    <form class="search-form d-flex align-items-center" method="POST" action="#">
+      <input type="text" name="query" placeholder="Search" title="Enter search keyword" />
+      <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+    </form>
+  </div>
+
+  <nav class="header-nav ms-auto">
+    <ul class="d-flex align-items-center">
+      <li class="nav-item d-block d-lg-none">
+        <a class="nav-link nav-icon search-bar-toggle" href="#">
+          <i class="bi bi-search"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+<!-- End Header -->
+
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar" [ngClass]="{ 'toggle-sidebar': !isSidebarOpen }">
+  <ul class="sidebar-nav" id="sidebar-nav">
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/employee']">
+        <i class="bi bi-grid"></i>
+        <span>Employee Dashboard</span>
       </a>
-      <!-- <i class="bi bi-list toggle-sidebar-btn"></i> -->
-      <i class="bi bi-list toggle-sidebar-btn" (click)="toggleSidebar()"></i>
-    </div>
-  
-    <div class="search-bar">
-      <form
-        class="search-form d-flex align-items-center"
-        method="POST"
-        action="#"
-      >
-        <input
-          type="text"
-          name="query"
-          placeholder="Search"
-          title="Enter search keyword"
-        />
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div>
-  
-    <nav class="header-nav ms-auto">
-      <ul class="d-flex align-items-center">
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle" href="#">
-            <i class="bi bi-search"></i>
+    </li>
+
+    <!-- orders -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#order-nav" data-bs-toggle="collapse">
+        <i class="bi bi-card-checklist"></i><span>Orders</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="order-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <li>
+          <a [routerLink]="['/employee/order']">
+            <i class="bi bi-circle"></i><span>All Orders</span>
+          </a>
+        </li>
+       
+        <li>
+          <a [routerLink]="['/employee/neworders']">
+            <i class="bi bi-circle"></i><span>Orders Lobby</span>
           </a>
         </li>
       </ul>
-    </nav>
-  </header>
-  <!-- End Header -->
-  
-  <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar" [ngClass]="{'toggle-sidebar': !isSidebarOpen}">
-    <ul class="sidebar-nav" id="sidebar-nav">
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/admin']">
-          <i class="bi bi-grid"></i>
-          <span>Employee Dashboard</span>
-        </a>
-      </li>
-  
-      <!-- orders -->
-      <li class="nav-item">
-        <a
-          class="nav-link collapsed"
-          data-bs-target="#order-nav"
-          data-bs-toggle="collapse"
-        >
-          <i class="bi bi-card-checklist"></i><span>Orders</span
-          ><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul
-          id="order-nav"
-          class="nav-content collapse"
-          data-bs-parent="#sidebar-nav"
-        >
-          <li>
-            <a [routerLink]="['/employee/order']">
-              <i class="bi bi-circle"></i><span>All Orders</span>
-            </a>
-          </li>
-          <li>
-            <a [routerLink]="['/employee/order', 0, 'edit']">
-              <i class="bi bi-circle"></i><span>Assign Order</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-      
+    </li>
+
     <!--Brnaches -->
     <li class="nav-item">
-      <a
-        class="nav-link collapsed"
-        data-bs-target="#branch-nav"
-        data-bs-toggle="collapse"
-      >
-        <i class="bi bi-building"></i><span>Branches</span
-        ><i class="bi bi-chevron-down ms-auto"></i>
+      <a class="nav-link collapsed" data-bs-target="#branch-nav" data-bs-toggle="collapse">
+        <i class="bi bi-building"></i><span>Branches</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul
-        id="branch-nav"
-        class="nav-content collapse"
-        data-bs-parent="#sidebar-nav"
-      >
+      <ul id="branch-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li>
-          <a [routerLink]="['/admin/branches']">
+          <a [routerLink]="['/employee/branches']">
             <i class="bi bi-circle"></i><span>All Branches</span>
           </a>
         </li>
         <li>
-          <a [routerLink]="['/admin/branches/add']">
+          <a [routerLink]="['/employee/branches/add']">
             <i class="bi bi-circle"></i><span>Add Branch</span>
           </a>
         </li>
@@ -105,20 +79,10 @@
 
     <!-- regions -->
     <li class="nav-item">
-      <a
-        class="nav-link collapsed"
-        data-bs-target="#region-nav"
-        data-bs-toggle="collapse"
-        href="#"
-      >
-        <i class="bi bi-filter-right"></i><span>Regions</span
-        ><i class="bi bi-chevron-down ms-auto"></i>
+      <a class="nav-link collapsed" data-bs-target="#region-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-filter-right"></i><span>Regions</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul
-        id="region-nav"
-        class="nav-content collapse"
-        data-bs-parent="#sidebar-nav"
-      >
+      <ul id="region-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li>
           <a [routerLink]="['cities']">
             <i class="bi bi-circle"></i><span>All Regions</span>
@@ -134,42 +98,29 @@
 
     <!-- governments -->
     <li class="nav-item">
-      <a
-        class="nav-link collapsed"
-        data-bs-target="#government-nav"
-        data-bs-toggle="collapse"
-        href="#"
-      >
-        <i class="bi bi-filter-right"></i><span>Governments</span
-        ><i class="bi bi-chevron-down ms-auto"></i>
+      <a class="nav-link collapsed" data-bs-target="#government-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-filter-right"></i><span>Governments</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul
-        id="government-nav"
-        class="nav-content collapse"
-        data-bs-parent="#sidebar-nav"
-      >
+      <ul id="government-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li>
-          <a [routerLink]="['cities']">
+          <a [routerLink]="['/employee/governments']">
             <i class="bi bi-circle"></i><span>All Governments</span>
           </a>
         </li>
         <li>
-          <a [routerLink]="['cities', 0, 'add']">
+          <a [routerLink]="['/employee/governments/add']">
             <i class="bi bi-circle"></i><span>Add Government</span>
           </a>
         </li>
       </ul>
     </li>
 
-  
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-login.html">
-          <i class="bi bi-box-arrow-in-right"></i>
-          <span>Logout</span>
-        </a>
-      </li>
-    </ul>
-  </aside>
-  <!-- End Sidebar-->
-  
-  
+    <li class="nav-item">
+      <a class="nav-link collapsed" (click)="logOut()">
+        <i class="bi bi-box-arrow-in-right"></i>
+        <span>Logout</span>
+      </a>
+    </li>
+  </ul>
+</aside>
+<!-- End Sidebar-->

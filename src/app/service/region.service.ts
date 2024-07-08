@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class RegionService {
-  private baseUrl = environment.apiUrl; // Adjust the base URL as necessary
+ private baseUrl = environment.apiUrl; // Adjust the base URL as necessary
 
   constructor(private http: HttpClient) {}
 
@@ -46,6 +46,13 @@ export class RegionService {
     return this.http
       .delete<string>(url)
       .pipe(catchError(this.handleError<string>('deleteRegion')));
+  }
+
+  GetRegionsByGovernrmnt(governmentId: number): Observable<IRegionGetDTO[]> {
+    const url = `${this.baseUrl}/Region/Government/${governmentId}`;
+
+    return this.http.get<IRegionGetDTO[]>(url)
+      .pipe(catchError(this.handleError<IRegionGetDTO[]>('calculateOrderCost')));
   }
 
   // Error handler method

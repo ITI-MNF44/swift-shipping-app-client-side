@@ -8,7 +8,7 @@
       <!-- <i class="bi bi-list toggle-sidebar-btn"></i> -->
       <i class="bi bi-list toggle-sidebar-btn" (click)="toggleSidebar()"></i>
     </div>
-  
+
     <div class="search-bar">
       <form
         class="search-form d-flex align-items-center"
@@ -24,7 +24,7 @@
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
       </form>
     </div>
-  
+
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
         <li class="nav-item d-block d-lg-none">
@@ -36,7 +36,7 @@
     </nav>
   </header>
   <!-- End Header -->
-  
+
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar" [ngClass]="{'toggle-sidebar': !isSidebarOpen}">
     <ul class="sidebar-nav" id="sidebar-nav">
@@ -46,7 +46,7 @@
           <span>Seller Dashboard</span>
         </a>
       </li>
-  
+
       <li class="nav-item">
         <a
           class="nav-link collapsed"
@@ -62,12 +62,12 @@
           data-bs-parent="#sidebar-nav"
         >
           <li>
-            <a [routerLink]="['/seller/orders']">
+            <a [routerLink]="['/seller']">
               <i class="bi bi-circle"></i><span>All Orders</span>
             </a>
           </li>
           <li>
-            <a [routerLink]="['/seller/order', 0, 'edit']">
+            <a [routerLink]="['/seller/order', 0, 'add']">
               <i class="bi bi-circle"></i><span>Add Order</span>
             </a>
           </li>
@@ -75,7 +75,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-login.html">
+        <a class="nav-link collapsed" (click)="logOut()">
           <i class="bi bi-box-arrow-in-right"></i>
           <span>Logout</span>
         </a>
@@ -83,7 +83,7 @@
     </ul>
   </aside>
   <!-- End Sidebar-->
-  
+
   <!-- <li class="nav-item">
           <a
             class="nav-link collapsed"
@@ -111,7 +111,7 @@
             </li>
           </ul>
         </li> -->
-  
+
   <!-- <li class="nav-item">
           <a
             class="nav-link collapsed"
@@ -144,32 +144,31 @@
             </li>
           </ul>
         </li>
-    
+
          <li class="nav-item">
           <a class="nav-link collapsed" href="users-profile.html">
             <i class="bi bi-person"></i>
             <span>Profile</span>
           </a>
         </li>
-    
+
         <li class="nav-item">
           <a class="nav-link collapsed" href="pages-faq.html">
             <i class="bi bi-question-circle"></i>
             <span>F.A.Q</span>
           </a>
         </li>
-    
+
         <li class="nav-item">
           <a class="nav-link collapsed" href="pages-contact.html">
             <i class="bi bi-envelope"></i>
             <span>Contact</span>
           </a>
         </li>
-    
+
         <li class="nav-item">
           <a class="nav-link collapsed" href="pages-register.html">
             <i class="bi bi-card-list"></i>
             <span>Register</span>
           </a>
         </li> -->
-  

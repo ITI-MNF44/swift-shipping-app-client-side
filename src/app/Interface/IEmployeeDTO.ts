@@ -1,5 +1,4 @@
 export interface IEmployeeDTO {
-  // id: number;
   name: string;
   address: string;
   email: string;
@@ -7,5 +6,5 @@ export interface IEmployeeDTO {
   password: string;
   phoneNumber: string;
   branchId: number;
-  status?: boolean;
+  isActive?: boolean;
 }
