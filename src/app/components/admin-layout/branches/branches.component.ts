@@ -1,3 +1,4 @@
+import { RoleService } from '@service/role.service';
 import { BranchService } from './../../../service/branch.service';
 import { Component, OnInit, NgModule } from '@angular/core';
 
@@ -10,6 +11,8 @@ import {
 } from '@angular/router';
 import { DatePipe, CommonModule } from '@angular/common';
 import { IBranchGetDTO } from 'src/app/Interface/IBranchGetDTO';
+import { Department } from 'src/app/Enum/Department';
+import { IRolePermissions } from 'src/app/Interface/IRolePermissions';
 
 @Component({
   selector: 'app-branches',
@@ -21,18 +24,29 @@ import { IBranchGetDTO } from 'src/app/Interface/IBranchGetDTO';
 export class BranchesComponent implements OnInit {
   // here i need to get all products from api
   branches: IBranchGetDTO[] = [];
-
+  department = Department.Branches;
+  DeptPermissions?: IRolePermissions;
+  role = localStorage.getItem('userRole') || '';
   //CTOR
-  constructor(private branchService: BranchService, private route: Router,
-    private activatedroute: ActivatedRoute
+  constructor(
+    private branchService: BranchService,
+    private route: Router,
+    private activatedroute: ActivatedRoute,
+    private roleService: RoleService
   ) {}
 
-  ngOnInit(): void 
-  {
+  ngOnInit(): void {
     // Get all branches
-   this.getAllBranches();
+    this.roleService
+      .getPermissionsByRoleAndDept(this.role, this.department)
+      .subscribe({
+        next: (data) => {
+          this.DeptPermissions = data;
+          console.log(data);
+        },
+      });
+    this.getAllBranches();
   }
-
 
   getAllBranches(): void {
     this.branchService.getAllBranches().subscribe((branches) => {
@@ -40,24 +54,21 @@ export class BranchesComponent implements OnInit {
     });
   }
 
-
-
   //refresh the page
-  refreshPage(): void 
-  {
+  refreshPage(): void {
     this.getAllBranches();
   }
-  
 
   //Handle Delete
   deleteBranch(branchId: number): void {
-    const confirmDelete = confirm('Are you sure you want to delete this Branch?');
+    const confirmDelete = confirm(
+      'Are you sure you want to delete this Branch?'
+    );
     if (confirmDelete) {
       this.branchService.deleteBranch(branchId).subscribe(
         () => {
           //alert('Successfully Deleted');
           this.route.navigateByUrl('admin/branches');
-
         },
         (error) => {
           console.error('Error deleting branch:', error);
@@ -65,6 +76,4 @@ export class BranchesComponent implements OnInit {
       );
     }
   }
-
-
 }

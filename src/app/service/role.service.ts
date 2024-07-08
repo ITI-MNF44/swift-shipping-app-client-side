@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { IRolePermissions } from '../Interface/IRolePermissions';
 import { IPermissionDTO } from '../Interface/IPermissionDTO';
+import { Department } from '../Enum/Department';
 
 @Injectable({
   providedIn: 'root',
@@ -23,10 +24,23 @@ export class RoleService {
         )
       );
   }
+  getPermissionsByRoleAndDept(
+    role: string,
+    dept: Department
+  ): Observable<IRolePermissions> {
+    const url = `${this.baseUrl}/department?role=${role}&department=${dept}`;
+    return this.http
+      .get<IRolePermissions>(url)
+      .pipe(
+        catchError(
+          this.handleError<IRolePermissions>('GetDepartmentPermissionsByRole')
+        )
+      );
+  }
 
   updatePermissionsByRole(
     role: string,
-    permissionsDTOList: IPermissionDTO[]
+    permissionsDTOList: IRolePermissions[]
   ): Observable<any> {
     const url = `${this.baseUrl}/${role}`;
     return this.http

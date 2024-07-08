@@ -14,10 +14,14 @@ import { Subscription } from 'rxjs';
 import { IPermissionDTO } from 'src/app/Interface/IPermissionDTO';
 import { IRolePermissions } from 'src/app/Interface/IRolePermissions';
 
+import { MessageService } from 'primeng/api';
+import { MessagesModule } from 'primeng/messages';
+
 @Component({
   selector: 'app-role-permissions',
   standalone: true,
   imports: [
+    CommonModule,
     TableModule,
     HttpClientModule,
     CommonModule,
@@ -27,7 +31,10 @@ import { IRolePermissions } from 'src/app/Interface/IRolePermissions';
     DropdownModule,
     ButtonModule,
     FormsModule,
+    MessagesModule,
+    ButtonModule,
   ],
+  providers: [MessageService],
   templateUrl: './role-permissions.component.html',
   styleUrl: './role-permissions.component.css',
 })
@@ -41,7 +48,8 @@ export class RolePermissionsComponent implements OnInit {
   constructor(
     public router: Router,
     public activatedRoute: ActivatedRoute,
-    private roleApi: RoleService
+    private roleApi: RoleService,
+    private messageService: MessageService
   ) {}
   ngOnInit(): void {
     this.routeSubscriber = this.activatedRoute.params.subscribe({
@@ -60,6 +68,25 @@ export class RolePermissionsComponent implements OnInit {
             },
           });
       },
+    });
+  }
+  saveChanges() {
+    this.roleApi
+      .updatePermissionsByRole(this.roleName, this.rolePermissions)
+      .subscribe({
+        next: () => {
+          console.log('updated');
+          this.addSingle();
+        },
+      });
+  }
+  discard() {}
+
+  addSingle() {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Service Message',
+      detail: 'Via MessageService',
     });
   }
 }

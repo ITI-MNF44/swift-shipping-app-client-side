@@ -1,3 +1,4 @@
+import { adminGaurdGuard } from './Gaurds/admin-gaurd.guard';
 import { Routes } from '@angular/router';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
 import { EmployeesComponent } from './components/admin-layout/employees/employees.component';
@@ -21,8 +22,7 @@ import { BranchFormComponent } from './components/admin-layout/branch-form/branc
 import { CitiesComponent } from './components/admin-layout/cities/cities.component';
 import { AddCityComponent } from './components/admin-layout/add-city/add-city.component';
 import { EmployeeFormComponent } from './components/admin-layout/employee-form/employee-form.component';
-
-
+import { RolePermissionsComponent } from './components/admin-layout/role-permissions/role-permissions.component';
 
 export const routes: Routes = [
   {
@@ -47,11 +47,9 @@ export const routes: Routes = [
       { path: 'branches/add', component: BranchFormComponent },
       { path: 'branches/:id/edit', component: BranchFormComponent },
 
-
       { path: 'cities', component: CitiesComponent },
       { path: 'cities/:id/edit', component: AddCityComponent },
       { path: 'cities/0/add', component: AddCityComponent },
-
     ],
   },
   {
