@@ -3,7 +3,7 @@ export interface ISellerDTO {
   address: string;
   email: string;
   userName: string;
-  password: string;
+  // password: string;
   phoneNumber: string;
   storeName: string;
   regionId: number;

@@ -1,5 +1,5 @@
 <main id="main" class="main">
-  <section class="section delivery-man-section">
+  <section class="section seller-form-section">
     <div class="pagetitle">
       <nav>
         <ol class="breadcrumb text-center">
@@ -24,6 +24,14 @@
               </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12">
+              <label for="userName" class="form-label">UserName</label>
+              <input type="text" class="form-control" id="userName" formControlName="userName" placeholder="userName" />
+              <div *ngIf="f['userName'].invalid && (f['userName'].dirty || f['userName'].touched)" class="text-danger">
+                <div *ngIf="f['userName'].errors?.['required']">Name is required.</div>
+                <div *ngIf="f['userName'].errors?.['minlength']">Name must be at least 2 characters long.</div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
               <label for="email" class="form-label">Email</label>
               <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email" />
               <div *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)" class="text-danger">
@@ -31,27 +39,51 @@
                 <div *ngIf="f['email'].errors?.['email']">Invalid email format.</div>
               </div>
             </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
+            <!-- <div class="col-lg-4 col-md-6 col-sm-12">
               <label for="password" class="form-label">Password</label>
               <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password" />
               <div *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)" class="text-danger">
                 <div *ngIf="f['password'].errors?.['required']">Password is required.</div>
-                <div *ngIf="f['password'].errors?.['minlength']">Password must be at least 6 characters long.</div>
+                <div *ngIf="f['password'].errors?.['minlength']">Password must be at least 8 characters long.</div>
+              </div>
+            </div> -->
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <label for="phoneNumber" class="form-label">Phone Number</label>
+              <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber" placeholder="phoneNumber Number" />
+              <div *ngIf="f['phoneNumber'].invalid && (f['phoneNumber'].dirty || f['phoneNumber'].touched)" class="text-danger">
+                <div *ngIf="f['phoneNumber'].errors?.['required']">Phone number is required.</div>
+                <div *ngIf="f['phoneNumber'].errors?.['pattern']">Phone number must be numeric.</div>
               </div>
             </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
-              <label for="phone" class="form-label">Phone Number</label>
-              <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Phone Number" />
-              <div *ngIf="f['phone'].invalid && (f['phone'].dirty || f['phone'].touched)" class="text-danger">
-                <div *ngIf="f['phone'].errors?.['required']">Phone number is required.</div>
-                <div *ngIf="f['phone'].errors?.['pattern']">Phone number must be numeric.</div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
+            <!-- <div class="col-lg-4 col-md-6 col-sm-12">
               <label for="branch" class="form-label">Branch</label>
               <input type="text" class="form-control" id="branch" formControlName="branch" placeholder="Branch" />
               <div *ngIf="f['branch'].invalid && (f['branch'].dirty || f['branch'].touched)" class="text-danger">
                 <div *ngIf="f['branch'].errors?.['required']">Branch is required.</div>
+              </div>
+            </div> -->
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+              <label for="branch" class="form-label">Branch Name</label>
+              <select
+                id="branchId"
+                class="form-control"
+                formControlName="branchId"
+                [value]=""
+              >
+                <option *ngFor="let branch of branches" [value]="branch.id">
+                  {{ branch.name }}
+                </option>
+              </select>
+              <div
+                *ngIf="
+                  f['branchId'].invalid &&
+                  (f['branchId'].dirty || f['branchId'].touched)
+                "
+                class="text-danger"
+              >
+                <div *ngIf="f['branchId'].errors?.['required']">
+                  Branch is required.
+                </div>
               </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12">
@@ -68,7 +100,7 @@
                 <div *ngIf="f['address'].errors?.['required']">Address is required.</div>
               </div>
             </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
+            <!-- <div class="col-lg-4 col-md-6 col-sm-12">
               <label for="pickupCost" class="form-label">Pickup Cost</label>
               <input type="text" class="form-control" id="pickupCost" formControlName="pickupCost" placeholder="Pickup Cost" />
               <div *ngIf="f['pickupCost'].invalid && (f['pickupCost'].dirty || f['pickupCost'].touched)" class="text-danger">
@@ -83,11 +115,9 @@
                 <div *ngIf="f['companyShare'].errors?.['required']">Company Share is required.</div>
                 <div *ngIf="f['companyShare'].errors?.['pattern']">Company Share must be numeric.</div>
               </div>
-            </div>
+            </div> -->
           </div>
-          <div class="">
-            <button type="submit" class="btn btn-primary">Save</button>
-          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>
     </div>
