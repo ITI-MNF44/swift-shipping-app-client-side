@@ -28,12 +28,13 @@ export class SellersComponent implements OnInit {
   searchValue: string | undefined;
 
   constructor(
-    private route: Router,
-    private sellersService: SellersService) { }
+    private router: Router,
+    private sellersService: SellersService
+  ) { }
 
   ngOnInit(): void {
     this.sellersService.getAllSellers().subscribe((sellers) => {
-      this.sellers = sellers.filter(seller => !seller.isDeleted);
+      this.sellers = sellers;
       this.loading = false;
     });
   }
@@ -48,7 +49,7 @@ export class SellersComponent implements OnInit {
     if (confirmDelete) {
       this.sellersService.deleteSeller(sellerId).subscribe(
         () => {
-          this.route.navigateByUrl('admin/sellers');
+          this.router.navigateByUrl('admin/sellers');
           this.sellers = this.sellers.filter((seller) => seller.id !== sellerId);
         },
         (error) => {
