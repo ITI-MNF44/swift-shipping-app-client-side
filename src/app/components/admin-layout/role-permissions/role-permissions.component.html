@@ -9,62 +9,69 @@
       </ol>
     </nav>
   </div>
+
   <section class="section employees">
+    <p-messages />
+
     <div class="card">
       <p-table
         #dt1
         [value]="rolePermissions"
         dataKey="id"
         [rows]="10"
-        [rowsPerPageOptions]="[5, 10, 20]"
         [loading]="loading"
-        [paginator]="true"
-        [globalFilterFields]="[
-          'name',
-          'country.name',
-          'representative.name',
-          'status'
-        ]"
+        [paginator]="false"
       >
-        <ng-template pTemplate="caption">
-          <div class="flex">
-            <span class="p-input-icon-left ml-auto">
-              <i class="pi pi-search"></i>
-              <input pInputText type="text" placeholder="Search keyword" />
-            </span>
-          </div>
-        </ng-template>
-
         <ng-template pTemplate="header">
-          <tr class="text-center">
+          <tr class="">
             <th class="text-start" style="min-width: fit-content">
               Department
             </th>
-            <th style="min-width: 15rem">view</th>
-            <th style="min-width: 15rem">Read</th>
-            <th style="min-width: 10rem">write</th>
-            <th style="min-width: 10rem">Delete</th>
+            <th class="">View</th>
+            <th class="">ِAdd</th>
+            <th class="">Edit</th>
+            <th class="">Delete</th>
           </tr>
         </ng-template>
 
         <ng-template pTemplate="body" let-rolePermissions>
           <tr class="text-center">
             <td>{{ rolePermissions.departmentName }}</td>
-            <td><input type="checkbox" [checked]="rolePermissions.view" /></td>
-            <td><input type="checkbox" [checked]="rolePermissions.edit" /></td>
             <td>
-              <input type="checkbox" [checked]="rolePermissions.delete" />
+              <input type="checkbox" [(ngModel)]="rolePermissions.view" />
             </td>
-            <td><input type="checkbox" [checked]="rolePermissions.add" /></td>
+            <td>
+              <input type="checkbox" [(ngModel)]="rolePermissions.add" />
+            </td>
+            <td>
+              <input
+                class="tex"
+                type="checkbox"
+                [(ngModel)]="rolePermissions.edit"
+              />
+            </td>
+            <td>
+              <input
+                class="tex"
+                type="checkbox"
+                [(ngModel)]="rolePermissions.delete"
+              />
+            </td>
           </tr>
         </ng-template>
 
         <ng-template pTemplate="emptymessage">
           <tr>
-            <td colspan="8">No customers found.</td>
+            <td colspan="8">No Permissions found.</td>
           </tr>
         </ng-template>
       </p-table>
+      <div class="d-flex justify-content-end gap-2 my-3 px-5">
+        <button (click)="discard()" class="btn btn-danger">Discard</button>
+        <button (click)="saveChanges()" class="btn btn-success">
+          Save Changes
+        </button>
+      </div>
     </div>
   </section>
 </main>
