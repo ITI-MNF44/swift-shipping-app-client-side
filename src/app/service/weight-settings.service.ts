@@ -23,11 +23,11 @@ export class WeightSettingsService
       );
   }
 
-  //Update 
-  editWeightsetting(settingDTO: IWeightSettingDto ): Observable<string> {
+  //Update
+  editWeightsetting(settingDTO: IWeightSettingDto ): Observable<any> {
     return this.http
-      .put<string>(`${this.baseUrl}/WeightSetting`, settingDTO)
-      .pipe(catchError(this.handleError<string>('updateSetting')));
+      .put<any>(`${this.baseUrl}/WeightSetting`, settingDTO)
+      .pipe(catchError(this.handleError<any>('updateSetting')));
   }
 
   // Error handler method

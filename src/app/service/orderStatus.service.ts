@@ -3,29 +3,30 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { OrderStatus } from '../Enum/OrderStatus';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderStatusService {
-  private baseUrl = 'http://localhost:5168/api/OrderStatus'; // Adjust the base URL as necessary
+  private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
   getOrderStatuses(): Observable<{ [key: string]: string }> {
-    const url = `${this.baseUrl}/All`;
+    const url = `${this.baseUrl}/OrderStatus/All`;
 
     return this.http
-      .get<{ [key: string]: string }>(url)
+      .get<{ [key: string]: string }>(`${url}/OrderStatus`)
       .pipe(
         catchError(
           this.handleError<{ [key: string]: string }>('getOrderStatuses')
         )
-      );;
+      );
   }
 
   getOrderStatusCount(status: OrderStatus): Observable<number> {
-    const url = `${this.baseUrl}/getCount?status=${status}`;
+    const url = `${this.baseUrl}/OrderStatus/getCount?status=${status}`;
 
     return this.http
       .get<number>(url)
@@ -33,7 +34,7 @@ export class OrderStatusService {
   }
 
   getAllStatusCount(): Observable<any> {
-    const url = `${this.baseUrl}/GetAllStatusCount`;
+    const url = `${this.baseUrl}/OrderStatus/GetAllStatusCount`;
     return this.http
       .get<any>(url)
       .pipe(catchError(this.handleError<any>('getAllStatusCount')));

@@ -15,12 +15,12 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) {}
 
-  register(employeeDTO: IEmployeeDTO): Observable<string> {
+  register(employeeDTO: IEmployeeDTO): Observable<any> {
     const url = `${this.baseUrl}/Employee/Add`;
 
     return this.http
-      .post<string>(url, employeeDTO)
-      .pipe(catchError(this.handleError<string>('register')));
+      .post<any>(url, employeeDTO)
+      .pipe(catchError(this.handleError<any>('register')));
   }
 
   login(loginDTO: ILoginDTO): Observable<any> {
@@ -62,25 +62,25 @@ export class EmployeeService {
       .pipe(catchError(this.handleError<IEmployeeGetDTO>('getById')));
   }
 
-  updateEmployee(id: number, employee: IEmployeeDTO): Observable<string> {
+  updateEmployee(id: number, employee: IEmployeeDTO): Observable<any> {
     const url = `${this.baseUrl}/Employee/Update/${id}`;
     return this.http
-      .put<string>(url, employee)
-      .pipe(catchError(this.handleError<string>('updateEmployee')));
+      .put<any>(url, employee)
+      .pipe(catchError(this.handleError<any>('updateEmployee')));
   }
 
-  deleteEmployee(id: number): Observable<string> {
+  deleteEmployee(id: number): Observable<any> {
     const url = `${this.baseUrl}/Employee/Delete/${id}`;
     return this.http
-      .delete<string>(url)
-      .pipe(catchError(this.handleError<string>('deleteEmployee')));
+      .delete<any>(url)
+      .pipe(catchError(this.handleError<any>('deleteEmployee')));
   }
 
-  toggleActivityStatus(id: number): Observable<string> {
+  toggleActivityStatus(id: number): Observable<any> {
     const url = `${this.baseUrl}/Employee/ToggleActivityStatus/${id}`;
     return this.http
-      .put<string>(url, null) // Assuming no body is needed
-      .pipe(catchError(this.handleError<string>('toggleActivityStatus')));
+      .put<any>(url, null) 
+      .pipe(catchError(this.handleError<any>('toggleActivityStatus')));
   }
 
   // Error handler method

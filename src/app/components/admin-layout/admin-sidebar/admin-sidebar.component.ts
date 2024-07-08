@@ -30,10 +30,12 @@ export class AdminSidebarComponent {
   logOut() {
     this.accountService.logOut().subscribe({
       next: (res) => {
-        localStorage.removeItem('userId');
-        localStorage.removeItem('userRole');
-        localStorage.removeItem('userToken');
-        this.router.navigate(['/admin/login']);
+        if (res.status == 200) {
+          localStorage.removeItem('userId');
+          localStorage.removeItem('userRole');
+          localStorage.removeItem('userToken');
+          this.router.navigate(['/admin/login']);
+        }
       },
       error: () => {},
       complete: () => {},

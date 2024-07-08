@@ -5,17 +5,18 @@ import { catchError } from 'rxjs/operators';
 import { IRolePermissions } from '../Interface/IRolePermissions';
 import { IPermissionDTO } from '../Interface/IPermissionDTO';
 import { Department } from '../Enum/Department';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RoleService {
-  private baseUrl = 'http://localhost:5168/api/role'; // Adjust the base URL as necessary
+  private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
   getPermissionsByRole(role: string): Observable<IRolePermissions[]> {
-    const url = `${this.baseUrl}/${role}`;
+    const url = `${this.baseUrl}/role/${role}`;
     return this.http
       .get<IRolePermissions[]>(url)
       .pipe(
@@ -24,11 +25,12 @@ export class RoleService {
         )
       );
   }
+
   getPermissionsByRoleAndDept(
     role: string,
     dept: Department
   ): Observable<IRolePermissions> {
-    const url = `${this.baseUrl}/department?role=${role}&department=${dept}`;
+    const url = `${this.baseUrl}/role/department?role=${role}&department=${dept}`;
     return this.http
       .get<IRolePermissions>(url)
       .pipe(
@@ -42,28 +44,28 @@ export class RoleService {
     role: string,
     permissionsDTOList: IRolePermissions[]
   ): Observable<any> {
-    const url = `${this.baseUrl}/${role}`;
+    const url = `${this.baseUrl}/role/${role}`;
     return this.http
       .put<any>(url, permissionsDTOList)
       .pipe(catchError(this.handleError<any>('updatePermissionsByRole')));
   }
 
   getRole(role: string): Observable<any> {
-    const url = `${this.baseUrl}/Get/${role}`;
+    const url = `${this.baseUrl}/role/Get/${role}`;
     return this.http
       .get<any>(url)
       .pipe(catchError(this.handleError<any>('getRole')));
   }
 
   updateRole(role: string, updatedRole: string): Observable<any> {
-    const url = `${this.baseUrl}/Update/${role}`;
+    const url = `${this.baseUrl}/role/Update/${role}`;
     return this.http
       .put<any>(url, { updatedRole })
       .pipe(catchError(this.handleError<any>('updateRole')));
   }
 
   roleExists(role: string): Observable<boolean> {
-    const url = `${this.baseUrl}/Exist?role=${role}`;
+    const url = `${this.baseUrl}/role/Exist?role=${role}`;
     return this.http
       .get<boolean>(url)
       .pipe(catchError(this.handleError<boolean>('roleExists')));
