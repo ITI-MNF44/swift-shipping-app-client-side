@@ -1,7 +1,9 @@
+import { EditGovernmentComponent } from './../edit-government/edit-government.component';
 import { GovernmentService } from './../../../service/government.service';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { IGovernmentGetDTO } from 'src/app/Interface/IGovernmentGetDTO';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-governments',
@@ -14,6 +16,7 @@ export class GovernmentsComponent implements OnInit {
 
   governemnts: IGovernmentGetDTO[] = [];
   constructor(private GovernmentService: GovernmentService, 
+    private router: Router
   ) {}
 
   ngOnInit(): void 
@@ -39,6 +42,10 @@ export class GovernmentsComponent implements OnInit {
       },
       error: (error)=>{console.log(console.log(error))}
     })
+  }
+
+  editGovernment(id:number){
+    this.router.navigate(['admin/governments/edit/', id]);
   }
 
 }
