@@ -19,6 +19,7 @@
         [value]="employees"
         dataKey="id"
         [rows]="10"
+        [rowsPerPageOptions]="[5, 10, 20]"
         [loading]="loading"
         [paginator]="true"
         [globalFilterFields]="['name', 'email', 'userName', 'phoneNumber']"
@@ -61,7 +62,7 @@
             <td>{{ employee.branchId }}</td>
             <td>
               <label class="switch">
-                <input type="checkbox" [checked]="employee.status" (change)="onToggleStatus(employee)">
+                <input type="checkbox" [checked]="employee.isActive" (change)="onToggleStatus(employee)">
                 <span class="slider round"></span>
               </label>
               <!-- <i

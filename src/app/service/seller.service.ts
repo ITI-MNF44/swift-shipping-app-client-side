@@ -10,7 +10,7 @@ import { ISellerGetDTO } from '../Interface/ISellerGetDTO';
   providedIn: 'root',
 })
 export class SellersService {
-  private apiUrl = environment.apiUrl; // Replace with your actual API base URL
+  private apiUrl = environment.apiUrl; 
 
   constructor(private http: HttpClient) {}
 
