@@ -1,7 +1,9 @@
 export interface ISellerGetDTO {
   id: number;
   branchName: string;
+  branchId: number;
   regionName: string;
+  regionId: string;
   storeName: string;
   name: string;
   address: string;

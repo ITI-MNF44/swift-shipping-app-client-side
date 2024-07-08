@@ -5,13 +5,14 @@ import { catchError } from 'rxjs/operators';
 import { ILoginDTO } from '../Interface/ILoginDTO';
 import { environment } from 'src/environments/environment';
 import { ISellerGetDTO } from '../Interface/ISellerGetDTO';
+import { ISellerDTO } from '../Interface/ISellerDTO';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SellersService {
-  private apiUrl = environment.apiUrl; 
-
+  private apiUrl = environment.apiUrl;
+  
   constructor(private http: HttpClient) {}
 
   login(loginDTO: ILoginDTO): Observable<any> {
@@ -22,10 +23,10 @@ export class SellersService {
       .pipe(catchError(this.handleError<any>('login')));
   }
 
-  addSeller(sellerDTO: any): Observable<any> {
+  addSeller(sellerDTO: ISellerDTO): Observable<ISellerDTO> {
     return this.http
-      .post<any>(`${this.apiUrl}/seller/Add`, sellerDTO)
-      .pipe(catchError(this.handleError<any>('addSeller')));
+      .post<ISellerDTO>(`${this.apiUrl}/seller/Add`, sellerDTO)
+      .pipe(catchError(this.handleError<ISellerDTO>('addSeller')));
   }
 
   getSellerById(id: number): Observable<ISellerGetDTO> {
@@ -52,12 +53,12 @@ export class SellersService {
       .pipe(catchError(this.handleError<any[]>('getSellerOrders', [])));
   }
 
-  editSeller(id: number, sellerDTO: any): Observable<any> {
+  editSeller(id: number, sellerDTO: ISellerDTO): Observable<ISellerDTO> {
     const url = `${this.apiUrl}/seller/Edit/${id}`;
 
     return this.http
-      .put<any>(url, sellerDTO)
-      .pipe(catchError(this.handleError<any>('editSeller')));
+      .put<ISellerDTO>(url, sellerDTO)
+      .pipe(catchError(this.handleError<ISellerDTO>('editSeller')));
   }
 
   deleteSeller(id: number): Observable<any> {

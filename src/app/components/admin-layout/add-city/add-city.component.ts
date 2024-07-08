@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, TemplateRef, ViewChild, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -10,21 +10,34 @@ import {
 import { GovernmentService } from '@service/government.service';
 import { RegionService } from '@service/region.service';
 import { IGovernmentGetDTO } from 'src/app/Interface/IGovernmentGetDTO';
-import { IRegionDTO } from 'src/app/Interface/IRegionDTO';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Observable, map } from 'rxjs';
+import { NgbdModalOptions } from '../../shared/small-modal/small-modal.component';
+import { IRegionDTO } from 'src/app/Interface/IRegionDTO';
+import { NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add-city',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterLink,
+    NgbdModalOptions,
+    NgbModalModule,
+  ],
   templateUrl: './add-city.component.html',
   styleUrl: './add-city.component.css',
 })
 export class AddCityComponent {
+  private modalOptions: NgbdModalOptions = new NgbdModalOptions();
+  @ViewChild('content', { static: true }) myModal!: TemplateRef<any>;
+
   cityForm!: FormGroup;
   governments: IGovernmentGetDTO[] = [];
-  id: Observable<number | null> | undefined;
+  id: Observable<number> | undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -37,15 +50,15 @@ export class AddCityComponent {
   ngOnInit() {
     this.cityForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
-      normalPrice: [0, [Validators.required, Validators.pattern('^[0-9]*$')]],
-      pickupPrice: [0, [Validators.required, Validators.pattern('^[0-9]*$')]],
-      governmentId: [0, Validators.required],
+      normalPrice: [50, [Validators.required, Validators.pattern('^[0-9]*$')]],
+      pickupPrice: [80, [Validators.required, Validators.pattern('^[0-9]*$')]],
+      governmentId: [, Validators.required],
     });
 
     this.id = this.route.paramMap.pipe(
       map((params) => {
         const idParam = params.get('id');
-        return idParam == null || undefined ? 0 : +idParam;
+        return idParam == null ? 0 : +idParam;
       })
     );
 
@@ -74,7 +87,7 @@ export class AddCityComponent {
         }
       });
     } else {
-      console.log('Form is invalid');
+      this.modalOptions.openSm(this.myModal);
     }
   }
 
@@ -82,12 +95,15 @@ export class AddCityComponent {
     this.regionService.addRegion(regionDTO).subscribe({
       next: (response) => {
         console.log(response);
-        const role = localStorage.getItem('userRole');
 
-        if (role == 'Employee') {
-          this.router.navigate(['/employee/cities']);
-        } else if (role == 'Admin') {
-          this.router.navigate(['/admin/cities']);
+        if (response.status == 200) {
+          const role = localStorage.getItem('userRole');
+
+          if (role == 'Employee') {
+            this.router.navigate(['/employee/cities']);
+          } else if (role == 'Admin') {
+            this.router.navigate(['/admin/cities']);
+          }
         }
       },
       error: (error) => {
@@ -98,15 +114,16 @@ export class AddCityComponent {
   }
 
   editCity(id: any, regionDTO: IRegionDTO) {
-    console.log(id);
     this.regionService.editRegion(id, regionDTO).subscribe({
       next: (response) => {
-        const role = localStorage.getItem('userRole');
+        if (response.status == 200) {
+          const role = localStorage.getItem('userRole');
 
-        if (role == 'Employee') {
-          this.router.navigate(['/employee/cities']);
-        } else if (role == 'Admin') {
-          this.router.navigate(['/admin/cities']);
+          if (role == 'Employee') {
+            this.router.navigate(['/employee/cities']);
+          } else if (role == 'Admin') {
+            this.router.navigate(['/admin/cities']);
+          }
         }
       },
       error: (error) => {

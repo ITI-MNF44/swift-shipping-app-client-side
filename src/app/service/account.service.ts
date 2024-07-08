@@ -51,7 +51,7 @@ export class AccountService {
 
   logOut(): Observable<any> {
     return this.http
-      .post(`${this.apiUrl}/LogOut`, {})
+      .post(`${this.apiUrl}/account/LogOut`,null)
       .pipe(catchError(this.handleError<any>('logOut')));
   }
 

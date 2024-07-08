@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegionService } from '@service/region.service';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
@@ -11,6 +12,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { Table, TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { IRegionGetDTO } from 'src/app/Interface/IRegionGetDTO';
+import { NgbdModalConfirm } from '../../shared/modal-confirmation/modal-foucs.component';
 
 @Component({
   selector: 'app-cities',
@@ -22,7 +24,7 @@ import { IRegionGetDTO } from 'src/app/Interface/IRegionGetDTO';
     CommonModule,
     InputTextModule,
     TagModule,
-    MultiSelectModule, // Add MultiSelectModule here
+    MultiSelectModule,
     DropdownModule,
     ButtonModule,
     RouterLink,
@@ -36,15 +38,36 @@ export class CitiesComponent implements OnInit {
 
   cities: IRegionGetDTO[] = [];
 
+  private modalService = inject(NgbModal);
   constructor(private regionService: RegionService) {}
 
   ngOnInit(): void {
     this.loading = false;
 
+    this.getAllCities();
+  }
+
+  open(id: number) {
+    const modalRef = this.modalService.open(NgbdModalConfirm);
+    modalRef.result.then(
+      (result) => {
+        if (result === 'Ok click') {
+          console.log('User confirmed');
+          this.deleteRegion(id);
+        }
+      },
+      (reason) => {
+        if (reason === 'cancel click') {
+          console.log('User canceled');
+        }
+      }
+    );
+  }
+
+  getAllCities() {
     this.regionService.getAllRegions().subscribe({
       next: (response) => {
         this.cities = response;
-        console.log('regions : ', this.cities);
       },
       error: (error) => {
         console.log(error);
@@ -56,7 +79,9 @@ export class CitiesComponent implements OnInit {
   deleteRegion(id: number) {
     this.regionService.deleteRegion(id).subscribe({
       next: (response) => {
-        console.log(response);
+        if (response.status == 200) {
+          this.getAllCities();
+        }
       },
       error: (error) => {
         console.log(error);

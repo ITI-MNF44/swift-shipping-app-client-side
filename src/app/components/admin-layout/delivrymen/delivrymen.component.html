@@ -15,7 +15,7 @@
       Add Delivery Man
     </button>
   </div>
-  <section class="section employees">
+  <section class="section deliverymen">
     <div class="card">
       <p-table
         #dt1
@@ -50,48 +50,43 @@
             <th>Username</th>
             <th>Phone Number</th>
             <th>Branch</th>
-            <th>Status</th>
+            <th>Regions</th>
             <th>Setting</th>
           </tr>
         </ng-template>
 
-        <ng-template pTemplate="body" let-employee>
+        <ng-template pTemplate="body" let-dedliveryman>
           <tr>
-            <td>{{ employee.name }}</td>
-            <td>{{ employee.address }}</td>
-            <td>{{ employee.email }}</td>
-            <td>{{ employee.userName }}</td>
-            <td>{{ employee.phoneNumber }}</td>
-            <td>{{ employee.branchName }}</td>
-            <td colspan="8">
+            <td>{{ dedliveryman.name }}</td>
+            <td>{{ dedliveryman.address }}</td>
+            <td>{{ dedliveryman.email }}</td>
+            <td>{{ dedliveryman.userName }}</td>
+            <td>{{ dedliveryman.phoneNumber }}</td>
+            <td>{{ dedliveryman.branchName }}</td>
+            <td>
               <p-multiSelect
-                [options]="groupedCities"
+                [options]="groupedRegions"
                 [group]="true"
-                [(ngModel)]="selectedCities"
-                placeholder="Select Cities"
+                [(ngModel)]="selectedRegions"
+                placeholder="Select Regions"
                 scrollHeight="250px"
                 display="chip"
               >
                 <ng-template let-group pTemplate="group">
                   <div class="flex align-items-center">
-                    <img
-                      src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
-                      [class]="'mr-2 flag flag-' + group.value"
-                      style="width: 20px;"
-                    />
                     <span>{{ group.label }}</span>
                   </div>
                 </ng-template>
               </p-multiSelect>
             </td>
-            <td colspan="4">
+            <td>
               <button
-                class="bi-pencil-square btn btn-success"
-                [routerLink]="['/admin/deliveryman/edit', employee.id]"
+                class="bi-pencil-square btn btn-success px-2 py-1"
+                [routerLink]="['/admin/deliveryman/edit', dedliveryman.id]"
               ></button>
               <button
-                class="bi-trash-fill btn btn-danger"
-
+                class="bi-trash-fill btn btn-danger ms-2 px-2 py-1"
+                (click)="deleteDeliveryman(dedliveryman.id)"
               ></button>
             </td>
           </tr>
@@ -99,7 +94,7 @@
 
         <ng-template pTemplate="emptymessage">
           <tr>
-            <td colspan="8">No employees found.</td>
+            <td colspan="8">No delivermen found.</td>
           </tr>
         </ng-template>
       </p-table>
