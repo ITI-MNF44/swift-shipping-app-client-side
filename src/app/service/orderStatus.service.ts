@@ -17,7 +17,7 @@ export class OrderStatusService {
     const url = `${this.baseUrl}/OrderStatus/All`;
 
     return this.http
-      .get<{ [key: string]: string }>(`${url}/OrderStatus`)
+      .get<{ [key: string]: string }>(`${url}`)
       .pipe(
         catchError(
           this.handleError<{ [key: string]: string }>('getOrderStatuses')
