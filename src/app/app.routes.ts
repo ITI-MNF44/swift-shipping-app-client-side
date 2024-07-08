@@ -54,7 +54,7 @@ import { EditGovernmentComponent } from './components/admin-layout/edit-governme
 export const routes: Routes = [
   {
     path: 'admin',
-    // canActivate: [adminGaurdGuard],
+    canActivate: [adminGaurdGuard],
     component: AdminLayoutComponent,
     children: [
       { path: '', component: AdminLayoutComponent },
