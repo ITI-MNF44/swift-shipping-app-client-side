@@ -50,11 +50,12 @@ import { AcceptordersComponent } from './components/employee-layout/acceptorders
 
 import { sellerGaurdGuard } from './Gaurds/seller-gaurd.guard';
 import { HomePageComponent } from './components/shared/home-page/home-page.component';
+import { EditGovernmentComponent } from './components/admin-layout/edit-government/edit-government.component';
 
 export const routes: Routes = [
   {
     path: 'admin',
-    canActivate: [adminGaurdGuard],
+    // canActivate: [adminGaurdGuard],
     component: AdminLayoutComponent,
     children: [
       { path: '', component: AdminLayoutComponent },
@@ -92,6 +93,7 @@ export const routes: Routes = [
       { path: 'orders', component: DisplayOrdersComponent },
       { path: 'governments', component: GovernmentsComponent },
       { path: 'governments/add', component: AddGovernmentComponent },
+      { path: 'governments/edit/:governmentId', component: EditGovernmentComponent },
     ],
   },
   {
