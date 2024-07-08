@@ -7,6 +7,9 @@ import { SellersService } from '@service/seller.service';
 import { ISellerGetDTO } from 'src/app/Interface/ISellerGetDTO';
 import { IBranchGetDTO } from 'src/app/Interface/IBranchGetDTO';
 import { BranchService } from '@service/branch.service';
+import { RegionService } from '@service/region.service';
+import { IRegionGetDTO } from 'src/app/Interface/IRegionGetDTO';
+
 
 @Component({
     selector: 'app-seller-form',
@@ -21,19 +24,21 @@ export class SellerFormComponent implements OnInit, OnDestroy {
     private routeSubscriber: any;
     private subscriber: any;
     branches: IBranchGetDTO[] = [];
+    regions: IRegionGetDTO[] = [];
 
     constructor(
         private fb: FormBuilder,
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private sellersService: SellersService,
-        public branchService: BranchService
+        public branchService: BranchService, 
+        public regionService: RegionService
     ) {
         this.sellerForm = this.fb.group({
             name: ['', [Validators.required, Validators.minLength(2)]],
             userName: ['', [Validators.required, Validators.minLength(2)]],
             email: ['', [Validators.required, Validators.email]],
-            // password: ['', [Validators.required, Validators.minLength(8)]],
+            password: ['', [Validators.required, Validators.minLength(8)]],
             phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
             branchId: ['', Validators.required],
             regionId: ['', Validators.required],
@@ -41,7 +46,7 @@ export class SellerFormComponent implements OnInit, OnDestroy {
             address: ['', Validators.required],
             // pickupCost: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
             // companyShare: ['', [Validators.required, Validators.pattern('^[0-9]*$')]]
-        });
+        });          
     }
 
     get f() {
@@ -56,6 +61,7 @@ export class SellerFormComponent implements OnInit, OnDestroy {
             }
         });
         this.loadBranches();
+        this.loadRegions();
     }
 
     loadBranches(): void {
@@ -66,6 +72,17 @@ export class SellerFormComponent implements OnInit, OnDestroy {
             },
             (error) => {
                 console.error('Error fetching branches', error);
+            }
+        );
+    }
+    loadRegions(): void {
+        this.regionService.getAllRegions().subscribe(
+            (data: IRegionGetDTO[]) => {
+                this.regions = data;
+                console.log(this.regions);
+            },
+            (error) => {
+                console.error('Error fetching regions', error);
             }
         );
     }
