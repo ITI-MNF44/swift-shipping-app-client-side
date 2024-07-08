@@ -1,0 +1,6 @@
+input[type="checkbox"] {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+}

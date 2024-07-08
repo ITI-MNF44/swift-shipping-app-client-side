@@ -82,7 +82,13 @@ export class AddCityComponent {
     this.regionService.addRegion(regionDTO).subscribe({
       next: (response) => {
         console.log(response);
-        this.router.navigate(['/admin/cities']);
+        const role = localStorage.getItem('userRole');
+
+        if (role == 'Employee') {
+          this.router.navigate(['/employee/cities']);
+        } else if (role == 'Admin') {
+          this.router.navigate(['/admin/cities']);
+        }
       },
       error: (error) => {
         console.log(error);
@@ -95,8 +101,13 @@ export class AddCityComponent {
     console.log(id);
     this.regionService.editRegion(id, regionDTO).subscribe({
       next: (response) => {
-        console.log(response);
-        this.router.navigate(['/admin/cities']);
+        const role = localStorage.getItem('userRole');
+
+        if (role == 'Employee') {
+          this.router.navigate(['/employee/cities']);
+        } else if (role == 'Admin') {
+          this.router.navigate(['/admin/cities']);
+        }
       },
       error: (error) => {
         console.log(error);

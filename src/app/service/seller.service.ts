@@ -4,6 +4,8 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ILoginDTO } from '../Interface/ILoginDTO';
 import { environment } from 'src/environments/environment';
+import { ISellerGetDTO } from '../Interface/ISellerGetDTO';
+import { ISellerDTO } from '../Interface/ISellerDTO';
 
 @Injectable({
   providedIn: 'root',
@@ -21,26 +23,26 @@ export class SellersService {
       .pipe(catchError(this.handleError<any>('login')));
   }
 
-  addSeller(sellerDTO: any): Observable<any> {
+  addSeller(sellerDTO: ISellerDTO): Observable<ISellerDTO> {
     return this.http
-      .post<any>(`${this.apiUrl}/seller/Add`, sellerDTO)
-      .pipe(catchError(this.handleError<any>('addSeller')));
+      .post<ISellerDTO>(`${this.apiUrl}/seller/Add`, sellerDTO)
+      .pipe(catchError(this.handleError<ISellerDTO>('addSeller')));
   }
 
-  getSellerById(id: number): Observable<any> {
+  getSellerById(id: number): Observable<ISellerGetDTO> {
     const url = `${this.apiUrl}/seller/${id}`;
 
     return this.http
-      .get<any>(url)
-      .pipe(catchError(this.handleError<any>('getSellerById')));
+      .get<ISellerGetDTO>(url)
+      .pipe(catchError(this.handleError<ISellerGetDTO>('getSellerById')));
   }
 
-  getAllSellers(): Observable<any[]> {
+  getAllSellers(): Observable<ISellerGetDTO[]> {
     const url = `${this.apiUrl}/seller/All`;
 
     return this.http
-      .get<any[]>(url)
-      .pipe(catchError(this.handleError<any[]>('getAllSellers', [])));
+      .get<ISellerGetDTO[]>(url)
+      .pipe(catchError(this.handleError<ISellerGetDTO[]>('getAllSellers', [])));
   }
 
   getSellerOrders(id: number): Observable<any[]> {
@@ -51,12 +53,12 @@ export class SellersService {
       .pipe(catchError(this.handleError<any[]>('getSellerOrders', [])));
   }
 
-  editSeller(id: number, sellerDTO: any): Observable<any> {
+  editSeller(id: number, sellerDTO: ISellerDTO): Observable<ISellerDTO> {
     const url = `${this.apiUrl}/seller/Edit/${id}`;
 
     return this.http
-      .put<any>(url, sellerDTO)
-      .pipe(catchError(this.handleError<any>('editSeller')));
+      .put<ISellerDTO>(url, sellerDTO)
+      .pipe(catchError(this.handleError<ISellerDTO>('editSeller')));
   }
 
   deleteSeller(id: number): Observable<any> {
