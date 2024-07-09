@@ -26,9 +26,9 @@ export class DeliveryManService {
 
 
   // POST: /api/DeliveryMan/Register
-  registerDeliveryMan(deliveryManDTO: IDeliveryManDTO): Observable<IDeliveryManDTO> {
+  registerDeliveryMan(deliveryManDTO: any): Observable<any> {
     return this.http
-      .post<IDeliveryManDTO>(`${this.apiUrl}/DeliveryMan/Add`, deliveryManDTO)
+      .post<any>(`${this.apiUrl}/DeliveryMan/Add`, deliveryManDTO)
       .pipe(catchError(this.handleError));
   }
 

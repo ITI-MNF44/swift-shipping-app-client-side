@@ -50,7 +50,7 @@ export class DeliverymenComponent implements OnInit {
     this.branchService.getAllBranches().subscribe(
       (data: IBranchGetDTO[]) => {
         this.branches = data;
-        console.log(this.branches);
+        // console.log(this.branches);
       },
       (error) => {
         console.error('Error fetching branches', error);
