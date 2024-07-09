@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -12,6 +12,7 @@ import { AccountService } from '@service/account.service';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { PasswordModule } from 'primeng/password';
+import { NgbdModalOptions } from '../small-modal/small-modal.component';
 
 @Component({
   selector: 'app-user-login',
@@ -28,6 +29,9 @@ import { PasswordModule } from 'primeng/password';
   styleUrl: './user-login.component.css',
 })
 export class UserLoginComponent {
+  private modalOptions: NgbdModalOptions = new NgbdModalOptions();
+  @ViewChild('content', { static: true }) myModal!: TemplateRef<any>;
+
   value!: string;
   loginForm: FormGroup;
   emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -49,6 +53,7 @@ export class UserLoginComponent {
   get password() {
     return this.loginForm.controls['password'].value;
   }
+
   onSubmit() {
     if (this.loginForm.valid) {
       if (this.emailRegex.test(this.userName)) {
@@ -61,16 +66,25 @@ export class UserLoginComponent {
           })
           .subscribe({
             next: (data) => {
-              localStorage.setItem('userId', data.id.toString());
-              localStorage.setItem('userRole', data.role);
-              localStorage.setItem('userToken', data.token);
-              if (data.role == 'Employee') {
-                this.router.navigate(['/employee']);
-              } else if (data.role == 'DeliveryMan') {
-                this.router.navigate(['/deliveryman']);
-              } else if (data.role == 'Seller') {
-                this.router.navigate(['/seller']);
+              if (data != undefined) {
+                localStorage.setItem('userId', data.id.toString());
+                localStorage.setItem('userRole', data.role);
+                localStorage.setItem('userToken', data.token);
+
+                if (data.role == 'Employee') {
+                  this.router.navigate(['/employee']);
+                } else if (data.role == 'DeliveryMan') {
+                  this.router.navigate(['/deliveryman']);
+                } else if (data.role == 'Seller') {
+                  this.router.navigate(['/seller']);
+                }
+              } else {
+                this.modalOptions.openSm(this.myModal);
               }
+            },
+            error: (error) => {
+              console.log(error);
+              this.modalOptions.openSm(this.myModal);
             },
           });
       } else {
@@ -91,13 +105,18 @@ export class UserLoginComponent {
                   this.router.navigate(['/seller']);
                 }
               } else {
+                this.modalOptions.openSm(this.myModal);
               }
             },
             error: (error) => {
               console.log(error);
+              this.modalOptions.openSm(this.myModal);
             },
           });
       }
+    } else {
+      console.log(this.loginForm);
+      this.modalOptions.openSm(this.myModal);
     }
   }
 }
