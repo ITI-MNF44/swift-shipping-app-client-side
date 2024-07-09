@@ -18,8 +18,6 @@ import { IGovernmentWithRegionsDTO } from 'src/app/Interface/IGovernmentWithRegi
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IDeliveryManDTO } from 'src/app/Interface/IDeliveryManDTO';
 
-
-
 @Component({
   selector: 'app-deliveryman-form',
   standalone: true,
@@ -41,11 +39,7 @@ export class DeliverymanFormComponent implements OnInit, OnDestroy {
   searchValue: string | undefined;
   governments: IGovernmentWithRegionsDTO[] = [];
   groupedRegions: SelectItemGroup[] = [];
-  selectedRegions: any[] = [];
-
-
-  // deliverymen: IDeliveryManGetDTO[] = [];
-  // deliveryman: IDeliveryManGetDTO | undefined;
+  selectedRegions: number[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -67,10 +61,6 @@ export class DeliverymanFormComponent implements OnInit, OnDestroy {
       branchId: [null, Validators.required],
       address: ['', Validators.required],
       selectedRegions: [[], Validators.required],
-      // governments: ['', Validators.required],
-
-      // discountPercentage: ['', Validators.required],
-      // companyShare: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
     });
 
     this.loadBranches();
@@ -84,12 +74,13 @@ export class DeliverymanFormComponent implements OnInit, OnDestroy {
             .getDeliveryManById(this.deliverymanId)
             .subscribe({
               next: (data) => {
-                console.log(data);
                 this.deliveryman = data;
                 this.deliverymanForm.patchValue({
                   ...this.deliveryman,
                   branchId: data.branchId,
+                  selectedRegions: data.selectedRegions || [],
                 });
+                this.selectedRegions = this.deliverymanForm.controls['selectedRegions'].value;
               },
               error: (error) => {
                 console.log(error);
@@ -104,7 +95,6 @@ export class DeliverymanFormComponent implements OnInit, OnDestroy {
     this.branchService.getAllBranches().subscribe(
       (data: IBranchGetDTO[]) => {
         this.branches = data;
-        console.log(this.branches);
       },
       (error) => {
         console.error('Error fetching branches', error);
@@ -142,6 +132,8 @@ export class DeliverymanFormComponent implements OnInit, OnDestroy {
 
   deliverymanHandler() {
     if (this.deliverymanForm.valid) {
+      console.log('Selected Regions:', this.selectedRegions);
+
       let deliverymanData: IDeliveryManDTO = {
         name: this.deliverymanForm.controls['name'].value,
         address: this.deliverymanForm.controls['address'].value,
@@ -151,13 +143,13 @@ export class DeliverymanFormComponent implements OnInit, OnDestroy {
         phoneNumber: this.deliverymanForm.controls['phoneNumber'].value,
         branchId: this.deliverymanForm.controls['branchId'].value,
       }
+
       if (this.deliverymanId == '0') {
         this.deliverymanService
           .registerDeliveryMan(deliverymanData)
           .subscribe({
             next: (response) => {
               this.assignRegions(response.deliverymanId);
-
               this.router.navigate(['admin/deliverymen']);
             },
             error: (error) => {
@@ -184,12 +176,13 @@ export class DeliverymanFormComponent implements OnInit, OnDestroy {
 
   assignRegions(deliveryManId: number) {
     if (this.selectedRegions.length > 0) {
-      console.log(deliveryManId, this.selectedRegions);
-      this.deliverymanService.assignRegions(deliveryManId, this.selectedRegions)
+      this.deliverymanService.assignRegions({
+        DeliveryManId: deliveryManId,
+        RegionIds: this.selectedRegions
+      })
         .subscribe({
           next: (response) => {
             console.log('Regions assigned successfully');
-            console.log(this.selectedRegions);
           },
           error: (error) => {
             console.error('Error assigning regions', error);
