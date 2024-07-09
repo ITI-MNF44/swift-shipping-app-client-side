@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -12,6 +12,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { AccountService } from '@service/account.service';
 import { Router } from '@angular/router';
+import { NgbdModalOptions } from '../../shared/small-modal/small-modal.component';
 
 @Component({
   selector: 'app-admin-login',
@@ -28,6 +29,9 @@ import { Router } from '@angular/router';
   styleUrl: './admin-login.component.css',
 })
 export class AdminLoginComponent {
+  private modalOptions: NgbdModalOptions = new NgbdModalOptions();
+  @ViewChild('content', { static: true }) myModal!: TemplateRef<any>;
+
   emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   value!: string;
   loginForm: FormGroup;
@@ -59,13 +63,22 @@ export class AdminLoginComponent {
         .loginWithUserName({ ...this.loginForm.value, rememberMe: true })
         .subscribe({
           next: (data) => {
-            localStorage.setItem('userId', data.id.toString());
-            localStorage.setItem('userRole', data.role);
-            localStorage.setItem('userToken', data.token);
+            if (data != undefined) {
+              localStorage.setItem('userId', data.id.toString());
+              localStorage.setItem('userRole', data.role);
+              localStorage.setItem('userToken', data.token);
 
-            this.router.navigate(['/admin']);
+              this.router.navigate(['/admin']);
+            } else {
+              this.modalOptions.openSm(this.myModal);
+            }
+          },
+          error: (error) => {
+            this.modalOptions.openSm(this.myModal);
           },
         });
+    } else {
+      this.modalOptions.openSm(this.myModal);
     }
   }
 }

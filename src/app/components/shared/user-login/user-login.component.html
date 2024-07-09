@@ -45,3 +45,16 @@
     </div>
   </div>
 </section>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">InValid Data</h4>
+    <a  class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></a>
+  </div>
+  <div class="modal-body">
+    <p>Please Enter Valid Username or Email And Password &hellip;</p>
+  </div>
+  <div class="modal-footer">
+    <a class="btn btn-secondary" (click)="modal.close('Close click')">Close</a>
+  </div>
+</ng-template>
