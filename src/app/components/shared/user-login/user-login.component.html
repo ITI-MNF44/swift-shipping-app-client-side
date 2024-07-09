@@ -3,11 +3,7 @@
     <div class="p-col-12 p-md-4">
       <div class="card">
         <div class="text-center">
-          <img
-            class="login-logo shadow-sm rounded-circle"
-            src="../../../../assets/images/logo.png"
-            alt=""
-          />
+            <app-logo-icon class="d-flex justify-content-center mb-4"></app-logo-icon>
           <h4 class="mb-5">Login</h4>
         </div>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">

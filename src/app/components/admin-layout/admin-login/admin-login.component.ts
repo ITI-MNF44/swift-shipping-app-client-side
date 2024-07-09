@@ -13,6 +13,7 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { AccountService } from '@service/account.service';
 import { Router } from '@angular/router';
 import { NgbdModalOptions } from '../../shared/small-modal/small-modal.component';
+import { LogoIconComponent } from '../../../components/shared/logo-icon/logo-icon.component';
 
 @Component({
   selector: 'app-admin-login',
@@ -24,6 +25,7 @@ import { NgbdModalOptions } from '../../shared/small-modal/small-modal.component
     PasswordModule,
     FloatLabelModule,
     InputGroupModule,
+    LogoIconComponent,
   ],
   templateUrl: './admin-login.component.html',
   styleUrl: './admin-login.component.css',
