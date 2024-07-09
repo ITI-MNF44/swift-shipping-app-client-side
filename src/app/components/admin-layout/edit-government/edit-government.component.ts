@@ -21,7 +21,6 @@ export class EditGovernmentComponent implements OnInit{
   editGovernmentForm = new FormGroup({
     governmentname: new FormControl('', [Validators.required]),
     isActive: new FormControl(false),
-    isDeleted: new FormControl(false)
   });
 
   constructor(
@@ -41,9 +40,7 @@ export class EditGovernmentComponent implements OnInit{
 
          // Initialize the form after Government data is available
         this.editGovernmentForm.controls.isActive.setValue(data.isActive)
-        this.editGovernmentForm.controls.isDeleted.setValue(data.isDeleted)
         this.editGovernmentForm.controls.governmentname.setValue(data.name)
-
        },
      error:(error)=>{console.log(error)}  
     });
@@ -55,7 +52,7 @@ export class EditGovernmentComponent implements OnInit{
       let governmentDTO: IGovernmentDTO = {
         isActive: this.editGovernmentForm.controls.isActive.value!,
         name: this.editGovernmentForm.controls.governmentname.value!,
-        isDeleted: this.editGovernmentForm.controls.isDeleted.value!,
+        isDeleted: false,
       }
       this.GovernmentService.editGovernment(this.governrmntId, governmentDTO).subscribe({
         next: (data)=>{console.log(data); this.router.navigate(['admin/governments'])},

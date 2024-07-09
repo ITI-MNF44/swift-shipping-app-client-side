@@ -16,7 +16,7 @@
           <td>{{ governemnt.name }}</td>
           <td>
             <label class="switch">
-              <input type="checkbox" [checked]="governemnt.isActive" (change)="onToggleStatus(governemnt)" />
+              <input type="checkbox" [checked]="governemnt.isActive" [readOnly]="true" disabled/>
               <span class="slider round"></span>
             </label>
           </td>
