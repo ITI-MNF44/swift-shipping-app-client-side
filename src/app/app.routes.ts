@@ -39,6 +39,8 @@ import { AcceptordersComponent } from './components/employee-layout/acceptorders
 import { sellerGaurdGuard } from './Gaurds/seller-gaurd.guard';
 import { HomePageComponent } from './components/shared/home-page/home-page.component';
 import { EditGovernmentComponent } from './components/admin-layout/edit-government/edit-government.component';
+import { CitiesEmployeeComponent } from './components/employee-layout/cities/cities.component';
+import { GovernmentsEmployeeComponent } from './components/employee-layout/governments/governments.component';
 
 export const routes: Routes = [
   {
@@ -98,11 +100,11 @@ export const routes: Routes = [
       { path: 'branches/add', component: BranchFormComponent },
       { path: 'branches/:id/edit', component: BranchFormComponent },
 
-      { path: 'cities', component: CitiesComponent },
+      { path: 'cities', component: CitiesEmployeeComponent },
       { path: 'cities/:id/edit', component: AddCityComponent },
       { path: 'cities/0/add', component: AddCityComponent },
 
-      { path: 'governments', component: GovernmentsComponent },
+      { path: 'governments', component: GovernmentsEmployeeComponent },
       { path: 'governments/add', component: AddGovernmentComponent },
       {
         path: 'governments/edit/:governmentId',

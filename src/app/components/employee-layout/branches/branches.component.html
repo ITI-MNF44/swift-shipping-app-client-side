@@ -26,29 +26,39 @@
           <td>{{ branch.id }}</td>
           <td>{{ branch.name }}</td>
           <td>
-            <i
+            <button
+              class="icon-btn"
+              [disabled]="!rolePermissions?.edit"
               class=" fs-1 bi bi-toggle-{{
                 branch.isActive ? 'on text-success' : 'off text-muted'
               }}"
-            ></i>
+            ></button>
           </td>
           <td>{{ branch.creationDate | date : "yyyy-MM-dd" }}</td>
           <td>
-            @if(rolePermissions?.edit){
-            <a routerLink="/admin/branches/{{ branch.id }}/edit" title="Edit">
+            <button
+              class="icon-btn"
+              [disabled]="!rolePermissions?.edit"
+              routerLink="/admin/branches/{{ branch.id }}/edit"
+              title="Edit"
+            >
               <i
                 class="bi bi-pencil-square text-success m-1"
                 style="font-size: 1.5rem"
               ></i>
-            </a>
-            } @if (rolePermissions?.delete) {
-            <a title="Delete" (click)="deleteBranch(branch.id)">
+            </button>
+
+            <button
+              class="icon-btn"
+              [disabled]="!rolePermissions?.delete"
+              title="Delete"
+              (click)="deleteBranch(branch.id)"
+            >
               <i
                 class="bi bi-trash text-danger m-1 icon-rounded"
                 style="font-size: 1.5rem"
               ></i>
-            </a>
-            }
+            </button>
           </td>
         </tr>
       </tbody>

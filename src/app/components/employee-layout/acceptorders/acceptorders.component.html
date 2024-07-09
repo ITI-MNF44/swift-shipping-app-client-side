@@ -1,67 +1,62 @@
 <main id="main" class="main">
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Order Date</th>
-            <th>Customer Data</th>
-            <th>Government</th>
-            <th>Address</th>
-            <th>Weight</th>
-            <th>Cost</th>
-            <th>Region</th>
-            <th>Payment</th>
-            <th>Notes</th>
-            <th>Assign Delivery Man</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!--Loop through Orders-->
-          <tr *ngFor="let order of NewOrders">
-            <td>{{ order.id }}</td>
-            <td>{{ order.creationDate | date }}</td>
-            <td>{{ order.customerName }}<br />{{ order.customerPhone }}</td>
-            <td>{{ order.government }}</td>
-            <td>{{ order.address }}</td>
-            <td>{{ order.weight }} KG</td>
-            <td>{{ order.orderPrice }} EGP</td>
-            <td>{{ order.region }}</td>
-            <td>{{order.paymentType}}</td>
-            <td>{{order.note}}</td>
-            <td>
-              <select
-                id="deliveryId"
-                class="form-control"
-                [(ngModel)]="order.deliveryId"
-                (change)="assignDeliveryMan(order.id, order.deliveryId)"
-              >
-                <option value="" selected disabled>Select Delivery Man</option>
-                <option *ngFor="let dman of deliveryMans" [value]="dman.id">
-                  {{ dman.name }}
-                </option>
-              </select>
-            </td>
-            <td>
-              <button
-                class="btn btn-success m-1"
-                [disabled]="!order.deliveryId"
-                (click)="acceptOrder(order.id)"
-              >
-                Accept
-              </button>
-              <button
-                class="btn btn-danger m-1"
-                [disabled]="!order.deliveryId"
-                (click)="rejectOrder(order.id)"
-              >
-                Reject
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </main>
-  
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Order Date</th>
+          <th>Customer Data</th>
+          <th>Government</th>
+          <th>Address</th>
+          <th>Weight</th>
+          <th>Cost</th>
+          <th>Region</th>
+          <th>Payment</th>
+          <th>Notes</th>
+          <th>Assign Delivery Man</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!--Loop through Orders-->
+        <tr *ngFor="let order of NewOrders">
+          <td>{{ order.id }}</td>
+          <td>{{ order.creationDate | date }}</td>
+          <td>{{ order.customerName }}<br />{{ order.customerPhone }}</td>
+          <td>{{ order.government }}</td>
+          <td>{{ order.address }}</td>
+          <td>{{ order.weight }} KG</td>
+          <td>{{ order.orderPrice }} EGP</td>
+          <td>{{ order.region }}</td>
+          <td>{{ order.paymentType }}</td>
+          <td>{{ order.note }}</td>
+          <td>
+            <select
+              id="deliveryId"
+              class="form-control"
+              [(ngModel)]="order.deliveryId"
+              (change)="assignDeliveryMan(order.id, order.deliveryId)"
+            >
+              <option value="" selected disabled>Select Delivery Man</option>
+              <option *ngFor="let dman of deliveryMans" [value]="dman.id">
+                {{ dman.name }}
+              </option>
+            </select>
+          </td>
+          <td>
+            <button
+              class="btn btn-success m-1"
+              [disabled]="!order.deliveryId"
+              (click)="acceptOrder(order.id)"
+            >
+              Accept
+            </button>
+            <button class="btn btn-danger m-1" (click)="rejectOrder(order.id)">
+              Reject
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
