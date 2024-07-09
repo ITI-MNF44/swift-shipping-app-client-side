@@ -96,6 +96,15 @@ export class DeliveryManService {
       .pipe(catchError(this.handleError));
   }
 
+  assignRegions(deliveryManId: number, regionIds: number[]): Observable<any> {
+    const payload = {
+      deliveryManId,
+      regionIds
+    };
+    return this.http.post(`${this.apiUrl}/DeliveryMan/AssignRegions`, payload)
+      .pipe(catchError(this.handleError));
+  }
+
   // GET: /api/DeliveryMan/Count?status={status}&delivaryId={delivaryId}
   getOrderStatusCount(status: string, delivaryId: number): Observable<any> {
     return this.http

@@ -121,11 +121,11 @@
   background-color: #fff;
 }
 
-/* @media (max-width: 1199px) {
+@media (max-width: 1199px) {
   .sidebar {
     left: -260px;
   }
-} */
+}
 
 .sidebar::-webkit-scrollbar {
   width: 5px;
