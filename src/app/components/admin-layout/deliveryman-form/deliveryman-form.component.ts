@@ -66,8 +66,12 @@ export class DeliverymanFormComponent implements OnInit, OnDestroy {
             .getDeliveryManById(this.deliverymanId)
             .subscribe({
               next: (data) => {
+                console.log(data);
                 this.deliveryman = data;
-                this.deliverymanForm.patchValue(this.deliveryman);
+                this.deliverymanForm.patchValue({
+                  ...this.deliveryman,
+                  branchId: data.branchId,
+                });
               },
               error: (error) => {
                 console.log(error);

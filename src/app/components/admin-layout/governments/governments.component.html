@@ -15,11 +15,10 @@
           <td>{{ governemnt.id }}</td>
           <td>{{ governemnt.name }}</td>
           <td>
-            <i
-              class=" fs-1 bi bi-toggle-{{
-                governemnt.isActive ? 'on text-success' : 'off text-muted'
-              }}"
-            ></i>
+            <label class="switch">
+              <input type="checkbox" [checked]="governemnt.isActive" (change)="onToggleStatus(governemnt)" />
+              <span class="slider round"></span>
+            </label>
           </td>
           <td>
             <a (click)="editGovernment(governemnt.id)">
