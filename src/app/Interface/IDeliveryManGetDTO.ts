@@ -6,5 +6,7 @@ export interface IDeliveryManGetDTO {
   userName: string;
   phoneNumber: string;
   branchName: string;
+  regionName: string;
+  // regionNames: string[];
   branchId: number;
 }

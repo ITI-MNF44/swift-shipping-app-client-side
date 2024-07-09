@@ -48,9 +48,8 @@
             <th>Address</th>
             <th>Email</th>
             <th>Username</th>
-            <th>Phone Number</th>
+            <th>Phone No.</th>
             <th>Branch</th>
-            <th>Regions</th>
             <th>Setting</th>
           </tr>
         </ng-template>
@@ -63,22 +62,6 @@
             <td>{{ dedliveryman.userName }}</td>
             <td>{{ dedliveryman.phoneNumber }}</td>
             <td>{{ dedliveryman.branchName }}</td>
-            <td>
-              <p-multiSelect
-                [options]="groupedRegions"
-                [group]="true"
-                [(ngModel)]="selectedRegions"
-                placeholder="Select Regions"
-                scrollHeight="250px"
-                display="chip"
-              >
-                <ng-template let-group pTemplate="group">
-                  <div class="flex align-items-center">
-                    <span>{{ group.label }}</span>
-                  </div>
-                </ng-template>
-              </p-multiSelect>
-            </td>
             <td>
               <button
                 class="bi-pencil-square btn btn-success px-2 py-1"

@@ -1,0 +1,16 @@
+.multi-select {
+  width: 900px;
+  width: 100%;
+}
+ul {
+  width: 300px !important;
+}
+.p-multiselect-label {
+  width: 300px;
+}
+.p-multiselect-header {
+  width: 300px;
+}
+.p-multiselect-trigger {
+  margin-left: 300px;
+}
