@@ -26,11 +26,10 @@
           <td>{{ branch.id }}</td>
           <td>{{ branch.name }}</td>
           <td>
-            <i
-              class=" fs-1 bi bi-toggle-{{
-                branch.isActive ? 'on text-success' : 'off text-muted'
-              }}"
-            ></i>
+            <label class="switch">
+              <input type="checkbox" [checked]="branch.isActive" (change)="onToggleStatus(branch)" />
+              <span class="slider round"></span>
+            </label>
           </td>
           <td>{{ branch.creationDate | date : "yyyy-MM-dd" }}</td>
           <td>
