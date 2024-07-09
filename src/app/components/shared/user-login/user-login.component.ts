@@ -13,6 +13,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { PasswordModule } from 'primeng/password';
 import { NgbdModalOptions } from '../small-modal/small-modal.component';
+import { LogoIconComponent } from '../logo-icon/logo-icon.component';
 
 @Component({
   selector: 'app-user-login',
@@ -24,6 +25,7 @@ import { NgbdModalOptions } from '../small-modal/small-modal.component';
     PasswordModule,
     FloatLabelModule,
     InputGroupModule,
+    LogoIconComponent
   ],
   templateUrl: './user-login.component.html',
   styleUrl: './user-login.component.css',
