@@ -1,3 +1,4 @@
+import { Component } from '@angular/core';
 import { BranchesEmployeeComponent } from './components/employee-layout/branches/branches.component';
 import { SellerOrdersByStatusComponent } from './components/seller-layout/seller-orders/seller-orders.component';
 import { Routes } from '@angular/router';
@@ -122,10 +123,7 @@ export const routes: Routes = [
       { path: '', component: SellerDashboardComponent },
       { path: 'home', component: SellerDashboardComponent },
       { path: 'order/:id/add', component: SellerAddOrderComponent },
-      {
-        path: 'orders/:statusId',
-        component: SellerOrdersByStatusComponent,
-      },
+      { path: 'orders/:statusId', component: SellerOrdersByStatusComponent },
     ],
   },
 

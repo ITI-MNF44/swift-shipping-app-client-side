@@ -9,14 +9,16 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class BranchService {
-  private baseUrl : string = environment.apiUrl;
+  private baseUrl: string = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
   getAllBranches(): Observable<IBranchGetDTO[]> {
     return this.http
       .get<IBranchGetDTO[]>(`${this.baseUrl}/Branch/All`)
-      .pipe(catchError(this.handleError<IBranchGetDTO[]>('getAllBranches', [])));
+      .pipe(
+        catchError(this.handleError<IBranchGetDTO[]>('getAllBranches', []))
+      );
   }
 
   addBranch(branchDTO: IBranchDTO): Observable<string> {
@@ -41,6 +43,11 @@ export class BranchService {
     return this.http
       .delete<string>(`${this.baseUrl}/Branch/Delete/${id}`)
       .pipe(catchError(this.handleError<string>('deleteBranch')));
+  }
+
+  toggleActivityStatus(id: number): Observable<any> {
+    const url = `${this.baseUrl}/Branch/ToggleActivityStatus/${id}`;
+    return this.http.put(url, null);
   }
 
   // Error handler method

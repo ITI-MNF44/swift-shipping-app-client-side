@@ -26,9 +26,9 @@ export class DeliveryManService {
 
 
   // POST: /api/DeliveryMan/Register
-  registerDeliveryMan(deliveryManDTO: IDeliveryManDTO): Observable<IDeliveryManDTO> {
+  registerDeliveryMan(deliveryManDTO: any): Observable<any> {
     return this.http
-      .post<IDeliveryManDTO>(`${this.apiUrl}/DeliveryMan/Add`, deliveryManDTO)
+      .post<any>(`${this.apiUrl}/DeliveryMan/Add`, deliveryManDTO)
       .pipe(catchError(this.handleError));
   }
 
@@ -93,6 +93,15 @@ export class DeliveryManService {
   deleteDeliveryMan(id: number): Observable<any> {
     return this.http
       .delete<any>(`${this.apiUrl}/DeliveryMan/Delete/${id}`)
+      .pipe(catchError(this.handleError));
+  }
+
+  assignRegions(deliveryManId: number, regionIds: number[]): Observable<any> {
+    const payload = {
+      deliveryManId,
+      regionIds
+    };
+    return this.http.post(`${this.apiUrl}/DeliveryMan/AssignRegions`, payload)
       .pipe(catchError(this.handleError));
   }
 

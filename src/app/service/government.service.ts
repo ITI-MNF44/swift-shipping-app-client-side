@@ -10,7 +10,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class GovernmentService {
-
   private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
@@ -50,6 +49,11 @@ export class GovernmentService {
     return this.http
       .delete<any>(url)
       .pipe(catchError(this.handleError<any>('deleteGovernment')));
+  }
+
+  toggleActivityStatus(id: number): Observable<any> {
+    const url = `${this.baseUrl}/Government/ToggleActivityStatus/${id}`;
+    return this.http.put(url, null);
   }
 
   // Error handler method
