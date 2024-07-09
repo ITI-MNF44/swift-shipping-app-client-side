@@ -34,7 +34,7 @@ export class AdminSidebarComponent {
           localStorage.removeItem('userId');
           localStorage.removeItem('userRole');
           localStorage.removeItem('userToken');
-          this.router.navigate(['/admin/login']);
+          this.router.navigate(['']);
         }
       },
       error: () => {},

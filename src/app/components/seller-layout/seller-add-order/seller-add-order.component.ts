@@ -22,6 +22,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { IOrderCostDTO } from 'src/app/Interface/IOrderCostDTO';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import {Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 // import { ToastModule } from 'primeng/toast';
 // import {BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -247,34 +248,51 @@ export class SellerAddOrderComponent implements OnInit {
 
   addOrder() {
     if (this.orderForm.status == 'VALID') {
-      let orderDTO: IOrderDTO = {
-        customerName: String(this.customerName.value),
-        customerPhone: String(this.phone.value),
-        address: String(this.address.value),
-        orderType: Number(this.ordertype.value),
-        regionId: Number(this.region.value),
-        isShippedToVillage: Boolean(this.isShippedToVillage.value),
-        villageName: String(this.villageName.value),
-        weight: Number(this.totalWeight.value),
-        orderPrice: Number(this.orderCost.value),
-        note: this.note.value,
-        shippingType: Number(this.shippingType.value),
-        paymentType: Number(this.paymentType.value),
-        branchId: Number(this.branch.value),
-        sellerId: this.sellerId,
-      };
+      Swal.fire({
+        title: "Do you want to save the changes?",
+        showCancelButton: true,
+        confirmButtonText: "Save",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire("Saved!", "", "success");
+          let orderDTO: IOrderDTO = {
+            customerName: String(this.customerName.value),
+            customerPhone: String(this.phone.value),
+            address: String(this.address.value),
+            orderType: Number(this.ordertype.value),
+            regionId: Number(this.region.value),
+            isShippedToVillage: Boolean(this.isShippedToVillage.value),
+            villageName: String(this.villageName.value),
+            weight: Number(this.totalWeight.value),
+            orderPrice: Number(this.orderCost.value),
+            note: this.note.value,
+            shippingType: Number(this.shippingType.value),
+            paymentType: Number(this.paymentType.value),
+            branchId: Number(this.branch.value),
+            sellerId: this.sellerId,
+          };
 
-      this.OrderService.addOrder(orderDTO).subscribe({
-        next: (data) => {
-          console.log('order added successfully', data);
-          this.orderForm.reset();
-           this.router.navigate(['/seller/orders/','1']);
-        },
-        error: (error) => {
-          console.log(error);
-        },
+          this.OrderService.addOrder(orderDTO).subscribe({
+            next: (data) => {
+              console.log('order added successfully', data);
+              this.orderForm.reset();
+              this.router.navigate(['/seller/orders/','1']);
+            },
+            error: (error) => {
+              console.log(error);
+            },
+          });
+          console.log(orderDTO);
+        } 
       });
-      console.log(orderDTO);
+  
+    }else{
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "complete required data",
+        
+      });
     }
   }
   //-------------------------------------------

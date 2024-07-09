@@ -1,3 +1,4 @@
+import { Component } from '@angular/core';
 import { SellerOrdersByStatusComponent } from './components/seller-layout/seller-orders/seller-orders.component';
 import { Routes } from '@angular/router';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
@@ -131,10 +132,7 @@ export const routes: Routes = [
       { path: '', component: SellerDashboardComponent },
       { path: 'home', component: SellerDashboardComponent },
       { path: 'order/:id/add', component: SellerAddOrderComponent },
-      {
-        path: 'orders/:statusId',
-        component: SellerOrdersByStatusComponent,
-      },
+      { path: 'orders/:statusId',component: SellerOrdersByStatusComponent,},
     ],
   },
 

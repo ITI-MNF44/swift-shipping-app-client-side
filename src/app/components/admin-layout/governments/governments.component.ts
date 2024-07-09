@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { IGovernmentGetDTO } from 'src/app/Interface/IGovernmentGetDTO';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-governments',
@@ -45,17 +46,57 @@ export class GovernmentsComponent implements OnInit {
   }
 
   deleteGovernemnt(governemntId: number) {
-    this.GovernmentService.deleteGovernment(governemntId).subscribe({
-      next: (data) => {
-        console.log(data);
-        this.governemnts = this.governemnts.filter((x) => x.id != governemntId);
-      },
-      error: (error) => {
-        console.log(console.log(error));
-      },
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // write your code
+        this.GovernmentService.deleteGovernment(governemntId).subscribe({
+          next: (data) => {
+            console.log(data);
+            this.governemnts = this.governemnts.filter(
+              (x) => x.id != governemntId
+            );
+            Swal.fire({
+              title: 'Deleted!',
+              text: 'government has been deleted.',
+              icon: 'success',
+            });
+          },
+          error: (error) => {
+            console.log(console.log(error));
+            Swal.fire({
+              title: 'The Error?',
+              text: 'That thing is still around?',
+              icon: 'question',
+            });
+          },
+        });
+      }
     });
   }
 
+  onToggleStatus(governemnt: IGovernmentGetDTO) {
+    this.GovernmentService.toggleActivityStatus(governemnt.id).subscribe({
+      next: () => {
+        governemnt.isActive = !governemnt.isActive;
+      },
+      error: () => {
+        this.GovernmentService.getById(governemnt.id).subscribe(
+          (updatedGovernemnt) => {
+            governemnt.isActive = updatedGovernemnt.isActive;
+          }
+        );
+      },
+      complete: () => {},
+    });
+  }
   editGovernment(id: number) {
     this.router.navigate([`${this.roleRouting}/governments/edit/${id}`]);
   }

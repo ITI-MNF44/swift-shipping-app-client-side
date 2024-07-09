@@ -23,16 +23,30 @@ export class BranchesComponent implements OnInit {
   branches: IBranchGetDTO[] = [];
 
   //CTOR
-  constructor(private branchService: BranchService, private route: Router,
+  constructor(
+    private branchService: BranchService,
+    private route: Router,
     private activatedroute: ActivatedRoute
   ) {}
 
-  ngOnInit(): void 
-  {
+  ngOnInit(): void {
     // Get all branches
-   this.getAllBranches();
+    this.getAllBranches();
   }
 
+  onToggleStatus(branch: IBranchGetDTO) {
+    this.branchService.toggleActivityStatus(branch.id).subscribe({
+      next: () => {
+        branch.isActive = !branch.isActive;
+      },
+      error: () => {
+        this.branchService.getById(branch.id).subscribe((updatedBranch) => {
+          branch.isActive = updatedBranch.isActive;
+        });
+      },
+      complete: () => {},
+    });
+  }
 
   getAllBranches(): void {
     this.branchService.getAllBranches().subscribe((branches) => {
@@ -40,24 +54,21 @@ export class BranchesComponent implements OnInit {
     });
   }
 
-
-
   //refresh the page
-  refreshPage(): void 
-  {
+  refreshPage(): void {
     this.getAllBranches();
   }
-  
 
   //Handle Delete
   deleteBranch(branchId: number): void {
-    const confirmDelete = confirm('Are you sure you want to delete this Branch?');
+    const confirmDelete = confirm(
+      'Are you sure you want to delete this Branch?'
+    );
     if (confirmDelete) {
       this.branchService.deleteBranch(branchId).subscribe(
         () => {
           //alert('Successfully Deleted');
           this.route.navigateByUrl('admin/branches');
-
         },
         (error) => {
           console.error('Error deleting branch:', error);
@@ -65,6 +76,4 @@ export class BranchesComponent implements OnInit {
       );
     }
   }
-
-
 }

@@ -8,4 +8,5 @@ export interface IDeliveryManGetDTO {
   branchName: string;
   regionName: string;
   // regionNames: string[];
+  branchId: number;
 }

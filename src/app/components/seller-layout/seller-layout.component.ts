@@ -9,7 +9,7 @@ import { SellerSidebarComponent } from "./seller-sidebar/seller-sidebar.componen
   styleUrl: './seller-layout.component.css',
   imports: [
     RouterOutlet,
-    SellerSidebarComponent
+    SellerSidebarComponent,
   ]
 })
 export class SellerLayoutComponent {}
