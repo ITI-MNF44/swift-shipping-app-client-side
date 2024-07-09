@@ -1,0 +1,104 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <nav>
+      <ol class="breadcrumb text-center">
+        <li class="breadcrumb-item">
+          <a [routerLink]="['/admin']"
+            ><i class="bi-house-fill text-dark"></i
+          ></a>
+        </li>
+        <li class="breadcrumb-item">Regions</li>
+      </ol>
+    </nav>
+  </div>
+  <section class="section employees">
+    <div class="card">
+      <p-table
+        #dt1
+        [value]="cities"
+        dataKey="id"
+        [rows]="10"
+        [rowsPerPageOptions]="[5, 10, 20]"
+        [loading]="loading"
+        [paginator]="true"
+        [globalFilterFields]="[
+          'name',
+          'pickupPrice',
+          'normalPrice',
+          'governmentName'
+        ]"
+      >
+        <ng-template pTemplate="caption">
+          <div class="flex">
+            <span class="p-input-icon-right ml-auto">
+              <i class="pi pi-search"></i>
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="searchValue"
+                (input)="dt1.filterGlobal(searchValue, 'contains')"
+                placeholder="Search keyword"
+              />
+            </span>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="min-width: fit-content">#</th>
+            <th style="min-width: 15rem">Name</th>
+            <th style="min-width: 10rem">Government Name</th>
+            <th style="min-width: 10rem">Pickup Price</th>
+            <th style="min-width: 10rem">Normal Price</th>
+            <th style="min-width: 10rem">Actions</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-city>
+          <tr class="text-center">
+            <td id="cityId{{ city.id }}">
+              {{ city.id }}
+            </td>
+            <td>
+              {{ city.name }}
+            </td>
+            <td>
+              {{ city.governmentName }}
+            </td>
+            <td>
+              {{ city.pickupPrice }}
+            </td>
+            <td>
+              {{ city.normalPrice }}
+            </td>
+            <td>
+              <a
+                [routerLink]="
+                  rolePermissions?.edit
+                    ? [city.id, 'edit']
+                    : ['/employee/cities']
+                "
+                class="bi bi-pencil-square mx-1 text-info"
+                [ngClass]="{ 'disabled-link': !rolePermissions?.delete }"
+                style="cursor: pointer"
+              ></a>
+
+              <button
+                [disabled]="!rolePermissions?.delete"
+                (click)="open(city.id)"
+                class="icon-btn bi bi-trash3-fill mx-1 text-danger"
+                style="cursor: pointer"
+              ></button>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="8">No Cities found.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,67 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <nav>
+      <ol class="breadcrumb text-center">
+        <li class="breadcrumb-item">
+          <a routerLink="/home"><i class="bi bi-house-fill text-dark"></i></a>
+        </li>
+        <li class="breadcrumb-item">Branches</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="table-responsive card p-2">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Creation Date</th>
+          <th>Settings</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Loop through branches data -->
+        <tr *ngFor="let branch of branches">
+          <td>{{ branch.id }}</td>
+          <td>{{ branch.name }}</td>
+          <td>
+            <button
+              class="icon-btn"
+              [disabled]="!rolePermissions?.edit"
+              class=" fs-1 bi bi-toggle-{{
+                branch.isActive ? 'on text-success' : 'off text-muted'
+              }}"
+            ></button>
+          </td>
+          <td>{{ branch.creationDate | date : "yyyy-MM-dd" }}</td>
+          <td>
+            <button
+              class="icon-btn"
+              [disabled]="!rolePermissions?.edit"
+              routerLink="/admin/branches/{{ branch.id }}/edit"
+              title="Edit"
+            >
+              <i
+                class="bi bi-pencil-square text-success m-1"
+                style="font-size: 1.5rem"
+              ></i>
+            </button>
+
+            <button
+              class="icon-btn"
+              [disabled]="!rolePermissions?.delete"
+              title="Delete"
+              (click)="deleteBranch(branch.id)"
+            >
+              <i
+                class="bi bi-trash text-danger m-1 icon-rounded"
+                style="font-size: 1.5rem"
+              ></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>

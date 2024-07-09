@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100..900&display=swap");
-@import "../node_modules/primeng/resources/themes/saga-blue/theme.css"; 
+@import "../node_modules/primeng/resources/themes/saga-blue/theme.css";
 @import "../node_modules/primeng/resources/primeng.min.css";
 @import "node_modules/bootstrap-icons/font/bootstrap-icons.css";
 @import "node_modules/primeicons/primeicons.css";
@@ -11,7 +11,7 @@
   --gray-600: #6c757d;
   --baby-blue: #b3c3dabb;
   --blue: #4154f1;
-  --light-blue:#063990;
+  --light-blue: #063990;
   --dark-blue: #0a1d62;
   --white: #fff;
   --gray: #f5f8f53d;
@@ -49,15 +49,19 @@ a {
   cursor: pointer;
 }
 
-button{
+button {
   cursor: pointer;
 }
 
-h1, h2, h3, h4, h5, h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 500;
   color: var(--dark-blue) !important;
 }
-
 
 /*------------------------
   # Main
@@ -143,7 +147,7 @@ body {
   background-color: rgba(255, 255, 255, 0.6);
 }
 
- .info-card h6 {
+.info-card h6 {
   font-size: 25px;
   color: var(--dark-blue);
   font-weight: 500;
@@ -151,7 +155,7 @@ body {
   padding: 0;
 }
 
- .card-icon {
+.card-icon {
   font-size: 22px;
   line-height: 0;
   width: 40px;
@@ -163,9 +167,9 @@ body {
 }
 
 /* -----------------------
-   Forms 
+   Forms
 ------------------------ */
-  
+
 label {
   display: block;
   margin-bottom: 0.5em;
@@ -226,8 +230,8 @@ input {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
@@ -238,8 +242,8 @@ input {
   left: 2px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
@@ -263,4 +267,20 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.disabled-link {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}
+
+.icon-btn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+button.icon-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed !important;
 }
