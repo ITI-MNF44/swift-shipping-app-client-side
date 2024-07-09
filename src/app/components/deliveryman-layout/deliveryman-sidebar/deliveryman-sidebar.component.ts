@@ -6,11 +6,12 @@ import { OrderStatusService } from '@service/orderStatus.service';
 import { DeliveryManService } from '@service/delivery-man.service';
 import { IOrderGetDTO } from 'src/app/Interface/IOrderGetDTO';
 import { AccountService } from '@service/account.service';
+import { LogoIconComponent } from '../../shared/logo-icon/logo-icon.component';
 
 @Component({
   selector: 'app-deliveryman-sidebar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, CommonModule],
+  imports: [RouterLink, RouterLinkActive, CommonModule, LogoIconComponent],
   templateUrl: './deliveryman-sidebar.component.html',
   styleUrl: './deliveryman-sidebar.component.css',
 })

@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AccountService } from '@service/account.service';
+import { LogoIconComponent } from '../../shared/logo-icon/logo-icon.component';
 
 @Component({
   selector: 'app-employee-sidebar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, CommonModule],
+  imports: [RouterLink, RouterLinkActive, CommonModule, LogoIconComponent],
   templateUrl: './employee-sidebar.component.html',
   styleUrl: './employee-sidebar.component.css',
 })
