@@ -26,7 +26,7 @@ export class EmployeeSidebarComponent {
         localStorage.removeItem('userId');
         localStorage.removeItem('userRole');
         localStorage.removeItem('userToken');
-        this.router.navigate(['/employee/login']);
+        this.router.navigate(['']);
       },
       error: () => {},
       complete: () => {},

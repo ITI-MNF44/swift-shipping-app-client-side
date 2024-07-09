@@ -21,7 +21,7 @@ export class SellerSidebarComponent {
         localStorage.removeItem('userId');
         localStorage.removeItem('userRole');
         localStorage.removeItem('userToken');
-        this.router.navigate(['/seller/login']);
+        this.router.navigate(['']);
       },
       error: () => {},
       complete: () => {},

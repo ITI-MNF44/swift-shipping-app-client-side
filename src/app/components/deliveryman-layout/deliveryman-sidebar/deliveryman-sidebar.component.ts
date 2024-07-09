@@ -84,7 +84,7 @@ export class DeliverymanSidebarComponent implements OnInit {
         localStorage.removeItem('userId');
         localStorage.removeItem('userRole');
         localStorage.removeItem('userToken');
-        this.router.navigate(['/deliveryman/login']);
+        this.router.navigate(['']);
       },
       error: () => {},
       complete: () => {},
