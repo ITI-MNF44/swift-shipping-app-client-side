@@ -5,12 +5,13 @@ import { catchError } from 'rxjs/operators';
 import { IRegionDTO } from '../Interface/IRegionDTO';
 import { IRegionGetDTO } from '../Interface/IRegionGetDTO';
 import { environment } from 'src/environments/environment';
+import { IGovernmentWithRegionsDTO } from '../Interface/IGovernmentWithRegionsDTO';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RegionService {
- private baseUrl = environment.apiUrl; // Adjust the base URL as necessary
+ private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -34,14 +35,14 @@ export class RegionService {
       .pipe(catchError(this.handleError<IRegionGetDTO>('getRegionById')));
   }
 
-  editRegion(id: number, regionDTO: IRegionDTO): Observable<string> {
+  editRegion(id: number, regionDTO: IRegionDTO): Observable<any> {
     const url = `${this.baseUrl}/region/Edit/${id}`;
     return this.http
       .put<string>(url, regionDTO)
       .pipe(catchError(this.handleError<string>('editRegion')));
   }
 
-  deleteRegion(id: number): Observable<string> {
+  deleteRegion(id: number): Observable<any> {
     const url = `${this.baseUrl}/region/Delete/${id}`;
     return this.http
       .delete<string>(url)
@@ -55,12 +56,16 @@ export class RegionService {
       .pipe(catchError(this.handleError<IRegionGetDTO[]>('calculateOrderCost')));
   }
 
+  // get all governments with their regions
+  getAllGovernmentsWithRegions(): Observable<IGovernmentWithRegionsDTO[]> {
+    return this.http.get<IGovernmentWithRegionsDTO[]>(`${this.baseUrl}/Government/GetAllGovernmentsWithRegions`)
+      .pipe(catchError(this.handleError<IGovernmentWithRegionsDTO[]>('getAllGovernmentsWithRegions', [])));
+  }
+
   // Error handler method
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
-      // You can log the error to remote logging infrastructure if needed
-      // Let the app keep running by returning an empty result
       return of(result as T);
     };
   }

@@ -48,7 +48,6 @@ import { GovernmentsComponent } from './components/admin-layout/governments/gove
 import { AddGovernmentComponent } from './components/admin-layout/add-government/add-government.component';
 import { AcceptordersComponent } from './components/employee-layout/acceptorders/acceptorders.component';
 
-
 import { sellerGaurdGuard } from './Gaurds/seller-gaurd.guard';
 import { HomePageComponent } from './components/shared/home-page/home-page.component';
 import { EditGovernmentComponent } from './components/admin-layout/edit-government/edit-government.component';
@@ -94,7 +93,10 @@ export const routes: Routes = [
       { path: 'orders', component: DisplayOrdersComponent },
       { path: 'governments', component: GovernmentsComponent },
       { path: 'governments/add', component: AddGovernmentComponent },
-      { path: 'governments/edit/:governmentId', component: EditGovernmentComponent },
+      {
+        path: 'governments/edit/:governmentId',
+        component: EditGovernmentComponent,
+      },
     ],
   },
   {
@@ -114,6 +116,10 @@ export const routes: Routes = [
 
       { path: 'governments', component: GovernmentsComponent },
       { path: 'governments/add', component: AddGovernmentComponent },
+      {
+        path: 'governments/edit/:governmentId',
+        component: EditGovernmentComponent,
+      },
       { path: 'order', component: DisplayOrdersComponent },
       { path: 'neworders', component: AcceptordersComponent },
     ],

@@ -11,8 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class GovernmentService {
 
-  private baseUrl = environment.apiUrl; // Adjust the base URL as necessary
-
+  private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -42,8 +41,8 @@ export class GovernmentService {
   ): Observable<string> {
     const url = `${this.baseUrl}/government/Edit/${id}`;
     return this.http
-      .put<string>(url, IGovernmentDTO)
-      .pipe(catchError(this.handleError<string>('editGovernment')));
+      .put<any>(url, IGovernmentDTO)
+      .pipe(catchError(this.handleError<any>('editGovernment')));
   }
 
   deleteGovernment(id: number): Observable<any> {
@@ -52,7 +51,7 @@ export class GovernmentService {
       .delete<any>(url)
       .pipe(catchError(this.handleError<any>('deleteGovernment')));
   }
-  
+
   // Error handler method
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

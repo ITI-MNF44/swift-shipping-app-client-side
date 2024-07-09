@@ -51,7 +51,6 @@ export class UserLoginComponent {
   }
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
       if (this.emailRegex.test(this.userName)) {
         console.log('email login called');
         this.accountService
@@ -75,22 +74,27 @@ export class UserLoginComponent {
             },
           });
       } else {
-        console.log('username login called');
-
         this.accountService
           .loginWithUserName({ ...this.loginForm.value, rememberMe: true })
           .subscribe({
             next: (data) => {
-              localStorage.setItem('userId', data.id.toString());
-              localStorage.setItem('userRole', data.role);
-              localStorage.setItem('userToken', data.token);
-              if (data.role == 'Employee') {
-                this.router.navigate(['/employee']);
-              } else if (data.role == 'DeliveryMan') {
-                this.router.navigate(['/deliveryman']);
-              } else if (data.role == 'Seller') {
-                this.router.navigate(['/seller']);
+              if (data != undefined) {
+                localStorage.setItem('userId', data.id.toString());
+                localStorage.setItem('userRole', data.role);
+                localStorage.setItem('userToken', data.token);
+
+                if (data.role == 'Employee') {
+                  this.router.navigate(['/employee']);
+                } else if (data.role == 'DeliveryMan') {
+                  this.router.navigate(['/deliveryman']);
+                } else if (data.role == 'Seller') {
+                  this.router.navigate(['/seller']);
+                }
+              } else {
               }
+            },
+            error: (error) => {
+              console.log(error);
             },
           });
       }
