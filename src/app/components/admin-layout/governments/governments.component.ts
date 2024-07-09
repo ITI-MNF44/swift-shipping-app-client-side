@@ -82,21 +82,7 @@ export class GovernmentsComponent implements OnInit {
     });
   }
 
-  onToggleStatus(governemnt: IGovernmentGetDTO) {
-    this.GovernmentService.toggleActivityStatus(governemnt.id).subscribe({
-      next: () => {
-        governemnt.isActive = !governemnt.isActive;
-      },
-      error: () => {
-        this.GovernmentService.getById(governemnt.id).subscribe(
-          (updatedGovernemnt) => {
-            governemnt.isActive = updatedGovernemnt.isActive;
-          }
-        );
-      },
-      complete: () => {},
-    });
-  }
+
   editGovernment(id: number) {
     this.router.navigate([`${this.roleRouting}/governments/edit/${id}`]);
   }
