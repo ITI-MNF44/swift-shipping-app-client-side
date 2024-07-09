@@ -10,8 +10,17 @@
   </div>
 
   <div class="search-bar">
-    <form class="search-form d-flex align-items-center" method="POST" action="#">
-      <input type="text" name="query" placeholder="Search" title="Enter search keyword" />
+    <form
+      class="search-form d-flex align-items-center"
+      method="POST"
+      action="#"
+    >
+      <input
+        type="text"
+        name="query"
+        placeholder="Search"
+        title="Enter search keyword"
+      />
       <button type="submit" title="Search"><i class="bi bi-search"></i></button>
     </form>
   </div>
@@ -29,7 +38,11 @@
 <!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
-<aside id="sidebar" class="sidebar" [ngClass]="{ 'toggle-sidebar': !isSidebarOpen }">
+<aside
+  id="sidebar"
+  class="sidebar"
+  [ngClass]="{ 'toggle-sidebar': !isSidebarOpen }"
+>
   <ul class="sidebar-nav" id="sidebar-nav">
     <li class="nav-item">
       <a class="nav-link" [routerLink]="['/employee']">
@@ -40,10 +53,19 @@
 
     <!-- orders -->
     <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#order-nav" data-bs-toggle="collapse">
-        <i class="bi bi-card-checklist"></i><span>Orders</span><i class="bi bi-chevron-down ms-auto"></i>
+      <a
+        class="nav-link collapsed"
+        data-bs-target="#order-nav"
+        data-bs-toggle="collapse"
+      >
+        <i class="bi bi-card-checklist"></i><span>Orders</span
+        ><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul id="order-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+      <ul
+        id="order-nav"
+        class="nav-content collapse"
+        data-bs-parent="#sidebar-nav"
+      >
         <li>
           <a [routerLink]="['/employee/order']">
             <i class="bi bi-circle"></i><span>All Orders</span>
@@ -60,17 +82,40 @@
 
     <!--Brnaches -->
     <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#branch-nav" data-bs-toggle="collapse">
-        <i class="bi bi-building"></i><span>Branches</span><i class="bi bi-chevron-down ms-auto"></i>
+      <a
+        class="nav-link collapsed"
+        data-bs-target="#branch-nav"
+        data-bs-toggle="collapse"
+      >
+        <i class="bi bi-building"></i><span>Branches</span
+        ><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul id="branch-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+      <ul
+        id="branch-nav"
+        class="nav-content collapse"
+        data-bs-parent="#sidebar-nav"
+      >
         <li>
-          <a [routerLink]="['/employee/branches']">
+          <a
+            [ngClass]="{ 'disabled-link': !BranchRolePermissions?.view }"
+            [routerLink]="
+              BranchRolePermissions?.view
+                ? ['/employee/branches']
+                : ['/employee']
+            "
+          >
             <i class="bi bi-circle"></i><span>All Branches</span>
           </a>
         </li>
         <li>
-          <a [routerLink]="['/employee/branches/add']">
+          <a
+            [ngClass]="{ 'disabled-link': !BranchRolePermissions?.add }"
+            [routerLink]="
+              BranchRolePermissions?.add
+                ? ['/employee/branches/add']
+                : ['/employee']
+            "
+          >
             <i class="bi bi-circle"></i><span>Add Branch</span>
           </a>
         </li>
@@ -79,17 +124,37 @@
 
     <!-- regions -->
     <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#region-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-filter-right"></i><span>Regions</span><i class="bi bi-chevron-down ms-auto"></i>
+      <a
+        class="nav-link collapsed"
+        data-bs-target="#region-nav"
+        data-bs-toggle="collapse"
+        href="#"
+      >
+        <i class="bi bi-filter-right"></i><span>Regions</span
+        ><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul id="region-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+      <ul
+        id="region-nav"
+        class="nav-content collapse"
+        data-bs-parent="#sidebar-nav"
+      >
         <li>
-          <a [routerLink]="['cities']">
+          <a
+            [ngClass]="{ 'disabled-link': !RegionRolePermissions?.view }"
+            [routerLink]="
+              RegionRolePermissions?.view ? ['cities'] : ['/employee']
+            "
+          >
             <i class="bi bi-circle"></i><span>All Regions</span>
           </a>
         </li>
         <li>
-          <a [routerLink]="['cities', 0, 'add']">
+          <a
+            [ngClass]="{ 'disabled-link': !RegionRolePermissions?.add }"
+            [routerLink]="
+              RegionRolePermissions?.add ? ['cities', 0, 'add'] : ['/employee']
+            "
+          >
             <i class="bi bi-circle"></i><span>Add Region</span>
           </a>
         </li>
@@ -98,17 +163,41 @@
 
     <!-- governments -->
     <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#government-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-filter-right"></i><span>Governments</span><i class="bi bi-chevron-down ms-auto"></i>
+      <a
+        class="nav-link collapsed"
+        data-bs-target="#government-nav"
+        data-bs-toggle="collapse"
+        href="#"
+      >
+        <i class="bi bi-filter-right"></i><span>Governments</span
+        ><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul id="government-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+      <ul
+        id="government-nav"
+        class="nav-content collapse"
+        data-bs-parent="#sidebar-nav"
+      >
         <li>
-          <a [routerLink]="['/employee/governments']">
+          <a
+            [ngClass]="{ 'disabled-link': !GovernmentRolePermissions?.view }"
+            [routerLink]="
+              GovernmentRolePermissions?.view
+                ? ['/employee/governments']
+                : ['/employee']
+            "
+          >
             <i class="bi bi-circle"></i><span>All Governments</span>
           </a>
         </li>
         <li>
-          <a [routerLink]="['/employee/governments/add']">
+          <a
+            [ngClass]="{ 'disabled-link': !GovernmentRolePermissions?.view }"
+            [routerLink]="
+              GovernmentRolePermissions?.add
+                ? ['/employee/governments/add']
+                : ['/employee']
+            "
+          >
             <i class="bi bi-circle"></i><span>Add Government</span>
           </a>
         </li>

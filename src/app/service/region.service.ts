@@ -11,7 +11,7 @@ import { IGovernmentWithRegionsDTO } from '../Interface/IGovernmentWithRegionsDT
   providedIn: 'root',
 })
 export class RegionService {
- private baseUrl = environment.apiUrl;
+  private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -52,14 +52,27 @@ export class RegionService {
   GetRegionsByGovernrmnt(governmentId: number): Observable<IRegionGetDTO[]> {
     const url = `${this.baseUrl}/Region/Government/${governmentId}`;
 
-    return this.http.get<IRegionGetDTO[]>(url)
-      .pipe(catchError(this.handleError<IRegionGetDTO[]>('calculateOrderCost')));
+    return this.http
+      .get<IRegionGetDTO[]>(url)
+      .pipe(
+        catchError(this.handleError<IRegionGetDTO[]>('calculateOrderCost'))
+      );
   }
 
   // get all governments with their regions
   getAllGovernmentsWithRegions(): Observable<IGovernmentWithRegionsDTO[]> {
-    return this.http.get<IGovernmentWithRegionsDTO[]>(`${this.baseUrl}/Government/GetAllGovernmentsWithRegions`)
-      .pipe(catchError(this.handleError<IGovernmentWithRegionsDTO[]>('getAllGovernmentsWithRegions', [])));
+    return this.http
+      .get<IGovernmentWithRegionsDTO[]>(
+        `${this.baseUrl}/Government/GetAllGovernmentsWithRegions`
+      )
+      .pipe(
+        catchError(
+          this.handleError<IGovernmentWithRegionsDTO[]>(
+            'getAllGovernmentsWithRegions',
+            []
+          )
+        )
+      );
   }
 
   // Error handler method

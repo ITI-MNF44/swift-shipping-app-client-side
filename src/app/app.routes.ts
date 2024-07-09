@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BranchesEmployeeComponent } from './components/employee-layout/branches/branches.component';
 import { SellerOrdersByStatusComponent } from './components/seller-layout/seller-orders/seller-orders.component';
 import { Routes } from '@angular/router';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
@@ -14,18 +15,6 @@ import { EmployeeLayoutComponent } from './components/employee-layout/employee-l
 import { SellerLayoutComponent } from './components/seller-layout/seller-layout.component';
 import { SellerDashboardComponent } from './components/seller-layout/seller-dashboard/seller-dashboard.component';
 import { SellerAddOrderComponent } from './components/seller-layout/seller-add-order/seller-add-order.component';
-
-// export const routes: Routes = [
-//     { path: '', component:  LoginComponent},
-//     { path: 'login', component: LoginComponent },
-//     { path: 'employees', component: EmployeesComponent },
-//     { path: 'employeedashboard', component: EmployeeDashboardComponent },
-//     { path: 'adddeliveryman', component: DeliverymanFormComponent },
-//     { path: 'addseller', component: SellerFormComponent },
-//     { path: 'branches', component: BranchesComponent },
-
-//     { path: '**', component: NotFoundComponent }
-// ];
 import { DeliverymanLayoutComponent } from './components/deliveryman-layout/deliveryman-layout.component';
 import { DelivaryManOrdersComponent } from './components/deliveryman-layout/delivary-man-orders/delivary-man-orders.component';
 import { BranchFormComponent } from './components/admin-layout/branch-form/branch-form.component';
@@ -51,6 +40,8 @@ import { AcceptordersComponent } from './components/employee-layout/acceptorders
 import { sellerGaurdGuard } from './Gaurds/seller-gaurd.guard';
 import { HomePageComponent } from './components/shared/home-page/home-page.component';
 import { EditGovernmentComponent } from './components/admin-layout/edit-government/edit-government.component';
+import { CitiesEmployeeComponent } from './components/employee-layout/cities/cities.component';
+import { GovernmentsEmployeeComponent } from './components/employee-layout/governments/governments.component';
 
 export const routes: Routes = [
   {
@@ -106,15 +97,15 @@ export const routes: Routes = [
     children: [
       { path: '', component: AdminDashboardComponent },
       { path: 'home', component: EmployeeDashboardComponent },
-      { path: 'branches', component: BranchesComponent },
+      { path: 'branches', component: BranchesEmployeeComponent },
       { path: 'branches/add', component: BranchFormComponent },
       { path: 'branches/:id/edit', component: BranchFormComponent },
 
-      { path: 'cities', component: CitiesComponent },
+      { path: 'cities', component: CitiesEmployeeComponent },
       { path: 'cities/:id/edit', component: AddCityComponent },
       { path: 'cities/0/add', component: AddCityComponent },
 
-      { path: 'governments', component: GovernmentsComponent },
+      { path: 'governments', component: GovernmentsEmployeeComponent },
       { path: 'governments/add', component: AddGovernmentComponent },
       {
         path: 'governments/edit/:governmentId',
@@ -132,7 +123,7 @@ export const routes: Routes = [
       { path: '', component: SellerDashboardComponent },
       { path: 'home', component: SellerDashboardComponent },
       { path: 'order/:id/add', component: SellerAddOrderComponent },
-      { path: 'orders/:statusId',component: SellerOrdersByStatusComponent,},
+      { path: 'orders/:statusId', component: SellerOrdersByStatusComponent },
     ],
   },
 

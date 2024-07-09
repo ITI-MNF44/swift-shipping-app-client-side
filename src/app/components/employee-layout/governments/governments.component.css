@@ -1,0 +1,10 @@
+.icon-btn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+button.icon-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

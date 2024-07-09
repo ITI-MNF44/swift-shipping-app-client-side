@@ -55,18 +55,7 @@ export class RolePermissionsComponent implements OnInit {
     this.routeSubscriber = this.activatedRoute.params.subscribe({
       next: (params) => {
         this.roleName = params['role'];
-        this.subscriber = this.roleApi
-          .getPermissionsByRole(this.roleName)
-          .subscribe({
-            next: (data) => {
-              this.rolePermissions = data;
-              console.log(this.rolePermissions);
-              this.loading = false;
-            },
-            error: (error) => {
-              console.log(error);
-            },
-          });
+        this.getRolePermissions();
       },
     });
   }
@@ -80,7 +69,9 @@ export class RolePermissionsComponent implements OnInit {
         },
       });
   }
-  discard() {}
+  discard() {
+    this.getRolePermissions();
+  }
 
   addSingle() {
     this.messageService.add({
@@ -88,5 +79,20 @@ export class RolePermissionsComponent implements OnInit {
       summary: 'Service Message',
       detail: 'Via MessageService',
     });
+  }
+
+  getRolePermissions() {
+    this.subscriber = this.roleApi
+      .getPermissionsByRole(this.roleName)
+      .subscribe({
+        next: (data) => {
+          this.rolePermissions = data;
+          console.log(this.rolePermissions);
+          this.loading = false;
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
   }
 }

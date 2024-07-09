@@ -124,19 +124,6 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-              <label for="branchId" class="form-label">Branch</label>
-              <input
-                type="number"
-                class="form-control"
-                id="branchId"
-                formControlName="branchId"
-                placeholder="Branch"
-              />
-              <div *ngIf="f['branchId'].invalid && (f['branchId'].dirty || f['branchId'].touched)" class="text-danger">
-                <div *ngIf="f['branchId'].errors?.['required']">Branch is required.</div>
-              </div>
-            </div> -->
 
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
               <label for="branch" class="form-label">Branch Name</label>
@@ -158,19 +145,7 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-              <label for="governments" class="form-label">Governments</label>
-              <input
-                type="number"
-                class="form-control"
-                id="governments"
-                formControlName="governments"
-                placeholder="Governments"
-              />
-              <div *ngIf="f['governments'].invalid && (f['governments'].dirty || f['governments'].touched)" class="text-danger">
-                <div *ngIf="f['governments'].errors?.['required']">Governments are required.</div>
-              </div>
-            </div> -->
+
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
               <label for="address" class="form-label">Address</label>
               <input
@@ -189,31 +164,27 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-              <label for="discountPercentage" class="form-label">Discount percentage</label>
-              <select class="form-select" id="discountPercentage" formControlName="discountPercentage">
-                <option value="" disabled selected>Choose...</option>
-                <option value="1">option1</option>
-                <option value="2">option2</option>
-              </select>
-              <div *ngIf="f['discountPercentage'].invalid && (f['discountPercentage'].dirty || f['discountPercentage'].touched)" class="text-danger">
-                <div *ngIf="f['discountPercentage'].errors?.['required']">Discount percentage is required.</div>
+
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+              <label for="region" class="form-label">Assign Region</label>
+              <div class="flex justify-content-center">
+                <p-multiSelect
+                  class="multi-select border-0"
+                  [options]="groupedRegions"
+                  [group]="true"
+                  formControlName="selectedRegions"
+                  placeholder="Select Regions"
+                  scrollHeight="200px"
+                  display="chip"
+                >
+                  <ng-template let-group pTemplate="group">
+                    <div class="flex align-items-center pe-5">
+                      <span class="me-5 pe-5">{{ group.label }}</span>
+                    </div>
+                  </ng-template>
+                </p-multiSelect>
               </div>
-            </div> -->
-            <!-- <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-              <label for="companyShare" class="form-label">Company Share</label>
-              <input
-                type="text"
-                class="form-control"
-                id="companyShare"
-                formControlName="companyShare"
-                placeholder="Company Share"
-              />
-              <div *ngIf="f['companyShare'].invalid && (f['companyShare'].dirty || f['companyShare'].touched)" class="text-danger">
-                <div *ngIf="f['companyShare'].errors?.['required']">Company share is required.</div>
-                <div *ngIf="f['companyShare'].errors?.['pattern']">Company share must be numeric.</div>
-              </div>
-            </div> -->
+            </div>
           </div>
           <div class="">
             <button type="submit" class="btn btn-primary">Save</button>
