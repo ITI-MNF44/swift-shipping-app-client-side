@@ -139,11 +139,10 @@ export class DeliverymanFormComponent implements OnInit, OnDestroy {
       this.routeSubscriber.unsubscribe();
     }
   }
-  
+
   deliverymanHandler() {
     if (this.deliverymanForm.valid) {
       let deliverymanData: IDeliveryManDTO = {
-        id: 0,
         name: this.deliverymanForm.controls['name'].value,
         address: this.deliverymanForm.controls['address'].value,
         email: this.deliverymanForm.controls['email'].value,
@@ -151,15 +150,14 @@ export class DeliverymanFormComponent implements OnInit, OnDestroy {
         password: this.deliverymanForm.controls['password'].value,
         phoneNumber: this.deliverymanForm.controls['phoneNumber'].value,
         branchId: this.deliverymanForm.controls['branchId'].value,
-        regionIds: this.deliverymanForm.controls['regionIds'].value,
-
       }
       if (this.deliverymanId == '0') {
         this.deliverymanService
           .registerDeliveryMan(deliverymanData)
           .subscribe({
             next: (response) => {
-              this.assignRegions(response.id);
+              this.assignRegions(response.deliverymanId);
+
               this.router.navigate(['admin/deliverymen']);
             },
             error: (error) => {
@@ -167,7 +165,6 @@ export class DeliverymanFormComponent implements OnInit, OnDestroy {
             },
           });
       } else {
-        deliverymanData.id = this.deliverymanId;
         this.deliverymanService
           .updateDeliveryMan(this.deliverymanId, deliverymanData)
           .subscribe({
@@ -187,10 +184,12 @@ export class DeliverymanFormComponent implements OnInit, OnDestroy {
 
   assignRegions(deliveryManId: number) {
     if (this.selectedRegions.length > 0) {
+      console.log(deliveryManId, this.selectedRegions);
       this.deliverymanService.assignRegions(deliveryManId, this.selectedRegions)
         .subscribe({
           next: (response) => {
             console.log('Regions assigned successfully');
+            console.log(this.selectedRegions);
           },
           error: (error) => {
             console.error('Error assigning regions', error);
