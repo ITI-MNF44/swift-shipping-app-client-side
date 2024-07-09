@@ -45,49 +45,58 @@ export class GovernmentsComponent implements OnInit {
     });
   }
 
-  deleteGovernemnt(governemntId: number){
-
-
-
+  deleteGovernemnt(governemntId: number) {
     Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.isConfirmed) {
         // write your code
         this.GovernmentService.deleteGovernment(governemntId).subscribe({
-          next: (data)=>{
+          next: (data) => {
             console.log(data);
-            this.governemnts = this.governemnts.filter(x=>x.id!=governemntId)
+            this.governemnts = this.governemnts.filter(
+              (x) => x.id != governemntId
+            );
             Swal.fire({
-              title: "Deleted!",
-              text: "government has been deleted.",
-              icon: "success"
+              title: 'Deleted!',
+              text: 'government has been deleted.',
+              icon: 'success',
             });
-
           },
-          error: (error)=>{
-            console.log(console.log(error))
+          error: (error) => {
+            console.log(console.log(error));
             Swal.fire({
-              title: "The Error?",
-              text: "That thing is still around?",
-              icon: "question"
+              title: 'The Error?',
+              text: 'That thing is still around?',
+              icon: 'question',
             });
-          }
-        })
-
-      
+          },
+        });
       }
     });
-
-    
   }
 
+  onToggleStatus(governemnt: IGovernmentGetDTO) {
+    this.GovernmentService.toggleActivityStatus(governemnt.id).subscribe({
+      next: () => {
+        governemnt.isActive = !governemnt.isActive;
+      },
+      error: () => {
+        this.GovernmentService.getById(governemnt.id).subscribe(
+          (updatedGovernemnt) => {
+            governemnt.isActive = updatedGovernemnt.isActive;
+          }
+        );
+      },
+      complete: () => {},
+    });
+  }
   editGovernment(id: number) {
     this.router.navigate([`${this.roleRouting}/governments/edit/${id}`]);
   }
