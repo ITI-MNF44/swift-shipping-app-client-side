@@ -58,7 +58,9 @@ export const routes: Routes = [
       { path: 'deliverymen', component: DeliverymenComponent },
       { path: 'sellers', component: SellersComponent },
       { path: 'deliveryman/edit/:id', component: DeliverymanFormComponent },
+      { path: 'deliveryman/add/0', component: DeliverymanFormComponent },
       { path: 'seller/edit/:id', component: SellerFormComponent },
+      { path: 'seller/add/0', component: SellerFormComponent },
       { path: 'employee/edit/:id', component: EmployeeFormComponent },
 
       // Add route for branches

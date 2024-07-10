@@ -9,4 +9,5 @@ export interface IDeliveryManGetDTO {
   regionName: string;
   selectedRegions?: number[];
   branchId: number;
+  password: string;
 }

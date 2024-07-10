@@ -14,3 +14,7 @@ ul {
 .p-multiselect-trigger {
   margin-left: 300px;
 }
+
+.not-visible {
+  visibility: hidden;
+}
