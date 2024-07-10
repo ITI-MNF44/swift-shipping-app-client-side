@@ -68,7 +68,7 @@ export class BranchesEmployeeComponent implements OnInit {
       this.branchService.deleteBranch(branchId).subscribe(
         () => {
           //alert('Successfully Deleted');
-          this.route.navigateByUrl('admin/branches');
+          this.branches = this.branches.filter((b) => b.id != branchId);
         },
         (error) => {
           console.error('Error deleting branch:', error);

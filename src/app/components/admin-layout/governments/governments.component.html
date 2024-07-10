@@ -5,7 +5,7 @@
         <tr>
           <th>#</th>
           <th>Name</th>
-          <th>Status</th>
+          <!-- <th>Status</th> -->
           <th>Settings</th>
         </tr>
       </thead>
@@ -14,16 +14,18 @@
         <tr *ngFor="let governemnt of governemnts">
           <td>{{ governemnt.id }}</td>
           <td>{{ governemnt.name }}</td>
-          <td>
+          <!-- <td>
             <label class="switch">
               <input type="checkbox" [checked]="governemnt.isActive" [readOnly]="true" disabled/>
               <span class="slider round"></span>
             </label>
-          </td>
+          </td> -->
           <td>
             <a (click)="editGovernment(governemnt.id)">
-              <i class="bi bi-pencil-square text-success m-1"
-                style="font-size: 1.5rem"></i>
+              <i
+                class="bi bi-pencil-square text-success m-1"
+                style="font-size: 1.5rem"
+              ></i>
             </a>
 
             <a (click)="deleteGovernemnt(governemnt.id)">

@@ -4,36 +4,17 @@
       <app-logo-icon></app-logo-icon>
       <h2 class="d-none d-lg-block">Swift Shipping</h2>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-    </div>
   </div>
 </nav>
 <div className="mt-5 py-2"></div>
@@ -41,13 +22,18 @@
 <main class="container">
   <div class="text-center py-5">
     <span class="mt-5 mx-auto text-center">
-      <span class="mb-1 p-2 border-3 border-primary border-bottom fs-1 fw-bolder">
+      <span
+        class="mb-1 p-2 border-3 border-primary border-bottom fs-1 fw-bolder"
+      >
         Dashboards
       </span>
     </span>
     <div class="entity row forms d-flex justify-content-evenly">
-
-      <a rel="stylesheet" class="col-xl-5 icon-box card requests p-4 py-5 bg-opacity-50" [routerLink]="['/admin/login']">
+      <a
+        rel="stylesheet"
+        class="col-xl-5 icon-box card requests p-4 py-5 bg-opacity-50"
+        [routerLink]="['/admin']"
+      >
         <div class="icon">
           <i class="i bi-person"></i>
         </div>
@@ -58,7 +44,11 @@
         </p>
       </a>
 
-      <a rel="stylesheet" class="col-xl-5 icon-box card requests p-4 py-5 bg-opacity-50"  [routerLink]="['/employee/login']">
+      <a
+        rel="stylesheet"
+        class="col-xl-5 icon-box card requests p-4 py-5 bg-opacity-50"
+        [routerLink]="['/employee']"
+      >
         <div class="icon">
           <i class="i bi-person"></i>
         </div>
@@ -69,7 +59,12 @@
         </p>
       </a>
 
-      <a rel="stylesheet" disabled="{isDisabled}" class="col-xl-5 icon-box card requests p-4 py-5 bg-opacity-50"  [routerLink]="['/deliveryman/login']">
+      <a
+        rel="stylesheet"
+        disabled="{isDisabled}"
+        class="col-xl-5 icon-box card requests p-4 py-5 bg-opacity-50"
+        [routerLink]="['/deliveryman']"
+      >
         <div class="icon">
           <i class="i bi-person"></i>
         </div>
@@ -80,13 +75,18 @@
         </p>
       </a>
 
-      <a rel="stylesheet" class="col-xl-5 icon-box card requests p-4 py-5 bg-opacity-50"  [routerLink]="['/seller/login']">
+      <a
+        rel="stylesheet"
+        class="col-xl-5 icon-box card requests p-4 py-5 bg-opacity-50"
+        [routerLink]="['/seller']"
+      >
         <div class="icon">
           <i class="i bi-person"></i>
         </div>
         <h4 class="">Seller</h4>
         <p class="">
-          Manages sales and shipments, adds shipment requests, and tracks order status.
+          Manages sales and shipments, adds shipment requests, and tracks order
+          status.
         </p>
       </a>
     </div>

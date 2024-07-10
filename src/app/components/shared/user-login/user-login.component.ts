@@ -25,7 +25,7 @@ import { LogoIconComponent } from '../logo-icon/logo-icon.component';
     PasswordModule,
     FloatLabelModule,
     InputGroupModule,
-    LogoIconComponent
+    LogoIconComponent,
   ],
   templateUrl: './user-login.component.html',
   styleUrl: './user-login.component.css',
@@ -75,7 +75,7 @@ export class UserLoginComponent {
 
                 if (data.role == 'Employee') {
                   this.router.navigate(['/employee']);
-                } else if (data.role == 'DeliveryMan') {
+                } else if (data.role == 'deliveryman') {
                   this.router.navigate(['/deliveryman']);
                 } else if (data.role == 'Seller') {
                   this.router.navigate(['/seller']);
@@ -101,9 +101,9 @@ export class UserLoginComponent {
 
                 if (data.role == 'Employee') {
                   this.router.navigate(['/employee']);
-                } else if (data.role == 'DeliveryMan') {
+                } else if (data.role == 'deliveryman') {
                   this.router.navigate(['/deliveryman']);
-                } else if (data.role == 'Seller') {
+                } else if (data.role == 'seller') {
                   this.router.navigate(['/seller']);
                 }
               } else {

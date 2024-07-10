@@ -76,8 +76,7 @@ export class RolePermissionsComponent implements OnInit {
   addSingle() {
     this.messageService.add({
       severity: 'success',
-      summary: 'Service Message',
-      detail: 'Via MessageService',
+      summary: 'Setting Saved Successfully',
     });
   }
 

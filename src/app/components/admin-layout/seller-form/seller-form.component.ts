@@ -9,6 +9,7 @@ import { IBranchGetDTO } from 'src/app/Interface/IBranchGetDTO';
 import { BranchService } from '@service/branch.service';
 import { RegionService } from '@service/region.service';
 import { IRegionGetDTO } from 'src/app/Interface/IRegionGetDTO';
+import { Password } from 'primeng/password';
 
 @Component({
   selector: 'app-seller-form',
@@ -89,10 +90,12 @@ export class SellerFormComponent implements OnInit, OnDestroy {
   loadSellerData(id: number): void {
     this.subscriber = this.sellersService.getSellerById(id).subscribe({
       next: (data: ISellerGetDTO) => {
+        console.log(data);
         this.sellerForm.patchValue({
           ...data,
           branchId: data.branchId,
           regionId: data.regionId,
+          password: data.password,
         });
       },
       error: (error) => {

@@ -5,7 +5,7 @@ export const sellerGaurdGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
 
   const role = localStorage.getItem('userRole');
-  if (role == 'Seller') {
+  if (role == 'seller') {
     return true;
   } else {
     router.navigate(['seller/login']);

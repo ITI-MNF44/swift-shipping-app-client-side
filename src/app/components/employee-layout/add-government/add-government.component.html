@@ -1,0 +1,19 @@
+<main class="main" id="main">
+    <div class="row form-group mt-md-2">
+        <div class="col-md-12">
+            <form [formGroup]="governmentForm" (ngSubmit)="addGovernment()" class="d-flex align-items-end">
+                <div class="flex-grow-1 me-2">
+                    <label for="governmentName" class="form-label">Government Name</label>
+                    <input id="governmentName" class="form-control" formControlName="governmentName" type="text" placeholder="Government Name">
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-success">ADD</button>
+                </div>
+            </form>
+            <ng-container *ngIf="governmentName.touched">
+                <div *ngIf="governmentName.hasError('required')" class="form-text text-danger">Name is required.</div>
+                <div *ngIf="governmentName.hasError('pattern')" class="form-text text-danger">Name must be at least 3 characters long.</div>
+            </ng-container>
+        </div>
+    </div>
+    </main>

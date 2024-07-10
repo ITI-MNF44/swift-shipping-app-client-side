@@ -6,5 +6,5 @@ img {
 .logo-container {
   padding: 4px;
   max-width: 80px;
-  z-index: 10000;
+  z-index: 2;
 }

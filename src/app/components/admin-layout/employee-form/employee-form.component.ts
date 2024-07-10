@@ -47,7 +47,7 @@ export class EmployeeFormComponent implements OnInit, OnDestroy {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      branchId: [null, Validators.required],
+      branchId: [1, Validators.required],
       address: ['', Validators.required],
     });
 
@@ -61,8 +61,12 @@ export class EmployeeFormComponent implements OnInit, OnDestroy {
             .getById(this.employeeId)
             .subscribe({
               next: (data) => {
+                console.log(data);
                 this.employee = data;
-                this.employeeForm.patchValue(this.employee);
+                this.employeeForm.patchValue({
+                  ...data,
+                  branchId: data.branchId,
+                });
               },
               error: (error) => {
                 console.log(error);

@@ -1,0 +1,67 @@
+<main id="main" class="main">
+  <form [formGroup]="branchForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="BranchName">Branch Name:</label>
+      <input
+        type="text"
+        id="BranchName"
+        formControlName="BranchName"
+        class="form-control"
+        required
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          branchForm.get('BranchName')?.hasError('required') &&
+          branchForm.get('BranchName')?.touched
+        "
+      >
+        Branch name is required.
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="
+          branchForm.get('BranchName')?.hasError('minlength') &&
+          branchForm.get('BranchName')?.touched
+        "
+      >
+        Branch name must be at least 3 characters long.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="governmentId">Government:</label>
+      <select
+        id="GovernmentId"
+        formControlName="governmentId"
+        class="form-control"
+        required
+      >
+        <option value="" disabled>Select a government</option>
+        <option *ngFor="let government of governments" [value]="government.id">
+          {{ government.name }}
+        </option>
+      </select>
+
+      <div
+        class="text-danger"
+        *ngIf="
+          branchForm.get('governmentId')?.hasError('required') &&
+          branchForm.get('governmentId')?.touched
+        "
+      >
+        Government selection is required.
+      </div>
+    </div>
+
+    <div class="form-group button-container">
+      <button
+        type="submit"
+        class="btn btn-primary btn-small"
+        [disabled]="branchForm.invalid"
+      >
+        {{ branchID == 0 ? "Add" : "Save" }}
+      </button>
+    </div>
+  </form>
+</main>

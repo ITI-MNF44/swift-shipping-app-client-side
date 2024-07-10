@@ -1,0 +1,25 @@
+<main id="main" class="main">
+    <form method="post" [formGroup]="editGovernmentForm" (submit)="editGovernment()">
+        <div class="row">
+
+            <div class="form-group col-md-3 mt-md-2 me-5">
+                <label class="form-label">government Name</label>
+                <input class="form-control" formControlName="governmentname" type="text" placeholder="government Name">
+            </div>
+            
+
+            <div class="form-check form-switch fs-4 col-3 align-self-end">
+                <input class="form-check-input" formControlName="isActive" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label ms-2 mb-0" for="flexSwitchCheckDefault">is active</label>
+            </div>
+            
+            <div class="col-2 align-self-end">
+                <button class="btn btn-success px-5">Edit</button>
+            </div>
+            <ng-container *ngIf="editGovernmentForm.controls.governmentname.touched"> <!-- check if user focus on input -->
+                <div *ngIf="editGovernmentForm.controls.governmentname.hasError('required')" class="form-text text-danger">name is required</div>
+            </ng-container>
+            
+        </div>
+    </form>
+</main>

@@ -5,7 +5,7 @@
         <tr>
           <th>#</th>
           <th>Name</th>
-          <th>Status</th>
+          <!-- <th>Status</th> -->
           <th>Settings</th>
         </tr>
       </thead>
@@ -14,7 +14,7 @@
         <tr *ngFor="let governemnt of governemnts">
           <td>{{ governemnt.id }}</td>
           <td>{{ governemnt.name }}</td>
-          <td>
+          <!-- <td>
             <button class="icon-btn" [disabled]="!rolePermissions?.edit">
               <i
                 class=" fs-1 bi bi-toggle-{{
@@ -22,7 +22,7 @@
                 }}"
               ></i>
             </button>
-          </td>
+          </td> -->
           <td>
             <button
               (click)="editGovernment(governemnt.id)"

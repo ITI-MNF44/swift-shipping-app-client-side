@@ -15,7 +15,7 @@
         <tr>
           <th>#</th>
           <th>Name</th>
-          <th>Status</th>
+          <!-- <th>Status</th> -->
           <th>Creation Date</th>
           <th>Settings</th>
         </tr>
@@ -25,15 +25,15 @@
         <tr *ngFor="let branch of branches">
           <td>{{ branch.id }}</td>
           <td>{{ branch.name }}</td>
-          <td>
+          <!-- <td>
             <label class="switch">
               <input type="checkbox" [checked]="branch.isActive" (change)="onToggleStatus(branch)" />
               <span class="slider round"></span>
             </label>
-          </td>
+          </td> -->
           <td>{{ branch.creationDate | date : "yyyy-MM-dd" }}</td>
           <td>
-            <a [routerLink]="[branch.id ,'edit']" title="Edit">
+            <a [routerLink]="[branch.id, 'edit']" title="Edit">
               <i
                 class="bi bi-pencil-square text-success m-1"
                 style="font-size: 1.5rem"

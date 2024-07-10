@@ -104,9 +104,8 @@ export class EmployeesComponent implements OnInit {
     if (confirmDelete) {
       this.employeeService.deleteEmployee(employeeId).subscribe(
         () => {
-          this.route.navigateByUrl('admin/employees');
           this.employeesWIthBranchName = this.employeesWIthBranchName.filter(
-            (employee) => employee.id !== employeeId
+            (employee) => employee.id != employeeId
           );
         },
         (error) => {

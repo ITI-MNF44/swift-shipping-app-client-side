@@ -5,7 +5,7 @@ export const deliveryManGaurdGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
 
   const role = localStorage.getItem('userRole');
-  if (role == 'DeliveryMan') {
+  if (role == 'deliveryman') {
     return true;
   } else {
     router.navigate(['deliveryman/login']);

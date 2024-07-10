@@ -1,3 +1,5 @@
+import { EditGovernmentEmployeeComponent } from './components/employee-layout/edit-government/edit-government.component';
+import { AddGovernmentEmployeeComponent } from './components/employee-layout/add-government/add-government.component';
 import { Component } from '@angular/core';
 import { BranchesEmployeeComponent } from './components/employee-layout/branches/branches.component';
 import { SellerOrdersByStatusComponent } from './components/seller-layout/seller-orders/seller-orders.component';
@@ -42,6 +44,7 @@ import { HomePageComponent } from './components/shared/home-page/home-page.compo
 import { EditGovernmentComponent } from './components/admin-layout/edit-government/edit-government.component';
 import { CitiesEmployeeComponent } from './components/employee-layout/cities/cities.component';
 import { GovernmentsEmployeeComponent } from './components/employee-layout/governments/governments.component';
+import { BranchFormEmployeeComponent } from './components/employee-layout/branch-form/branch-form.component';
 
 export const routes: Routes = [
   {
@@ -95,21 +98,21 @@ export const routes: Routes = [
     canActivate: [employeeGaurdGuard],
     component: EmployeeLayoutComponent,
     children: [
-      { path: '', component: AdminDashboardComponent },
+      { path: '', component: EmployeeLayoutComponent },
       { path: 'home', component: EmployeeDashboardComponent },
       { path: 'branches', component: BranchesEmployeeComponent },
-      { path: 'branches/add', component: BranchFormComponent },
-      { path: 'branches/:id/edit', component: BranchFormComponent },
+      { path: 'branches/add', component: BranchFormEmployeeComponent },
+      { path: 'branches/:id/edit', component: BranchFormEmployeeComponent },
 
       { path: 'cities', component: CitiesEmployeeComponent },
       { path: 'cities/:id/edit', component: AddCityComponent },
       { path: 'cities/0/add', component: AddCityComponent },
 
       { path: 'governments', component: GovernmentsEmployeeComponent },
-      { path: 'governments/add', component: AddGovernmentComponent },
+      { path: 'governments/add', component: AddGovernmentEmployeeComponent },
       {
         path: 'governments/edit/:governmentId',
-        component: EditGovernmentComponent,
+        component: EditGovernmentEmployeeComponent,
       },
       { path: 'order', component: DisplayOrdersComponent },
       { path: 'neworders', component: AcceptordersComponent },
