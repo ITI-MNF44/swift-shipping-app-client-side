@@ -65,7 +65,7 @@
                         <input class="form-control"  formControlName="address"type="text" name="address" placeholder="Address">
                    </div>
                    <div class="form-check form-switch fs-4 col-6 align-self-end">
-                        <input class="form-check-input" formControlName="isShippedToVillage" type="checkbox" id="flexSwitchCheckDefault">
+                        <input class="form-check-input" formControlName="isShippedToVillage" type="checkbox" id="flexSwitchCheckDefault" (input)="calculateShippingCost()">
                         <label class="form-check-label ms-2 mb-0" for="flexSwitchCheckDefault">is shipped to village?</label>
                     </div>
                 </div>
