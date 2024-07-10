@@ -24,7 +24,6 @@ export class DeliveryManService {
   }
 
 
-
   // POST: /api/DeliveryMan/Register
   registerDeliveryMan(deliveryManDTO: any): Observable<any> {
     return this.http
@@ -96,12 +95,8 @@ export class DeliveryManService {
       .pipe(catchError(this.handleError));
   }
 
-  assignRegions(deliveryManId: number, regionIds: number[]): Observable<any> {
-    const payload = {
-      deliveryManId,
-      regionIds
-    };
-    return this.http.post(`${this.apiUrl}/DeliveryMan/AssignRegions`, payload)
+  assignRegions(deliveryManDTO: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/DeliveryMan/AssignRegions`, deliveryManDTO)
       .pipe(catchError(this.handleError));
   }
 
