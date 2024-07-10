@@ -6,11 +6,12 @@ export const authInterceptorService: HttpInterceptorFn = (req, next) => {
     return next(req);
   }
 
- let headers = req.headers || new HttpHeaders();
- headers = headers.append('Authorization', `Bearer ${token}`);
+  let headers = req.headers || new HttpHeaders();
+  headers = headers.append('Authorization', `Bearer ${token}`);
 
- const modifiedReq = req.clone({
-   headers: headers,
- });
+  const modifiedReq = req.clone({
+    headers: headers,
+  });
+  console.log(modifiedReq);
   return next(modifiedReq);
 };
