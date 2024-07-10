@@ -24,7 +24,6 @@ export class DeliveryManService {
   }
 
 
-
   // POST: /api/DeliveryMan/Register
   registerDeliveryMan(deliveryManDTO: any): Observable<any> {
     return this.http
